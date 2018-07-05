@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:200,400,800');
+/* font-family: 'Work Sans', sans-serif; */
+/* <link href="https://fonts.googleapis.com/css?family=Work+Sans:200,400,800" rel="stylesheet"> for html file */
+
+body {
+    text-align: center;
+    font-family: 'Work Sans', sans-serif;
+}
+
+body, .container::before {
+    background: url(../images/handshake.jpg) 0 / cover fixed;
+    color: #383838;
+}
+
+.container {
+    text-align: center;
+    position: relative;
+    padding: 10px 30px;
+    border-radius: 10px;
+    display: inline-block;
+    background: hsla(0,0%,100%,.3);
+    overflow: hidden;
+}
+
+.container::before {
+    content: '';
+    margin: -35px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    filter: blur(7px);
+    z-index: -1;
+}
+
+.center {
+    margin: auto;
+    margin-top: 100px;
+    /* width: 60%; */
+}
+
+h1 {
+    font-weight: 800;
+}
+
+h4 {
+    font-weight: 800;
+}
+
+img {
+    width: 150px;
+}
+
+input {
+    color: #44826d;
+    font-size: 1.5em;
+    display: inline-block;
+    border: 0;
+    outline: 0;
+    padding: 5px;
+    background: rgba(161, 221, 221, 0.5);
+    /* background: transparent; */
+    border-bottom: 2px solid #6bc6a7;
+    transition: border-bottom 0.5s ease;
+}
+
+input::placeholder {
+    color: #44826d;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 200;
+}
+
+input:focus::placeholder {
+    color: #44826d;
+}
+
+input:focus {
+    border-bottom: 2px solid #488973;
+}
+
+button {
+    font-family: 'Work Sans', sans-serif;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 2em;
+}
+
+#signin {
+    background-color: transparent;
+    border: 2px solid #6bc6a7;
+    border-radius: 10px;
+    color: #6bc6a7;
+    padding: 8px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+#signin:hover {
+    background-color: #6bc6a7;
+    color: white;
+}
+
+#signup {
+    background-color: #6bc6a7;
+    border: none;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    color: white;
+    padding: 8px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+#signup:hover {
+    background-color: transparent;
+    color: #6bc6a7;
+    border: 2px solid #6bc6a7;
+}
