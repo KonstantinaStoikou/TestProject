@@ -10,7 +10,7 @@
 
 	<%
 		if (session.getAttribute("usermail") == null) {
-			response.sendRedirect("login.jsp");
+			response.sendRedirect("/login.jsp");
 		}
 	%>
 	WElcome!

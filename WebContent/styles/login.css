@@ -59,7 +59,9 @@ input {
     border: 0;
     outline: 0;
     padding: 5px;
+    padding-left: 15px;
     background: rgba(161, 221, 221, 0.5);
+    border-radius: 50px;
     /* background: transparent; */
     border-bottom: 2px solid #6bc6a7;
     transition: border-bottom 0.5s ease;

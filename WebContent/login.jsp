@@ -11,7 +11,12 @@
         <div class="container center">
             <h1>Welcome to  <img src="images/dots.png"> : <br />the site to connect with professionals</h1>
             <form action="login" method="get">
-				
+				<%
+					if (session.getAttribute("errorMessage") != null) {
+						out.println(session.getAttribute("errorMessage"));
+						out.write("<br>");
+					}
+				%>
                 <input type="email" name="email" placeholder="Email" autocomplete="off" autocorrect="off" spellcheck="false" required>
                 <br>
                 <br>
