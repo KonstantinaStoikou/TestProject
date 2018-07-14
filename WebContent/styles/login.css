@@ -81,7 +81,7 @@ input:focus {
     border-bottom: 2px solid #488973;
 }
 
-button {
+#signin, #signup {
     font-family: 'Work Sans', sans-serif;
     text-transform: uppercase;
     font-weight: 400;

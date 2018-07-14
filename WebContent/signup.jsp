@@ -1,0 +1,40 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <title>Dots - Sign Up</title>
+	    <link rel="stylesheet" type="text/css" href="styles/signup.css">
+	    <script src="scripts/signup.js" defer></script>
+	</head>	
+	<body>
+		<div class="navbar">
+            <img src="images/dots.png" />
+            <a href="login.jsp">Login</a>
+        </div>
+        <div class="container">
+            <p>Thanks for choosing Dots. <br> Please fill in your details to create an account :</p>
+
+            <form action="something" method="post">
+                <label>First Name :</label>
+                <input type="text" name="first_name" autocomplete="off" spellcheck="false">
+                <label>Last Name :</label>
+                <input type="text" name="last_name" autocomplete="off" spellcheck="false">
+                <label>Password :</label>
+                <input type="password" name="password" autocomplete="off" spellcheck="false">
+                <label>Confirm Password :</label>
+                <input type="password" name="password_conf" autocomplete="off" spellcheck="false">
+                <label>Email :</label>
+                <input type="email" name="email" autocomplete="off" spellcheck="false">
+                <label>Phone Number :</label>
+                <input type="number" name="phone" min="0" autocomplete="off" spellcheck="false">
+                <label>Profile Photo :</label>
+                <input type='file' id='getval' name="photo" accept="image/*"><br>
+                <div id='clock'></div>
+                <br>
+                <button type="submit" name="signup">Create Account</button>
+            </form>
+        </div>
+	</body>
+</html>

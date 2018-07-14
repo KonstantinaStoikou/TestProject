@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Dots</title>
+		<title>Dots - Login</title>
         <link rel="stylesheet" type="text/css" href="styles/login.css">
 	</head>
 	<body>
@@ -17,7 +17,7 @@
 						out.write("<br>");
 					}
 				%>
-                <input type="email" name="email" placeholder="Email" autocomplete="off" autocorrect="off" spellcheck="false" required>
+                <input type="email" name="email" placeholder="Email" autocomplete="off" spellcheck="false" required>
                 <br>
                 <br>
                 <input type="password" name="password" placeholder="Password" required>
@@ -26,7 +26,7 @@
                 <button id="signin" type="submit" value=signin>Sign In</button>
             </form>
             <h4>or if you don't have an account:</h4>
-            <button id="signup" type="submit" name="signup">Sign Up</button>
+            <a href="signup.jsp" id="signup">Sign Up</a>
         </div>
 	</body>
 </html>

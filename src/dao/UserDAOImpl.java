@@ -95,7 +95,7 @@ public class UserDAOImpl implements UserDAO {
 	
 	private static User map(ResultSet resultSet) throws SQLException {
         User user = new User();
-        user.setEmai(resultSet.getString("email"));
+        user.setEmai(resultSet.getString("emai"));
         return user;
     }
 	
