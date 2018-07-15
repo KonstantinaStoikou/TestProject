@@ -14,9 +14,9 @@ import model.User;
 
 public class UserDAOImpl implements UserDAO {
 	
-	private static final String SQL_FIND_BY_EMAIL = "SELECT emai, password FROM Users WHERE emai = ?";
-	private static final String SQL_LIST_ORDER_BY_EMAIL = "SELECT emai, password FROM Users ORDER BY emai";
-	private static final String SQL_INSERT = "INSERT INTO Users (emai, password) VALUES (?, ?)";
+	private static final String SQL_FIND_BY_EMAIL = "SELECT email, password FROM Users WHERE email = ?";
+	private static final String SQL_LIST_ORDER_BY_EMAIL = "SELECT email, password FROM Users ORDER BY email";
+	private static final String SQL_INSERT = "INSERT INTO Users (email, password) VALUES (?, ?)";
 	
 	private ConnectionFactory factory;
     
@@ -71,7 +71,7 @@ public class UserDAOImpl implements UserDAO {
 	public int create(User user) 
 	{
 		int ret = -1;
-		Object[] values = { user.getEmai(), user.getPassword()};
+		Object[] values = { user.getEmail(), user.getPassword()};
 
 		try (Connection connection = factory.getConnection();
 				PreparedStatement statement = DAOUtil.prepareStatement(connection, SQL_INSERT, true, values);) 
@@ -95,7 +95,7 @@ public class UserDAOImpl implements UserDAO {
 	
 	private static User map(ResultSet resultSet) throws SQLException {
         User user = new User();
-        user.setEmai(resultSet.getString("emai"));
+        user.setEmail(resultSet.getString("email"));
         return user;
     }
 	

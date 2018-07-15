@@ -16,17 +16,17 @@
         <div class="container">
             <p>Thanks for choosing Dots. <br> Please fill in your details to create an account :</p>
 
-            <form action="something" method="post">
+            <form action="signup" method="post">
                 <label>First Name :</label>
                 <input type="text" name="first_name" autocomplete="off" spellcheck="false">
                 <label>Last Name :</label>
                 <input type="text" name="last_name" autocomplete="off" spellcheck="false">
                 <label>Password :</label>
-                <input type="password" name="password" autocomplete="off" spellcheck="false">
+                <input type="password" name="password" autocomplete="off" spellcheck="false" required>
                 <label>Confirm Password :</label>
                 <input type="password" name="password_conf" autocomplete="off" spellcheck="false">
                 <label>Email :</label>
-                <input type="email" name="email" autocomplete="off" spellcheck="false">
+                <input type="email" name="email" autocomplete="off" spellcheck="false" required">
                 <label>Phone Number :</label>
                 <input type="number" name="phone" min="0" autocomplete="off" spellcheck="false">
                 <label>Profile Photo :</label>

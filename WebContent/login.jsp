@@ -10,7 +10,7 @@
 	<body>
         <div class="container center">
             <h1>Welcome to  <img src="images/dots.png"> : <br />the site to connect with professionals</h1>
-            <form action="login" method="get">
+            <form action="login" method="post">
 				<%
 					if (session.getAttribute("errorMessage") != null) {
 						out.println(session.getAttribute("errorMessage"));

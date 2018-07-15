@@ -15,26 +15,26 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private String emai;
+	private String email;
 
-	private int password;
+	private String password;
 
 	public User() {
 	}
 
-	public String getEmai() {
-		return this.emai;
+	public String getEmail() {
+		return this.email;
 	}
 
-	public void setEmai(String emai) {
-		this.emai = emai;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public int getPassword() {
+	public String getPassword() {
 		return this.password;
 	}
 
-	public void setPassword(int password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 
