@@ -23,12 +23,13 @@ public class Login extends HttpServlet {
 		
 	}
 
+	//use doPost method for security reasons
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		HttpSession session = request.getSession();
 		
-		UserDAO dao = new UserDAOImpl(true);
+		UserDAO dao = new UserDAOImpl();
 		System.out.println("helooooooooooooooooooooooooo");
 //		if ("tinasto97@gmail.com".equals(email)) {
 		User user = dao.find(email);

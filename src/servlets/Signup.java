@@ -23,6 +23,7 @@ public class Signup extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
+	//use doPost method for security reasons
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		String first_name = request.getParameter("first_name");
 //		String last_name = request.getParameter("last_name");		
@@ -33,7 +34,7 @@ public class Signup extends HttpServlet {
 //		String photo = request.getParameter("photo");
 		HttpSession session = request.getSession();
 		
-		UserDAO dao = new UserDAOImpl(true);
+		UserDAO dao = new UserDAOImpl();
 		
 		User user = new User();
 		user.setEmail(email);

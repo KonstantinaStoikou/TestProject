@@ -10,6 +10,6 @@ public interface UserDAO
 
     public List<User> list();
 
-    public int create(User user);
+    public void create(User user);
 
 }
