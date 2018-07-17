@@ -32,6 +32,7 @@ public class Login extends HttpServlet {
 		UserDAO dao = new UserDAOImpl();
 		User user = dao.find(email);
 		if (user != null && password.equals(user.getPassword())) {
+			//if(user == admin) go to admin page else { ...
 			session.setAttribute("usermail", "email");
 			request.getRequestDispatcher("/welcome.jsp").forward(request, response);
 		}
