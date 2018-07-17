@@ -34,7 +34,6 @@ public class UserDAOImpl implements UserDAO
 		em.getTransaction().begin();
 		em.persist(user);
 		em.getTransaction().commit();
-//		em.persist(user);
 	}
 	
 

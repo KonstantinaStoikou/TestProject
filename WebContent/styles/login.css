@@ -30,7 +30,7 @@ body, .container::before {
     right: 0;
     bottom: 0;
     left: 0;
-    filter: blur(7px);
+    filter: blur(9px);
     z-index: -1;
 }
 
@@ -50,6 +50,10 @@ h4 {
 
 img {
     width: 150px;
+}
+
+span {
+	color: #6bc6a7;
 }
 
 input {

@@ -30,15 +30,15 @@ public class Login extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		UserDAO dao = new UserDAOImpl();
-		System.out.println("helooooooooooooooooooooooooo");
-//		if ("tinasto97@gmail.com".equals(email)) {
 		User user = dao.find(email);
-		if (user != null) {
+		if (user != null && password.equals(user.getPassword())) {
 			session.setAttribute("usermail", "email");
 			request.getRequestDispatcher("/welcome.jsp").forward(request, response);
 		}
 		else {
-			session.setAttribute("errorMessage", "Invalid user or password");
+			request.setAttribute("errorMessage", "Invalid user or password");
+			//invalidate session so that user can't access welcome.jsp 
+			//because usermail will be null
 			session.invalidate();
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		}

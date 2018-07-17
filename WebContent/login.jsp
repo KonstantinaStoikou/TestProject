@@ -12,8 +12,11 @@
             <h1>Welcome to  <img src="images/dots.png"> : <br />the site to connect with professionals</h1>
             <form action="login" method="post">
 				<%
-					if (session.getAttribute("errorMessage") != null) {
-						out.println(session.getAttribute("errorMessage"));
+					if (request.getAttribute("errorMessage") != null) {
+						out.write("<span>");
+						out.println(request.getAttribute("errorMessage"));
+						out.write("</span>");
+						out.write("<br>");
 						out.write("<br>");
 					}
 				%>
