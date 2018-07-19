@@ -59,3 +59,7 @@ button {
 button:hover {
     box-shadow: inset 0 0 0 3px #44826d;
 }
+
+span {
+	color: #8e0e1a;
+}

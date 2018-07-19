@@ -58,6 +58,7 @@ public class Signup extends HttpServlet {
 		user.setPassword(password);
 		
 		if (dao.find(email) == null) {
+			request.setAttribute("errorMessage", null);
 			session.setAttribute("email", email);
 			if (!password.equals(password_conf)) {
 				request.setAttribute("errorMessage", "Password confirmation is wrong");
@@ -65,11 +66,17 @@ public class Signup extends HttpServlet {
 				request.getRequestDispatcher("/signup.jsp").forward(request, response);
 			}
 			else {
+				request.setAttribute("errorMessage", null);
 				user.setFirstName(first_name);
 				user.setLastName(last_name);
 				user.setPhone(phone);
 				user.setPhoto(photo);
 				dao.create(user);
+				
+				////store user info in session
+				session.setAttribute("email", user.getEmail());
+				session.setAttribute("password", user.getPassword());
+				
 				request.getRequestDispatcher("/welcome.jsp").forward(request, response);
 			}	
 		}

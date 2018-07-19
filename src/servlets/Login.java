@@ -33,8 +33,13 @@ public class Login extends HttpServlet {
 		UserDAO dao = new UserDAOImpl();
 		User user = dao.find(email);
 		if (user != null && password.equals(user.getPassword())) {
+			request.setAttribute("errorMessage", null);
 			//if(user == admin) go to admin page else { ...
-			session.setAttribute("email", email);
+			
+			//store user info in session
+			session.setAttribute("email", user.getEmail());
+			session.setAttribute("password", user.getPassword());
+		
 			request.getRequestDispatcher("/welcome.jsp").forward(request, response);
 		}
 		else {

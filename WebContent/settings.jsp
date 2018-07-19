@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>Dots - Settings</title>
 		<link rel="stylesheet" type="text/css" href="styles/navbar.css">
 		<link rel="stylesheet" type="text/css" href="styles/settings.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
@@ -44,12 +44,21 @@
 		    <form action="settings" method="post">
 		        <p>Change password </p>
 		        <br>
+		        <%
+					if (request.getAttribute("errorMessage") != null) {
+						out.write("<span>");
+						out.println(request.getAttribute("errorMessage"));
+						out.write("</span>");
+						out.write("<br>");
+						out.write("<br>");
+					}
+				%>
 		        <label>Enter current password : </label>
-		        <input type="text" name="oldpass">
+		        <input type="password" name="oldpass">
 		        <br>
 		        <br>
 		        <label>Enter new password : </label>
-		        <input type="text" name="newpass">
+		        <input type="password" name="newpass">
 		        
 				<!-- hidden field to know what request will be processed in servlet -->
 		        <input type="hidden" name="action" value="password_change">
