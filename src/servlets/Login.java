@@ -17,6 +17,7 @@ import model.User;
  * Servlet implementation class Login
  */
 @WebServlet("/login")
+
 public class Login extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -33,7 +34,7 @@ public class Login extends HttpServlet {
 		User user = dao.find(email);
 		if (user != null && password.equals(user.getPassword())) {
 			//if(user == admin) go to admin page else { ...
-			session.setAttribute("usermail", "email");
+			session.setAttribute("email", email);
 			request.getRequestDispatcher("/welcome.jsp").forward(request, response);
 		}
 		else {
