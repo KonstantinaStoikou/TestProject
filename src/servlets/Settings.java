@@ -29,18 +29,20 @@ public class Settings extends HttpServlet {
 		String hiddenParam = request.getParameter("action");
 		HttpSession session = request.getSession();
 		if (hiddenParam.equals("email_change")) {
-//			System.out.println(request.getSession(false).getAttribute("email"));
-//			String email = (String)request.getSession(false).getAttribute("email");
-//			
-//			UserDAO dao = new UserDAOImpl();
-//			User user = dao.find(email);
-//			
-//			EntityManager em = EntityManagerHelper.getEntityManager();
-//			em.getTransaction().begin();
-//			user.setEmail("email@email");
-//			em.getTransaction().commit();
+			
+			String email = (String)session.getAttribute("email");
+			UserDAO dao = new UserDAOImpl();
+			User user = dao.findByEmail(email);
+			
+			String new_email = request.getParameter("email");
+			EntityManager em = EntityManagerHelper.getEntityManager();
+			em.getTransaction().begin();
+			user.setEmail(new_email);
+			em.getTransaction().commit();
+			session.setAttribute("email", user.getEmail());
 			
 		} else if (hiddenParam.equals("password_change")){
+			
 			String new_password = request.getParameter("newpass");
 			String old_password = request.getParameter("oldpass");
 			if (!old_password.equals(session.getAttribute("password"))) {
@@ -51,7 +53,7 @@ public class Settings extends HttpServlet {
 				String email = (String)session.getAttribute("email");
 				
 				UserDAO dao = new UserDAOImpl();
-				User user = dao.find(email);
+				User user = dao.findByEmail(email);
 				
 				EntityManager em = EntityManagerHelper.getEntityManager();
 				em.getTransaction().begin();

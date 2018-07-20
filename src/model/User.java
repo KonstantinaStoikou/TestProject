@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -15,6 +16,8 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	private int id;
+
 	private String email;
 
 	@Column(name="first_name")
@@ -30,7 +33,32 @@ public class User implements Serializable {
 	@Lob
 	private byte[] photo;
 
+	//bi-directional many-to-many association to User
+	@ManyToMany
+	@JoinTable(
+		name="Connection"
+		, joinColumns={
+			@JoinColumn(name="Users_id1")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="Users_id")
+			}
+		)
+	private List<User> users1;
+
+	//bi-directional many-to-many association to User
+	@ManyToMany(mappedBy="users1")
+	private List<User> users2;
+
 	public User() {
+	}
+
+	public int getId() {
+		return this.id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getEmail() {
@@ -79,6 +107,22 @@ public class User implements Serializable {
 
 	public void setPhoto(byte[] photo) {
 		this.photo = photo;
+	}
+
+	public List<User> getUsers1() {
+		return this.users1;
+	}
+
+	public void setUsers1(List<User> users1) {
+		this.users1 = users1;
+	}
+
+	public List<User> getUsers2() {
+		return this.users2;
+	}
+
+	public void setUsers2(List<User> users2) {
+		this.users2 = users2;
 	}
 
 }

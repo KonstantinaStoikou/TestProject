@@ -12,7 +12,7 @@
 
 	<% 
  		if (session.getAttribute("email") == null) { 
-			response.sendRedirect("/login.jsp"); 
+			response.sendRedirect(request.getContextPath() + "/login.jsp"); 
 		} 
 	%>
 	

@@ -57,7 +57,7 @@ public class Signup extends HttpServlet {
 		user.setEmail(email);
 		user.setPassword(password);
 		
-		if (dao.find(email) == null) {
+		if (dao.findByEmail(email) == null) {
 			request.setAttribute("errorMessage", null);
 			session.setAttribute("email", email);
 			if (!password.equals(password_conf)) {

@@ -31,7 +31,7 @@ public class Login extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		UserDAO dao = new UserDAOImpl();
-		User user = dao.find(email);
+		User user = dao.findByEmail(email);
 		if (user != null && password.equals(user.getPassword())) {
 			request.setAttribute("errorMessage", null);
 			//if(user == admin) go to admin page else { ...

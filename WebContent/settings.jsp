@@ -13,7 +13,7 @@
 	
 		<% 
 	 		if (session.getAttribute("email") == null) { 
-				response.sendRedirect("/login.jsp"); 
+				response.sendRedirect(request.getContextPath() + "/login.jsp"); 
 			} 
 		%>
 	
@@ -32,7 +32,7 @@
 		<div class="container" id="first">
 		    <form action="settings" method="post">
 		        <label>Change email address :</label>
-		        <input type="text" name="email" value="<%= session.getAttribute("email")%>">
+		        <input type="email" name="email" value="<%= session.getAttribute("email")%>">
 		        
 		        <!-- hidden field to know what request will be processed in servlet -->
 		        <input type="hidden" name="action" value="email_change">
