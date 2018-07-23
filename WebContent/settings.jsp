@@ -32,7 +32,7 @@
 		<div class="container" id="first">
 		    <form action="settings" method="post">
 		        <label>Change email address :</label>
-		        <input type="email" name="email" value="<%= session.getAttribute("email")%>">
+		        <input type="email" name="email" value="<%= session.getAttribute("email")%>" autocomplete="off" spellcheck="false">
 		        
 		        <!-- hidden field to know what request will be processed in servlet -->
 		        <input type="hidden" name="action" value="email_change">
@@ -58,7 +58,7 @@
 		        <br>
 		        <br>
 		        <label>Enter new password : </label>
-		        <input type="password" name="newpass">
+		        <input type="password" name="newpass" autocomplete="off" spellcheck="false">
 		        
 				<!-- hidden field to know what request will be processed in servlet -->
 		        <input type="hidden" name="action" value="password_change">

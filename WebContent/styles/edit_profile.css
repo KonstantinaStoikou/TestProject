@@ -1,0 +1,187 @@
+@import
+	url('https://fonts.googleapis.com/css?family=Work+Sans:200,400,800');
+
+.container {
+	width: 50%;
+	margin: 60px auto;
+	margin-top: 100px;
+	padding: 30px;
+	background-color: white;
+	border-radius: 5px;
+	overflow: hidden;
+	box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .14), 0 3px 3px -2px
+		rgba(0, 0, 0, .2), 0 1px 8px 0 rgba(0, 0, 0, .12);
+}
+
+.area_container {
+	width: 80%;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.skill_container {
+	width: 20%;
+	margin: 10px auto;
+	padding: 15px;
+}
+
+.flex_container {
+	display: flex;
+	flex-flow: row wrap;
+}
+
+#profile_photo {
+	height: 150px;
+	width: 150px;
+	margin-right: 70px;
+	margin-top: 20px;
+	border-radius: 5px;
+	box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .14), 0 3px 3px -2px
+		rgba(0, 0, 0, .2), 0 1px 8px 0 rgba(0, 0, 0, .12);
+}
+
+label {
+	font-size: 0.8em;
+}
+
+#floating_elements {
+	float: left;
+}
+
+#forms {
+	margin-left: 273px;
+}
+
+#forms input {
+	border: 0;
+	outline: 0;
+	border-radius: 10px;
+	padding: 7px;
+	padding-left: 15px;
+	font-size: 20px;
+	color: #44826d;
+	width: 253px;
+	background: rgba(161, 221, 221, 0.5);
+}
+
+#forms input[type=number]::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+}
+
+#forms input:focus::placeholder {
+	color: #44826d;
+}
+
+.new_info input {
+	border: 0;
+	outline: 0;
+	border-radius: 10px;
+	padding: 7px;
+	font-size: 20px;
+	margin-top: 10px;
+	color: #44826d;
+	background: rgba(161, 221, 221, 0.5);
+}
+
+.new_info input:focus::placeholder {
+	color: #44826d;
+}
+
+.skill_container input {
+	width: 90%;
+}
+
+hr {
+	margin-top: 50px;
+	border: 0;
+	height: 1px;
+	background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+	background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+	background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+	background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+}
+
+.area {
+	font-size: 25px;
+	display: inline-block;
+	margin-top: 20px;
+	color: #44826d;
+}
+
+.row1 {
+	font-size: 20px;
+	font-weight: 800;
+	color: #55595e;
+}
+
+.row2 {
+	font-size: 20px;
+}
+
+.row3 {
+	font-size: 15px;
+}
+
+.area+button {
+	border: none;
+	background-color: white;
+	outline: none;
+	color: #6bc6a7;
+	padding: 0;
+	margin-left: 10px;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.area+button i {
+	font-size: 30px;
+}
+
+.area+button:hover {
+	color: #44826d;
+}
+
+.area_container button, .skill_container button {
+	float: right;
+	border: none;
+	background-color: white;
+	color: #f44842;
+	outline: none;
+	cursor: pointer;
+}
+
+.hoverable_text {
+	text-transform: uppercase;
+	font-size: 15px;
+	padding-left: 5px;
+	opacity: 0;
+	display: inline-block;
+	width: 0;
+	transition: 0.4s;
+}
+
+.fa-trash-alt:hover ~ .hoverable_text, .hoverable_text:hover {
+	opacity: 1;
+	width: 60px;
+}
+
+.lock:hover i:last-of-type, .lock i:first-of-type {
+	display: none;
+}
+
+.lock:hover i:first-of-type {
+	display: inline;
+}
+
+.fa-lock, .fa-unlock {
+	padding: 0;
+	padding-right: 6px;
+}
+
+#add_xp, #add_ed, #add_sk {
+	display: none;
+}
+
+.hidden {
+	display: block !important;
+}

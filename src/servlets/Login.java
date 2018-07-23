@@ -39,6 +39,10 @@ public class Login extends HttpServlet {
 			//store user info in session
 			session.setAttribute("email", user.getEmail());
 			session.setAttribute("password", user.getPassword());
+			session.setAttribute("first_name", user.getFirstName());
+			session.setAttribute("last_name", user.getLastName());
+			session.setAttribute("phone", user.getPhone());
+			session.setAttribute("photo", user.getPhoto());
 		
 			request.getRequestDispatcher("/welcome.jsp").forward(request, response);
 		}

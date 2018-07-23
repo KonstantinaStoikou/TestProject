@@ -20,7 +20,7 @@
         <div class="navbar">
             <img src="images/dots.png" />
             <a href="settings.jsp"><i class="fas fa-cogs"></i><br>Settings</a>
-            <a href="profile.jsp"><i class="fas fa-user"></i><br>Profile</a>
+            <a href="edit_profile.jsp"><i class="fas fa-user"></i><br>Profile</a>
             <a href="notifications.jsp"><i class="fas fa-bell"></i><br>Notifications</a>
             <a href="messages.jsp"><i class="fas fa-comments"></i><br>Messages</a>
             <a href="jobs.jsp"><i class="fas fa-newspaper"></i><br>Jobs</a>

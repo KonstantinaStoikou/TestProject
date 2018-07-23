@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-</body>
+<!-- 	here is the profile -->
+<!-- 	<form action="profile" method="get"> -->
+<!-- 		<button type="submit">Edit</button> -->
+<!-- 	</form> -->
+<!-- </body> -->
 </html>
