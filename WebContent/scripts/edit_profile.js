@@ -1,3 +1,5 @@
+//code to toggle forms 
+
 var xp = document.getElementById("xp");
 
 xp.addEventListener('click', function(){
@@ -24,3 +26,24 @@ xp.addEventListener('click', function(){
     document.querySelector("#sk > i").classList.toggle("fa-plus-circle");
     document.querySelector("#sk > i").classList.toggle("fa-minus-circle");
 });
+
+
+//code to display chosen image
+
+document.getElementById('getval').addEventListener('change', readURL, true);
+
+function readURL() {
+    var file = document.getElementById('getval').files[0];
+    console.log(file);
+    var reader = new FileReader();
+    reader.onloadend = function() {
+    	console.log("hello");
+        document.getElementById('profile_photo').src = reader.result;
+        console.log(document.getElementById('profile_photo').src);
+    };
+    if(file) {
+        reader.readAsDataURL(file);
+    }
+    else {
+    }
+}

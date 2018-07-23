@@ -23,7 +23,7 @@ public class ProfilePic extends HttpServlet {
 //		request.setAttribute("image", session.getAttribute("photo"));
 //		request.getRequestDispatcher("/edit_profile.jsp").forward(request, response);
 
-		response.setContentType("image/png");
+		response.setContentType("image/*");
 		response.setContentLength(image.length);
 		BufferedOutputStream output = null;
 		try {

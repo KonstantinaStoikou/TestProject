@@ -72,6 +72,11 @@ label {
 	color: #44826d;
 }
 
+#getval {
+	font-size: 15px;
+	color: #44826d;
+}
+
 .new_info input {
 	border: 0;
 	outline: 0;
@@ -87,7 +92,7 @@ label {
 	color: #44826d;
 }
 
-.skill_container input {
+.skill_container input[type="text"] {
 	width: 90%;
 }
 
@@ -185,3 +190,4 @@ hr {
 .hidden {
 	display: block !important;
 }
+

@@ -32,10 +32,9 @@
 
         <div class="container">
             <div id="floating_elements">
-
-                <form class="" action="index.html" method="post">
+                <form class="" action="index.html" method="post" enctype="multipart/form-data">
                     <input type='file' id='getval' name="photo" accept="image/*">
-                 </form>
+                </form>
                 <img id="profile_photo" src= "http://localhost:8080/TestProject/profilepic?" alt="">
             </div>
             <div id="forms">
