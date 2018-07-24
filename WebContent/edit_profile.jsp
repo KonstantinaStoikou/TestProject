@@ -31,27 +31,29 @@
         </div>
 
         <div class="container">
-            <div id="floating_elements">
-                <form class="" action="index.html" method="post" enctype="multipart/form-data">
+            <form class="" action="index.html" method="post" enctype="multipart/form-data">
+                <div id="floating_elements">
                     <input type='file' id='getval' name="photo" accept="image/*">
-                </form>
-                <img id="profile_photo" src= "http://localhost:8080/TestProject/profilepic?" alt="">
-            </div>
-            <div id="forms">
-                <form action="index.html" method="post">
-                    <label>First Name</label><br>
-                    <input type="text" name="first_name" value="<%= session.getAttribute("first_name")%>" autocomplete="off" spellcheck="false">
-                </form>
-                <form action="index.html" method="post">
-                    <label>Last Name</label><br>
-                    <input type="text" name="last_name" value="<%= session.getAttribute("last_name")%>" autocomplete="off" spellcheck="false">
-                </form>
-                <form action="index.html" method="post">
-                    <label>Phone</label><br>
-                    <input type="number" name="phone" value="<%= session.getAttribute("phone")%>" autocomplete="off" spellcheck="false">
-                </form>
-            </div>
-
+                    <br>
+               		<img id="profile_photo" src= "http://localhost:8080/TestProject/profilepic?" alt="">
+                	
+            	</div>
+            	
+	            <div id="forms">
+	            <br><br>
+	            	<label>First Name</label><br>
+	                <input type="text" name="first_name" value="<%= session.getAttribute("first_name")%>" autocomplete="off" spellcheck="false">
+	             	<br>
+	                <label>Last Name</label><br>
+	                <input type="text" name="last_name" value="<%= session.getAttribute("last_name")%>" autocomplete="off" spellcheck="false">
+	          		<br>
+	                <label>Phone</label><br>
+	                <input type="number" name="phone" value="<%= session.getAttribute("phone")%>" autocomplete="off" spellcheck="false">
+	           		<br><br>
+	           		<button type="submit" class="submit_button">Apply</button>
+	            </div>
+			</form>
+			
             <!-- EXPERIENCE -->
             <hr>
             <span class="area">Experience</span><button id="xp"><i class="fas fa-plus-circle"></i></button>
@@ -67,7 +69,10 @@
                     <br><br>
                     <input type="radio" name="privacy" value="private"> Private<br>
                     <input type="radio" name="privacy" value="public" checked> Public<br>
+                    
+                    <button type="submit" class="submit_button">Add</button>
                 </form>
+                
             </div>
 
             <div class="container area_container">
@@ -99,6 +104,8 @@
                     <br><br>
                     <input type="radio" name="privacy" value="private"> Private<br>
                     <input type="radio" name="privacy" value="public" checked> Public<br>
+                    
+                    <button type="submit" class="submit_button">Add</button>
                 </form>
             </div>
 
@@ -129,6 +136,8 @@
                     <br><br>
                     <input type="radio" name="privacy" value="private"> Private<br>
                     <input type="radio" name="privacy" value="public" checked> Public<br>
+                    
+                    <button type="submit" class="submit_button">Add</button>
                 </form>
             </div>
 
