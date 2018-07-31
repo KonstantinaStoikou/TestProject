@@ -31,7 +31,7 @@
         </div>
 
         <div class="container">
-            <form class="" action="index.html" method="post" enctype="multipart/form-data">
+            <form action="editProfile" method="post" enctype="multipart/form-data">
                 <div id="floating_elements">
                     <input type='file' id='getval' name="photo" accept="image/*">
                     <br>
@@ -50,6 +50,9 @@
 	                <label>Phone</label><br>
 	                <input type="number" name="phone" value="<%= session.getAttribute("phone")%>" autocomplete="off" spellcheck="false">
 	           		<br><br>
+	           		
+	           		<!-- hidden field to know what request will be processed in servlet -->
+		        	<input type="hidden" name="action" value="general_info">
 	           		<button type="submit" class="submit_button">Apply</button>
 	            </div>
 			</form>

@@ -34,18 +34,18 @@ public class Settings extends HttpServlet {
 			UserDAO dao = new UserDAOImpl();
 			User user = dao.findByEmail(email);
 			
-			String new_email = request.getParameter("email");
+			String newEmail = request.getParameter("email");
 			EntityManager em = EntityManagerHelper.getEntityManager();
 			em.getTransaction().begin();
-			user.setEmail(new_email);
+			user.setEmail(newEmail);
 			em.getTransaction().commit();
 			session.setAttribute("email", user.getEmail());
 			
 		} else if (hiddenParam.equals("password_change")){
 			
-			String new_password = request.getParameter("newpass");
-			String old_password = request.getParameter("oldpass");
-			if (!old_password.equals(session.getAttribute("password"))) {
+			String newPassword = request.getParameter("newpass");
+			String oldPassword = request.getParameter("oldpass");
+			if (!oldPassword.equals(session.getAttribute("password"))) {
 				request.setAttribute("errorMessage", "The old password you entered is wrong");
 				request.getRequestDispatcher("/settings.jsp").forward(request, response);
 			}
@@ -57,7 +57,7 @@ public class Settings extends HttpServlet {
 				
 				EntityManager em = EntityManagerHelper.getEntityManager();
 				em.getTransaction().begin();
-				user.setPassword(new_password);
+				user.setPassword(newPassword);
 				em.getTransaction().commit();
 				session.setAttribute("password", user.getPassword());
 			}

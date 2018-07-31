@@ -38,10 +38,10 @@ public class Signup extends HttpServlet {
 
 	//use doPost method for security reasons
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String first_name = request.getParameter("first_name");
-		String last_name = request.getParameter("last_name");		
+		String firstName = request.getParameter("first_name");
+		String lastName = request.getParameter("last_name");		
 		String password = request.getParameter("password");
-		String password_conf = request.getParameter("password_conf");
+		String passwordConf = request.getParameter("password_conf");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
 
@@ -60,15 +60,15 @@ public class Signup extends HttpServlet {
 		if (dao.findByEmail(email) == null) {
 			request.setAttribute("errorMessage", null);
 			session.setAttribute("email", email);
-			if (!password.equals(password_conf)) {
+			if (!password.equals(passwordConf)) {
 				request.setAttribute("errorMessage", "Password confirmation is wrong");
 				session.invalidate();
 				request.getRequestDispatcher("/signup.jsp").forward(request, response);
 			}
 			else {
 				request.setAttribute("errorMessage", null);
-				user.setFirstName(first_name);
-				user.setLastName(last_name);
+				user.setFirstName(firstName);
+				user.setLastName(lastName);
 				user.setPhone(phone);
 				user.setPhoto(photo);
 				dao.create(user);
