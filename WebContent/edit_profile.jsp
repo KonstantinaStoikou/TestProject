@@ -64,7 +64,7 @@
             <span class="area">Experience</span><button id="xp"><i class="fas fa-plus-circle"></i></button>
 
             <div class="container area_container" id="add_xp">
-
+				<!-- hidden form to add new experience -->
                 <form class="new_info" action="editProfile" method="post">
                     <input type="text" name="position" placeholder="Position" autocomplete="off" spellcheck="false">
                     <br>
@@ -104,7 +104,7 @@
             <span class="area">Education</span><button id="ed"><i class="fas fa-plus-circle"></i></button>
 
             <div class="container area_container" id="add_ed">
-
+				<!-- hidden form to add new education -->
                 <form class="new_info" action="editProfile" method="post">
                     <input type="text" name="institution" placeholder="Institution" autocomplete="off" spellcheck="false">
                     <br>
@@ -139,7 +139,7 @@
             <span class="area">Skills</span><button id="sk"><i class="fas fa-plus-circle"></i></button>
 
             <div class="container skill_container" id="add_sk">
-
+				<!-- hidden form to add new skill -->
                 <form class="new_info" action="editProfile" method="post">
                     <input type="text" name="name" placeholder="Skill" autocomplete="off" spellcheck="false">
                     <br>

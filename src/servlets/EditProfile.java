@@ -17,9 +17,12 @@ import javax.servlet.http.Part;
 
 import org.apache.commons.io.IOUtils;
 
+import dao.ExperienceDAO;
+import dao.ExperienceDAOImpl;
 import dao.UserDAO;
 import dao.UserDAOImpl;
 import jpautils.EntityManagerHelper;
+import model.Experience;
 import model.User;
 
 /**
@@ -40,11 +43,9 @@ public class EditProfile extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		HttpSession session = request.getSession();
 		
 		String hiddenParam = request.getParameter("action");
-		System.out.println(hiddenParam);
 		
 		String email = (String)session.getAttribute("email");
 		UserDAO dao = new UserDAOImpl();
@@ -75,21 +76,36 @@ public class EditProfile extends HttpServlet {
 			session.setAttribute("photo", user.getPhoto());
 			
 		}
-		else if (hiddenParam.equals("experience_info")) {
+		else if (hiddenParam.equals("experience_info")) {		
+			ExperienceDAO expDao = new ExperienceDAOImpl();
+			Experience exp = new Experience();
+			
 			String position = request.getParameter("position");
 			String company = request.getParameter("company");
+			
+			exp.setCompany(company);
+			exp.setPosition(position);
+			exp.setUser(user);
 			
 			//convert html date to sql date
 			String startDate = request.getParameter("start_date");
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			try {
 				Date parsedDate = (Date) dateFormat.parse(startDate);
-				System.out.println(parsedDate);
+				exp.setStartDate(parsedDate);
 			} catch (java.text.ParseException e) {
 				e.printStackTrace();
 			}
-			System.out.println(startDate);
 			
+			String endDate = request.getParameter("end_date");
+			try {
+				Date parsedDate = (Date) dateFormat.parse(endDate);
+				exp.setEndDate(parsedDate);
+			} catch (java.text.ParseException e) {
+				e.printStackTrace();
+			}
+			
+			expDao.create(exp);
 		}
 		else if (hiddenParam.equals("education_info")) {
 					

@@ -38,8 +38,18 @@ public class ExperienceDAOImpl implements ExperienceDAO {
 
 	@Override
 	public List<Experience> findByUser(User user) {
-		// TODO Auto-generated method stub
-		return null;
+		String queryString = "select e from Experience e where e.user = :user_id";
+		
+		EntityManager em = EntityManagerHelper.getEntityManager();
+		Query query = em.createQuery(queryString);
+		query.setParameter("userId", user.getId());
+		@SuppressWarnings("unchecked")
+		List<Experience> exp = query.getResultList();
+		if (exp.isEmpty()) {
+			return null;
+		} else {
+			return exp;
+		}
 	}
 	
 	

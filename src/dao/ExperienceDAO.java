@@ -11,7 +11,7 @@ public interface ExperienceDAO
 
     public List<Experience> list();
 
-    public void create(Experience user);
+    public void create(Experience exp);
     
     public List<Experience> findByUser(User user);
 
