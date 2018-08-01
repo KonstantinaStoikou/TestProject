@@ -8,7 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
+import dao.ExperienceDAO;
+import dao.ExperienceDAOImpl;
 import dao.UserDAO;
 import dao.UserDAOImpl;
 import model.User;
@@ -43,6 +44,9 @@ public class Login extends HttpServlet {
 			session.setAttribute("last_name", user.getLastName());
 			session.setAttribute("phone", user.getPhone());
 			session.setAttribute("photo", user.getPhoto());
+			
+			ExperienceDAO expDao = new ExperienceDAOImpl();
+			session.setAttribute("expList", expDao.findByUser(user));
 		
 			request.getRequestDispatcher("/welcome.jsp").forward(request, response);
 		}

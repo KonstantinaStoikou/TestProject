@@ -20,8 +20,6 @@ public class ProfilePic extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		byte[] image = (byte[]) session.getAttribute("photo");
-//		request.setAttribute("image", session.getAttribute("photo"));
-//		request.getRequestDispatcher("/edit_profile.jsp").forward(request, response);
 
 		response.setContentType("image/*");
 		response.setContentLength(image.length);

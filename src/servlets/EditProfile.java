@@ -104,8 +104,9 @@ public class EditProfile extends HttpServlet {
 			} catch (java.text.ParseException e) {
 				e.printStackTrace();
 			}
-			
 			expDao.create(exp);
+			
+			session.setAttribute("expList", expDao.findByUser(user));
 		}
 		else if (hiddenParam.equals("education_info")) {
 					

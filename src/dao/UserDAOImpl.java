@@ -38,7 +38,7 @@ public class UserDAOImpl implements UserDAO
 
 	@Override
 	public User findByEmail(String email) {
-		String queryString = "select u from User u where u.email = :email";
+		String queryString = "SELECT u FROM User u WHERE u.email = :email";
 		
 		EntityManager em = EntityManagerHelper.getEntityManager();
 		Query query = em.createQuery(queryString);
