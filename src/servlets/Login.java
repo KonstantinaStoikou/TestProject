@@ -12,6 +12,8 @@ import dao.EducationDAO;
 import dao.EducationDAOImpl;
 import dao.ExperienceDAO;
 import dao.ExperienceDAOImpl;
+import dao.SkillDAO;
+import dao.SkillDAOImpl;
 import dao.UserDAO;
 import dao.UserDAOImpl;
 import model.User;
@@ -51,6 +53,9 @@ public class Login extends HttpServlet {
 			session.setAttribute("expList", expDao.findByUser(user));
 			EducationDAO edDao = new EducationDAOImpl();
 			session.setAttribute("edList", edDao.findByUser(user));
+			SkillDAO skDao = new SkillDAOImpl();
+			session.setAttribute("skList", skDao.findByUser(user));
+			
 			request.getRequestDispatcher("/welcome.jsp").forward(request, response);
 		}
 		else {

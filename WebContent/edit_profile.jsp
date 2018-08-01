@@ -12,7 +12,7 @@
     </head>
     <body>
 
-		<%@ page import="java.util.List, model.Experience, model.Education" %>
+		<%@ page import="java.util.List, model.Experience, model.Education, model.Skill" %>
 		<% 
 	 		if (session.getAttribute("email") == null) { 
 				response.sendRedirect(request.getContextPath() + "/login.jsp"); 
@@ -186,19 +186,31 @@
                 </form>
             </div>
 
-            <div class="flex_container">
-                <div class="container skill_container">
-                    <form action="ditProfile" method="post">
-                        <button type="submit"><i class="fas fa-trash-alt"></i></button>
-                    </form>
-                    <span class="row1">Matlab</span>
-                    <br><br><br>
-                    <form action="" method="post">
-                        <button type="submit" class="lock"><i class="fas fa-lock"></i><i class="fas fa-unlock"></i></button>
-                    </form>
-                    <span class="row3">Programming</span>
-                </div>
-            </div>
+			<%  
+			// retrieve your list from the request, with casting 
+			List<Skill> skList = (List<Skill>) session.getAttribute("skList");
+			%>
+			<!-- create education items -->
+			<div class="flex_container">
+			<% if(skList != null && !skList.isEmpty()) { %>
+				<% for(Skill sk : skList) { %>
+					<div class="container skill_container">
+						<!-- delete button -->
+						<form action="editProfile" method="post">
+						<input type="hidden" name="delete_sk" value="<%= sk.getId().getId()%>">
+							<button type="submit"><i class="fas fa-trash-alt"></i></button>
+						</form>
+						<span class="row1"><%= sk.getName() %></span>
+						<br><br><br>
+						<form action="" method="post">
+							<button type="submit" class="lock"><i class="fas fa-lock"></i><i class="fas fa-unlock"></i></button>
+						</form>
+						<span class="row3"><%= sk.getType() %></span>
+					</div>
+            	<% } %>
+			<% } %>
+			</div>
+			
         </div>
     </body>
 </html>

@@ -21,11 +21,14 @@ import dao.EducationDAO;
 import dao.EducationDAOImpl;
 import dao.ExperienceDAO;
 import dao.ExperienceDAOImpl;
+import dao.SkillDAO;
+import dao.SkillDAOImpl;
 import dao.UserDAO;
 import dao.UserDAOImpl;
 import jpautils.EntityManagerHelper;
 import model.Education;
 import model.Experience;
+import model.Skill;
 import model.User;
 
 /**
@@ -146,7 +149,19 @@ public class EditProfile extends HttpServlet {
 				session.setAttribute("edList", edDao.findByUser(user));
 			}
 			else if (hiddenParam.equals("skill_info")) {
+				SkillDAO skDao = new SkillDAOImpl();
+				Skill sk = new Skill();
 				
+				String name = request.getParameter("name");
+				String type = request.getParameter("type");
+				
+				sk.setName(name);
+				sk.setType(type);
+				sk.setUser(user);
+				
+				skDao.create(sk);
+				
+				session.setAttribute("skList", skDao.findByUser(user));
 			}
 		}
 		
@@ -168,6 +183,16 @@ public class EditProfile extends HttpServlet {
 			edDao.delete(ed);
 			
 			session.setAttribute("edList", edDao.findByUser(user));
+			
+		}
+		//if delete a skill is clicked
+		String deleteSkParam = request.getParameter("delete_sk");
+		if (deleteSkParam != null) {
+			SkillDAO skDao = new SkillDAOImpl();
+			Skill sk = skDao.findById(Integer.parseInt(deleteSkParam));
+			skDao.delete(sk);
+			
+			session.setAttribute("skList", skDao.findByUser(user));
 			
 		}
 		
