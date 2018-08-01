@@ -1,0 +1,18 @@
+package dao;
+
+import java.util.List;
+
+import model.Experience;
+import model.User;
+
+public interface ExperienceDAO 
+{
+	public Experience find(int id);
+
+    public List<Experience> list();
+
+    public void create(Experience user);
+    
+    public List<Experience> findByUser(User user);
+
+}

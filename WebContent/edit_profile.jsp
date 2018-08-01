@@ -31,6 +31,8 @@
         </div>
 
         <div class="container">
+        
+        	<!-- GENERAL INFORMATION -->
             <form action="editProfile" method="post" enctype="multipart/form-data">
                 <div id="floating_elements">
                     <input type='file' id='getval' name="photo" accept="image/*">
@@ -63,23 +65,28 @@
 
             <div class="container area_container" id="add_xp">
 
-                <form class="new_info" action="index.html" method="post">
+                <form class="new_info" action="editProfile" method="post">
                     <input type="text" name="position" placeholder="Position" autocomplete="off" spellcheck="false">
                     <br>
                     <input type="text" name="company" placeholder="Company" autocomplete="off" spellcheck="false">
-                    <br>
-                    <input type="text" name="year" placeholder="Years" autocomplete="off" spellcheck="false">
+                    <br><br>
+                    <label>Start Date</label><br>
+                    <input type="date" name="start_date">
+                    <br><br>
+                    <label>End Date</label><br>
+                    <input type="date" name="end_date">
                     <br><br>
                     <input type="radio" name="privacy" value="private"> Private<br>
                     <input type="radio" name="privacy" value="public" checked> Public<br>
                     
+                    <input type="hidden" name="action" value="experience_info">
                     <button type="submit" class="submit_button">Add</button>
                 </form>
                 
             </div>
 
             <div class="container area_container">
-                <form action="" method="post">
+                <form action="editProfile" method="post">
                     <button type="submit"><i class="fas fa-trash-alt"></i><span class="hoverable_text">Delete</span></button>
                 </form>
                 <span class="row1">Marketing Assistant</span>
@@ -98,7 +105,7 @@
 
             <div class="container area_container" id="add_ed">
 
-                <form class="new_info" action="index.html" method="post">
+                <form class="new_info" action="editProfile" method="post">
                     <input type="text" name="institution" placeholder="Institution" autocomplete="off" spellcheck="false">
                     <br>
                     <input type="text" name="level" placeholder="Degree Level" autocomplete="off" spellcheck="false">
@@ -108,12 +115,13 @@
                     <input type="radio" name="privacy" value="private"> Private<br>
                     <input type="radio" name="privacy" value="public" checked> Public<br>
                     
+                    <input type="hidden" name="action" value="education_info">
                     <button type="submit" class="submit_button">Add</button>
                 </form>
             </div>
 
             <div class="container area_container">
-                <form action="" method="post">
+                <form action="editProfile" method="post">
                     <button type="submit"><i class="fas fa-trash-alt"></i><span class="hoverable_text">Delete</span></button>
                 </form>
                 <span class="row1">Florida University of Sciences</span>
@@ -132,7 +140,7 @@
 
             <div class="container skill_container" id="add_sk">
 
-                <form class="new_info" action="index.html" method="post">
+                <form class="new_info" action="editProfile" method="post">
                     <input type="text" name="name" placeholder="Skill" autocomplete="off" spellcheck="false">
                     <br>
                     <input type="text" name="type" placeholder="Type" autocomplete="off" spellcheck="false">
@@ -140,13 +148,14 @@
                     <input type="radio" name="privacy" value="private"> Private<br>
                     <input type="radio" name="privacy" value="public" checked> Public<br>
                     
+                    <input type="hidden" name="action" value="skill_info">
                     <button type="submit" class="submit_button">Add</button>
                 </form>
             </div>
 
             <div class="flex_container">
                 <div class="container skill_container">
-                    <form action="" method="post">
+                    <form action="ditProfile" method="post">
                         <button type="submit"><i class="fas fa-trash-alt"></i></button>
                     </form>
                     <span class="row1">Matlab</span>

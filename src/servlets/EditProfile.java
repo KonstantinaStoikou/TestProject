@@ -2,6 +2,8 @@ package servlets;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
@@ -39,15 +41,12 @@ public class EditProfile extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-//		Part part = request.getPart("action");
-//		InputStream file = part.getInputStream();
-//		String hiddenParam = IOUtils.toString(file);
 		HttpSession session = request.getSession();
 		
 		String hiddenParam = request.getParameter("action");
+		System.out.println(hiddenParam);
 		
 		String email = (String)session.getAttribute("email");
-		System.out.println(hiddenParam);
 		UserDAO dao = new UserDAOImpl();
 		User user = dao.findByEmail(email);
 		
@@ -77,6 +76,19 @@ public class EditProfile extends HttpServlet {
 			
 		}
 		else if (hiddenParam.equals("experience_info")) {
+			String position = request.getParameter("position");
+			String company = request.getParameter("company");
+			
+			//convert html date to sql date
+			String startDate = request.getParameter("start_date");
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			try {
+				Date parsedDate = (Date) dateFormat.parse(startDate);
+				System.out.println(parsedDate);
+			} catch (java.text.ParseException e) {
+				e.printStackTrace();
+			}
+			System.out.println(startDate);
 			
 		}
 		else if (hiddenParam.equals("education_info")) {
