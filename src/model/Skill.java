@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 
 
 /**
@@ -10,30 +9,31 @@ import java.util.List;
  * 
  */
 @Entity
+@Table(name="Skill")
 @NamedQuery(name="Skill.findAll", query="SELECT s FROM Skill s")
 public class Skill implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
+	@EmbeddedId
+	private SkillPK id;
 
 	private String name;
 
 	private String type;
 
-	//bi-directional many-to-many association to User
-	@ManyToMany(mappedBy="skills")
-	private List<User> users;
+	//bi-directional many-to-one association to User
+	@ManyToOne
+	@JoinColumn(name="User_id")
+	private User user;
 
 	public Skill() {
 	}
 
-	public int getId() {
+	public SkillPK getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(SkillPK id) {
 		this.id = id;
 	}
 
@@ -53,12 +53,12 @@ public class Skill implements Serializable {
 		this.type = type;
 	}
 
-	public List<User> getUsers() {
-		return this.users;
+	public User getUser() {
+		return this.user;
 	}
 
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

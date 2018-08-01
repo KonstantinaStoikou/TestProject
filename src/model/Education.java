@@ -10,6 +10,7 @@ import java.util.Date;
  * 
  */
 @Entity
+@Table(name="Education")
 @NamedQuery(name="Education.findAll", query="SELECT e FROM Education e")
 public class Education implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -18,14 +19,16 @@ public class Education implements Serializable {
 	private EducationPK id;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="end_year")
-	private Date endYear;
+	@Column(name="end_date")
+	private Date endDate;
 
 	private String institution;
 
+	private String level;
+
 	@Temporal(TemporalType.DATE)
-	@Column(name="start_year")
-	private Date startYear;
+	@Column(name="start_date")
+	private Date startDate;
 
 	//bi-directional many-to-one association to User
 	@ManyToOne
@@ -43,12 +46,12 @@ public class Education implements Serializable {
 		this.id = id;
 	}
 
-	public Date getEndYear() {
-		return this.endYear;
+	public Date getEndDate() {
+		return this.endDate;
 	}
 
-	public void setEndYear(Date endYear) {
-		this.endYear = endYear;
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 
 	public String getInstitution() {
@@ -59,12 +62,20 @@ public class Education implements Serializable {
 		this.institution = institution;
 	}
 
-	public Date getStartYear() {
-		return this.startYear;
+	public String getLevel() {
+		return this.level;
 	}
 
-	public void setStartYear(Date startYear) {
-		this.startYear = startYear;
+	public void setLevel(String level) {
+		this.level = level;
+	}
+
+	public Date getStartDate() {
+		return this.startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
 
 	public User getUser() {

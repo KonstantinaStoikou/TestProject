@@ -17,11 +17,14 @@ import javax.servlet.http.Part;
 
 import org.apache.commons.io.IOUtils;
 
+import dao.EducationDAO;
+import dao.EducationDAOImpl;
 import dao.ExperienceDAO;
 import dao.ExperienceDAOImpl;
 import dao.UserDAO;
 import dao.UserDAOImpl;
 import jpautils.EntityManagerHelper;
+import model.Education;
 import model.Experience;
 import model.User;
 
@@ -111,7 +114,36 @@ public class EditProfile extends HttpServlet {
 				session.setAttribute("expList", expDao.findByUser(user));
 			}
 			else if (hiddenParam.equals("education_info")) {
-						
+				EducationDAO edDao = new EducationDAOImpl();
+				Education ed = new Education();
+				
+				String institution = request.getParameter("institution");
+				String level = request.getParameter("level");
+				
+				ed.setInstitution(institution);
+				ed.setLevel(level);
+				ed.setUser(user);
+				
+				//convert html date to sql date
+				String startDate = request.getParameter("start_date");
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				try {
+					Date parsedDate = (Date) dateFormat.parse(startDate);
+					ed.setStartDate(parsedDate);
+				} catch (java.text.ParseException e) {
+					e.printStackTrace();
+				}
+				
+				String endDate = request.getParameter("end_date");
+				try {
+					Date parsedDate = (Date) dateFormat.parse(endDate);
+					ed.setEndDate(parsedDate);
+				} catch (java.text.ParseException e) {
+					e.printStackTrace();
+				}
+				edDao.create(ed);
+				
+				session.setAttribute("edList", edDao.findByUser(user));
 			}
 			else if (hiddenParam.equals("skill_info")) {
 				
@@ -121,14 +153,22 @@ public class EditProfile extends HttpServlet {
 		//if delete an experience is clicked
 		String deleteExpParam = request.getParameter("delete_exp");
 		if (deleteExpParam != null) {
-			System.out.println(deleteExpParam);
-			if (!deleteExpParam.equals("nothing")) {
-				ExperienceDAO expDao = new ExperienceDAOImpl();
-				Experience exp = expDao.findById(Integer.parseInt(deleteExpParam));
-				expDao.delete(exp);
-				
-				session.setAttribute("expList", expDao.findByUser(user));
-			}
+			ExperienceDAO expDao = new ExperienceDAOImpl();
+			Experience exp = expDao.findById(Integer.parseInt(deleteExpParam));
+			expDao.delete(exp);
+			
+			session.setAttribute("expList", expDao.findByUser(user));
+			
+		}
+		//if delete an education is clicked
+		String deleteEdParam = request.getParameter("delete_ed");
+		if (deleteEdParam != null) {
+			EducationDAO edDao = new EducationDAOImpl();
+			Education ed = edDao.findById(Integer.parseInt(deleteEdParam));
+			edDao.delete(ed);
+			
+			session.setAttribute("edList", edDao.findByUser(user));
+			
 		}
 		
 		request.getRequestDispatcher("/edit_profile.jsp").forward(request, response);

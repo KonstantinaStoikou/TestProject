@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.EducationDAO;
+import dao.EducationDAOImpl;
 import dao.ExperienceDAO;
 import dao.ExperienceDAOImpl;
 import dao.UserDAO;
@@ -47,6 +49,8 @@ public class Login extends HttpServlet {
 			
 			ExperienceDAO expDao = new ExperienceDAOImpl();
 			session.setAttribute("expList", expDao.findByUser(user));
+			EducationDAO edDao = new EducationDAOImpl();
+			session.setAttribute("edList", edDao.findByUser(user));
 			request.getRequestDispatcher("/welcome.jsp").forward(request, response);
 		}
 		else {

@@ -6,6 +6,7 @@
 		<class>model.Experience</class>
 		<class>model.ExperiencePK</class>
 		<class>model.Skill</class>
+		<class>model.SkillPK</class>
 		<class>model.User</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mydb"/>

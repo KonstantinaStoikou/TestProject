@@ -16,7 +16,6 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
 	private String email;
@@ -59,17 +58,8 @@ public class User implements Serializable {
 	@OneToMany(mappedBy="user")
 	private List<Experience> experiences;
 
-	//bi-directional many-to-many association to Skill
-	@ManyToMany
-	@JoinTable(
-		name="User_has_Skill"
-		, joinColumns={
-			@JoinColumn(name="Users_id")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="Skill_id")
-			}
-		)
+	//bi-directional many-to-one association to Skill
+	@OneToMany(mappedBy="user")
 	private List<Skill> skills;
 
 	public User() {
@@ -197,6 +187,20 @@ public class User implements Serializable {
 
 	public void setSkills(List<Skill> skills) {
 		this.skills = skills;
+	}
+
+	public Skill addSkill(Skill skill) {
+		getSkills().add(skill);
+		skill.setUser(this);
+
+		return skill;
+	}
+
+	public Skill removeSkill(Skill skill) {
+		getSkills().remove(skill);
+		skill.setUser(null);
+
+		return skill;
 	}
 
 }

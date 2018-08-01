@@ -12,7 +12,7 @@
     </head>
     <body>
 
-		<%@ page import="java.util.List, model.Experience" %>
+		<%@ page import="java.util.List, model.Experience, model.Education" %>
 		<% 
 	 		if (session.getAttribute("email") == null) { 
 				response.sendRedirect(request.getContextPath() + "/login.jsp"); 
@@ -90,19 +90,20 @@
             
 			<%  
 			// retrieve your list from the request, with casting 
-			List<Experience> list = (List<Experience>) session.getAttribute("expList");
+			List<Experience> expList = (List<Experience>) session.getAttribute("expList");
 			%>
-			<input type="hidden" name="delete_exp" value="nothing">
 			<!-- create experience items -->
-			<% if(list != null && !list.isEmpty()) { %>
-				<% for(Experience exp : list) { %>
+			<% if(expList != null && !expList.isEmpty()) { %>
+				<% for(Experience exp : expList) { %>
 				    <div class="container area_container">
+						<!-- delete button -->
 		                <form action="editProfile" method="post">
 		                	<input type="hidden" name="delete_exp" value="<%= exp.getId().getId()%>">
 		                    <button type="submit"><i class="fas fa-trash-alt"></i><span class="hoverable_text">Delete</span></button>
 		                </form>
 		                <span class="row1"><%= exp.getPosition() %></span>
 		                <br><br>
+		                <!-- lock/unlock button -->
 		                <form action="" method="post">
 		                    <button type="submit" class="lock"><i class="fas fa-lock"></i><i class="fas fa-unlock"></i></button>
 		                </form>
@@ -114,7 +115,6 @@
             	<% } %>
 			<% } %>
 
-
             <!-- EDUCATION -->
             <hr>
             <span class="area">Education</span><button id="ed"><i class="fas fa-plus-circle"></i></button>
@@ -125,8 +125,12 @@
                     <input type="text" name="institution" placeholder="Institution" autocomplete="off" spellcheck="false">
                     <br>
                     <input type="text" name="level" placeholder="Degree Level" autocomplete="off" spellcheck="false">
-                    <br>
-                    <input type="text" name="year" placeholder="Years" autocomplete="off" spellcheck="false">
+                    <br><br>
+                    <label>Start Date</label><br>
+                    <input type="date" name="start_date">
+                    <br><br>
+                    <label>End Date</label><br>
+                    <input type="date" name="end_date">
                     <br><br>
                     <input type="radio" name="privacy" value="private"> Private<br>
                     <input type="radio" name="privacy" value="public" checked> Public<br>
@@ -136,19 +140,32 @@
                 </form>
             </div>
 
-            <div class="container area_container">
-                <form action="editProfile" method="post">
-                    <button type="submit"><i class="fas fa-trash-alt"></i><span class="hoverable_text">Delete</span></button>
-                </form>
-                <span class="row1">Florida University of Sciences</span>
-                <br><br>
-                <form action="" method="post">
-                    <button type="submit" class="lock"><i class="fas fa-lock"></i><i class="fas fa-unlock"></i></button>
-                </form>
-                <span class="row2">Bachelor's</span>
-                <br><br>
-                <span class="row3">2001-2005</span>
-            </div>
+			<%  
+			// retrieve your list from the request, with casting 
+			List<Education> edList = (List<Education>) session.getAttribute("edList");
+			%>
+			<!-- create education items -->
+			<% if(edList != null && !edList.isEmpty()) { %>
+				<% for(Education ed : edList) { %>
+				    <div class="container area_container">
+						<!-- delete button -->
+		                <form action="editProfile" method="post">
+		                	<input type="hidden" name="delete_ed" value="<%= ed.getId().getId()%>">
+		                    <button type="submit"><i class="fas fa-trash-alt"></i><span class="hoverable_text">Delete</span></button>
+		                </form>
+		                <span class="row1"><%= ed.getInstitution() %></span>
+		                <br><br>
+		                <!-- lock/unlock button -->
+		                <form action="" method="post">
+		                    <button type="submit" class="lock"><i class="fas fa-lock"></i><i class="fas fa-unlock"></i></button>
+		                </form>
+		                <span class="row2"><%= ed.getLevel() %></span>
+		                <br><br>
+		                
+		                <span class="row3"><%= df.format(ed.getStartDate()) %></span> - <span class="row3"><%= df.format(ed.getEndDate()) %></span>
+	            	</div>
+            	<% } %>
+			<% } %>
 
             <!-- SKILLS -->
             <hr>
