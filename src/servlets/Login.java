@@ -47,7 +47,6 @@ public class Login extends HttpServlet {
 			
 			ExperienceDAO expDao = new ExperienceDAOImpl();
 			session.setAttribute("expList", expDao.findByUser(user));
-		
 			request.getRequestDispatcher("/welcome.jsp").forward(request, response);
 		}
 		else {

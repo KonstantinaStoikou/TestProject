@@ -92,37 +92,28 @@
 			// retrieve your list from the request, with casting 
 			List<Experience> list = (List<Experience>) session.getAttribute("expList");
 			%>
-			
-			<% for(Experience exp : list) { %>
-			    <div class="container area_container">
-	                <form action="editProfile" method="post">
-	                    <button type="submit"><i class="fas fa-trash-alt"></i><span class="hoverable_text">Delete</span></button>
-	                </form>
-	                <span class="row1"><%= exp.getPosition() %></span>
-	                <br><br>
-	                <form action="" method="post">
-	                    <button type="submit" class="lock"><i class="fas fa-lock"></i><i class="fas fa-unlock"></i></button>
-	                </form>
-	                <span class="row2"><%= exp.getCompany() %></span>
-	                <br><br>
-	                
-	                <span class="row3"><%= df.format(exp.getStartDate()) %></span> - <span class="row3"><%= df.format(exp.getEndDate()) %></span>
-            	</div>
+			<input type="hidden" name="delete_exp" value="nothing">
+			<!-- create experience items -->
+			<% if(list != null && !list.isEmpty()) { %>
+				<% for(Experience exp : list) { %>
+				    <div class="container area_container">
+		                <form action="editProfile" method="post">
+		                	<input type="hidden" name="delete_exp" value="<%= exp.getId().getId()%>">
+		                    <button type="submit"><i class="fas fa-trash-alt"></i><span class="hoverable_text">Delete</span></button>
+		                </form>
+		                <span class="row1"><%= exp.getPosition() %></span>
+		                <br><br>
+		                <form action="" method="post">
+		                    <button type="submit" class="lock"><i class="fas fa-lock"></i><i class="fas fa-unlock"></i></button>
+		                </form>
+		                <span class="row2"><%= exp.getCompany() %></span>
+		                <br><br>
+		                
+		                <span class="row3"><%= df.format(exp.getStartDate()) %></span> - <span class="row3"><%= df.format(exp.getEndDate()) %></span>
+	            	</div>
+            	<% } %>
 			<% } %>
 
-            <div class="container area_container">
-                <form action="editProfile" method="post">
-                    <button type="submit"><i class="fas fa-trash-alt"></i><span class="hoverable_text">Delete</span></button>
-                </form>
-                <span class="row1">Marketing Assistant</span>
-                <br><br>
-                <form action="" method="post">
-                    <button type="submit" class="lock"><i class="fas fa-lock"></i><i class="fas fa-unlock"></i></button>
-                </form>
-                <span class="row2">Microsoft</span>
-                <br><br>
-                <span class="row3">2006-2007</span>
-            </div>
 
             <!-- EDUCATION -->
             <hr>
