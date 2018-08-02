@@ -1,10 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Work+Sans:200,400,800');
-/* font-family: 'Work Sans', sans-serif; */
-/* <link href="https://fonts.googleapis.com/css?family=Work+Sans:200,400,800" rel="stylesheet"> for html file */
+@import url('https://fonts.googleapis.com/css?family=Oswald:200,400,600');
 
 body {
     text-align: center;
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'Oswald', sans-serif;
 }
 
 body, .container::before {
@@ -41,11 +40,11 @@ body, .container::before {
 }
 
 h1 {
-    font-weight: 800;
+    font-weight: 600;
 }
 
 h4 {
-    font-weight: 800;
+    font-weight: 600;
 }
 
 img {
@@ -66,7 +65,6 @@ input {
     padding-left: 15px;
     background: rgba(161, 221, 221, 0.5);
     border-radius: 50px;
-    /* background: transparent; */
     border-bottom: 2px solid #6bc6a7;
     transition: border-bottom 0.5s ease;
 }

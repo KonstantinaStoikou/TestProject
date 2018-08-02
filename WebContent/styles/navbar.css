@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Work+Sans:200,400,800');
+@import url('https://fonts.googleapis.com/css?family=Oswald:200,400,600');
 
 body {
     margin: 0;
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'Oswald', sans-serif;
     background-color: #f2f4f4;
 }
 
@@ -22,7 +23,7 @@ body {
     text-align: center;
     padding: 5px 16px;
     text-decoration: none;
-    font-size: 13px;
+    font-size: 15px;
     text-transform: uppercase;
 }
 
@@ -47,4 +48,5 @@ a.active {
 
 .navbar img {
     height: 45px;
+    padding-top: 7.5px;
 }

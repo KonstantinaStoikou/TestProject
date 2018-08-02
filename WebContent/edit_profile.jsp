@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Edit my Profile</title>
+        <title>Dots - Edit my Profile</title>
         <link rel="stylesheet" type="text/css" href="styles/navbar.css">
         <link rel="stylesheet" type="text/css" href="styles/edit_profile.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
@@ -23,7 +23,7 @@
         <div class="navbar">
             <img src="images/dots.png" />
             <a href="settings.jsp"><i class="fas fa-cogs"></i><br>Settings</a>
-            <a href="profile.jsp" class="active"><i class="fas fa-user"></i><br>Profile</a>
+            <a href="edit_profile.jsp" class="active"><i class="fas fa-user"></i><br>Profile</a>
             <a href="notifications.jsp"><i class="fas fa-bell"></i><br>Notifications</a>
             <a href="messages.jsp"><i class="fas fa-comments"></i><br>Messages</a>
             <a href="jobs.jsp"><i class="fas fa-newspaper"></i><br>Jobs</a>
@@ -211,7 +211,7 @@
 							<button type="submit"><i class="fas fa-trash-alt"></i></button>
 						</form>
 						<span class="row1"><%= sk.getName() %></span>
-						<br><br><br>
+						<br><br>
 						<form action="editProfile" method="post">
 							<input type="hidden" name="privacy_sk" value="<%= sk.getId().getId()%>">
 						<% if(sk.getPrivacy() == false) { %>

@@ -1,0 +1,119 @@
+.container {
+	width: 50%;
+	margin: 60px auto;
+	margin-top: 100px;
+	padding: 30px;
+	background-color: white;
+	border-radius: 5px;
+	overflow: hidden;
+	box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .14), 0 3px 3px -2px
+		rgba(0, 0, 0, .2), 0 1px 8px 0 rgba(0, 0, 0, .12);
+	display: flex;
+	flex-flow: row wrap;
+}
+
+.navbar + .container {
+	margin-bottom: -50px;
+	font-size: 22px;
+}
+
+.user_container {
+ 	width: 20%; 	/* 26 for 3 items per row, 20 for 4 items per row*/
+	margin: 10px auto;
+	padding: 15px;	
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.user_container:hover {
+	box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px 
+		rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
+}
+
+.user_container > img {
+ 	width: 100%; /* with 60% i need height 7.8 vw */
+ 	height: 10vw;  /* 13 for 3 items per row, 10 for 4 items per row */
+	border-radius: 5px;
+	margin: 0 auto;
+	margin-bottom: 10px;
+	box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .14), 0 3px 3px -2px
+		rgba(0, 0, 0, .2), 0 1px 8px 0 rgba(0, 0, 0, .12);
+}
+
+.row1 {
+	width:100%;
+	text-align:center;
+	margin: 0 auto;
+	display: block;
+	font-weight: 400;
+	font-size: 22px;
+}
+
+.row2, .row3 {
+	width:100%;
+	text-align:center;
+	margin: 0 auto;
+	display: inline-block;
+	font-weight: 400;
+	font-size: 18px;
+	color: #8a9096;
+}
+
+.row2 {
+	margin-top: 5px;
+}
+
+.row3 {
+	font-size: 16px;
+}
+
+#search {
+	 box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .14), 0 3px 3px -2px
+		rgba(0, 0, 0, .2), 0 1px 8px 0 rgba(0, 0, 0, .12);
+	 border-radius: 5px;
+	 margin-left: 40px;
+	 transition: 0.3s;
+}
+
+#textbox {
+	 outline: none;
+	 height: 42px;
+	 width: 350px;
+	 font-size: 20px;
+	 padding: 0 16px;
+	 background-color: rgba(255, 255, 255, 0.8);
+	 color: #44826d;
+	 border: 0;
+	 border-radius: 5px 0 0 5px;
+	 transition: 0.3s;
+}
+
+.onhover {
+	 box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 
+	 	rgba(0, 0, 0, .12), 0 3px 5px -1px rgba(0, 0, 0, .2) !important;
+}
+
+#search_button {
+	 outline: 0;
+	 background: none;
+	 background-color: #44826d;
+	 float: right;
+	 height: 42px;
+	 width: 42px;
+	 text-align: center;
+	 line-height: 42px;
+	 border: 0;
+	 color: #FFF;
+	 font: normal normal normal 14px/1 FontAwesome;
+	 font-size: 16px;
+	 text-rendering: auto;
+	 text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+	 transition: background-color .4s ease;
+	 border-radius: 0 5px 5px 0;
+}
+
+#search_button:hover {
+	 background-color: #6bc6a7;
+}
+
+

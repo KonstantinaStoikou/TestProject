@@ -1,14 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Work+Sans:200,400,800');
-
-body {
-    margin: 0;
-    font-family: 'Work Sans', sans-serif;
-    background-color: #f2f4f4;
-}
-
 .navbar a {
     padding: 15px 16px !important;
     font-size: 17px !important;
+}
+
+.navbar img {
+    padding-top: 4.5px;
 }
 
 p {
