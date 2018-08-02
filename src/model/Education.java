@@ -26,6 +26,8 @@ public class Education implements Serializable {
 
 	private String level;
 
+	private boolean privacy;
+
 	@Temporal(TemporalType.DATE)
 	@Column(name="start_date")
 	private Date startDate;
@@ -68,6 +70,14 @@ public class Education implements Serializable {
 
 	public void setLevel(String level) {
 		this.level = level;
+	}
+
+	public boolean getPrivacy() {
+		return this.privacy;
+	}
+
+	public void setPrivacy(boolean privacy) {
+		this.privacy = privacy;
 	}
 
 	public Date getStartDate() {

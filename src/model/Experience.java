@@ -26,6 +26,9 @@ public class Experience implements Serializable {
 
 	private String position;
 
+	//if private info: privacy == 1, if public info: privacy == 0
+	private boolean privacy;
+
 	@Temporal(TemporalType.DATE)
 	@Column(name="start_date")
 	private Date startDate;
@@ -68,6 +71,14 @@ public class Experience implements Serializable {
 
 	public void setPosition(String position) {
 		this.position = position;
+	}
+
+	public boolean getPrivacy() {
+		return this.privacy;
+	}
+
+	public void setPrivacy(boolean privacy) {
+		this.privacy = privacy;
 	}
 
 	public Date getStartDate() {

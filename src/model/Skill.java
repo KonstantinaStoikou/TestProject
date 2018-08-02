@@ -19,6 +19,8 @@ public class Skill implements Serializable {
 
 	private String name;
 
+	private boolean privacy;
+
 	private String type;
 
 	//bi-directional many-to-one association to User
@@ -43,6 +45,14 @@ public class Skill implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public boolean getPrivacy() {
+		return this.privacy;
+	}
+
+	public void setPrivacy(boolean privacy) {
+		this.privacy = privacy;
 	}
 
 	public String getType() {

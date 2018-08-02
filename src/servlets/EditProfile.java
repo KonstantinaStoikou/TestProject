@@ -90,10 +90,16 @@ public class EditProfile extends HttpServlet {
 				
 				String position = request.getParameter("position");
 				String company = request.getParameter("company");
+				String privacy = request.getParameter("privacy");
 				
 				exp.setCompany(company);
 				exp.setPosition(position);
 				exp.setUser(user);
+				if (privacy.equals("private")) {
+					exp.setPrivacy(true);	
+				} else if (privacy.equals("public")) {
+					exp.setPrivacy(false);
+				}
 				
 				//convert html date to sql date
 				String startDate = request.getParameter("start_date");
@@ -122,10 +128,16 @@ public class EditProfile extends HttpServlet {
 				
 				String institution = request.getParameter("institution");
 				String level = request.getParameter("level");
+				String privacy = request.getParameter("privacy");
 				
 				ed.setInstitution(institution);
 				ed.setLevel(level);
 				ed.setUser(user);
+				if (privacy.equals("private")) {
+					ed.setPrivacy(true);	
+				} else if (privacy.equals("public")) {
+					ed.setPrivacy(false);
+				}
 				
 				//convert html date to sql date
 				String startDate = request.getParameter("start_date");
@@ -154,10 +166,16 @@ public class EditProfile extends HttpServlet {
 				
 				String name = request.getParameter("name");
 				String type = request.getParameter("type");
+				String privacy = request.getParameter("privacy");
 				
 				sk.setName(name);
 				sk.setType(type);
 				sk.setUser(user);
+				if (privacy.equals("private")) {
+					sk.setPrivacy(true);	
+				} else if (privacy.equals("public")) {
+					sk.setPrivacy(false);
+				}
 				
 				skDao.create(sk);
 				
