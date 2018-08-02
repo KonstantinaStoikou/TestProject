@@ -105,7 +105,12 @@
 		                <br><br>
 		                <!-- lock/unlock button -->
 		                <form action="" method="post">
-		                    <button type="submit" class="lock"><i class="fas fa-lock"></i><i class="fas fa-unlock"></i></button>
+		                	<input type="hidden" name="privacy_exp" value="<%= exp.getId().getId()%>">
+		                <% if(exp.getPrivacy() == false) { %>
+							<button type="submit" class="lock"><i class="fas fa-lock"></i><i class="fas fa-unlock"></i></button>
+						<% } else { %>
+							<button type="submit" class="lock"><i class="fas fa-unlock"></i><i class="fas fa-lock"></i></button>
+						<% } %>
 		                </form>
 		                <span class="row2"><%= exp.getCompany() %></span>
 		                <br><br>
@@ -157,7 +162,12 @@
 		                <br><br>
 		                <!-- lock/unlock button -->
 		                <form action="" method="post">
-		                    <button type="submit" class="lock"><i class="fas fa-lock"></i><i class="fas fa-unlock"></i></button>
+		                	<input type="hidden" name="privacy_ed" value="<%= ed.getId().getId()%>">
+		                <% if(ed.getPrivacy() == false) { %>
+							<button type="submit" class="lock"><i class="fas fa-lock"></i><i class="fas fa-unlock"></i></button>
+						<% } else { %>
+							<button type="submit" class="lock"><i class="fas fa-unlock"></i><i class="fas fa-lock"></i></button>
+						<% } %>
 		                </form>
 		                <span class="row2"><%= ed.getLevel() %></span>
 		                <br><br>
@@ -197,13 +207,18 @@
 					<div class="container skill_container">
 						<!-- delete button -->
 						<form action="editProfile" method="post">
-						<input type="hidden" name="delete_sk" value="<%= sk.getId().getId()%>">
+							<input type="hidden" name="delete_sk" value="<%= sk.getId().getId()%>">
 							<button type="submit"><i class="fas fa-trash-alt"></i></button>
 						</form>
 						<span class="row1"><%= sk.getName() %></span>
 						<br><br><br>
-						<form action="" method="post">
+						<form action="editProfile" method="post">
+							<input type="hidden" name="privacy_sk" value="<%= sk.getId().getId()%>">
+						<% if(sk.getPrivacy() == false) { %>
 							<button type="submit" class="lock"><i class="fas fa-lock"></i><i class="fas fa-unlock"></i></button>
+						<% } else { %>
+							<button type="submit" class="lock"><i class="fas fa-unlock"></i><i class="fas fa-lock"></i></button>
+						<% } %>
 						</form>
 						<span class="row3"><%= sk.getType() %></span>
 					</div>

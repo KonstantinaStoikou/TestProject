@@ -190,8 +190,7 @@ public class EditProfile extends HttpServlet {
 			Experience exp = expDao.findById(Integer.parseInt(deleteExpParam));
 			expDao.delete(exp);
 			
-			session.setAttribute("expList", expDao.findByUser(user));
-			
+			session.setAttribute("expList", expDao.findByUser(user));			
 		}
 		//if delete an education is clicked
 		String deleteEdParam = request.getParameter("delete_ed");
@@ -210,8 +209,65 @@ public class EditProfile extends HttpServlet {
 			Skill sk = skDao.findById(Integer.parseInt(deleteSkParam));
 			skDao.delete(sk);
 			
-			session.setAttribute("skList", skDao.findByUser(user));
+			session.setAttribute("skList", skDao.findByUser(user));		
+		}
+		
+		//if change an experience's privacy is clicked
+		String privacyExpParam = request.getParameter("privacy_exp");
+		if (privacyExpParam != null) {
+			ExperienceDAO expDao = new ExperienceDAOImpl();
+			Experience exp = expDao.findById(Integer.parseInt(privacyExpParam));
+			if (exp.getPrivacy() == true) {
+				EntityManager em = EntityManagerHelper.getEntityManager();
+				em.getTransaction().begin();
+				exp.setPrivacy(false);
+				em.getTransaction().commit();
+			} else {
+				EntityManager em = EntityManagerHelper.getEntityManager();
+				em.getTransaction().begin();
+				exp.setPrivacy(true);
+				em.getTransaction().commit();
+			}
 			
+			session.setAttribute("expList", expDao.findByUser(user));			
+		}
+		//if change an education's privacy is clicked
+		String privacyEdParam = request.getParameter("privacy_ed");
+		if (privacyEdParam != null) {
+			EducationDAO edDao = new EducationDAOImpl();
+			Education ed = edDao.findById(Integer.parseInt(privacyEdParam));
+			if (ed.getPrivacy() == true) {
+				EntityManager em = EntityManagerHelper.getEntityManager();
+				em.getTransaction().begin();
+				ed.setPrivacy(false);
+				em.getTransaction().commit();
+			} else {
+				EntityManager em = EntityManagerHelper.getEntityManager();
+				em.getTransaction().begin();
+				ed.setPrivacy(true);
+				em.getTransaction().commit();
+			}
+			
+			session.setAttribute("edList", edDao.findByUser(user));		
+		}
+		//if change a skill's privacy is clicked
+		String privacySkParam = request.getParameter("privacy_sk");
+		if (privacySkParam != null) {
+			SkillDAO skDao = new SkillDAOImpl();
+			Skill sk = skDao.findById(Integer.parseInt(privacySkParam));
+			if (sk.getPrivacy() == true) {
+				EntityManager em = EntityManagerHelper.getEntityManager();
+				em.getTransaction().begin();
+				sk.setPrivacy(false);
+				em.getTransaction().commit();
+			} else {
+				EntityManager em = EntityManagerHelper.getEntityManager();
+				em.getTransaction().begin();
+				sk.setPrivacy(true);
+				em.getTransaction().commit();
+			}
+			
+			session.setAttribute("skList", skDao.findByUser(user));		
 		}
 		
 		request.getRequestDispatcher("/edit_profile.jsp").forward(request, response);
