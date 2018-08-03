@@ -42,7 +42,7 @@
 			<% if(results != null && !results.isEmpty()) { %>
 				<% for(User u : results) { %>
 					<div class="container user_container" onclick="submitForm()">
-						<img src= "images/handshake.jpg" alt="">
+						<img src= <%= "http://localhost:8080/TestProject/usersProfilePic?user=" + u.getEmail() + "" %> alt="">
 						<br>
 						<div class="row1">  <%= u.getFirstName() %> <%= u.getLastName() %> </div>
 						<br>
@@ -57,16 +57,6 @@
 					</div>
 				<%} %>
 			<%} %>
-			<div class="container user_container" onclick="submitForm()">
-				<img src= "images/handshake.jpg" alt="">
-				<br>
-				<div class="row1">  Sotiris Papaspililos </div>
-				<br>
-				<div class="row2"> Music Producer </div>
-				<br>
-				<div class="row3"> at Combalt Dic Club </div>
-				<button class="connect">Connect</button>
-			</div>
 		</div>
 		
 		<!-- form to submit when clicking on a user -->

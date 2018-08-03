@@ -58,6 +58,7 @@ public class Network extends HttpServlet {
 					}
 				}				
 			}
+			
 			request.setAttribute("results", results);
 			
 			request.getRequestDispatcher("/search_results.jsp").forward(request, response);

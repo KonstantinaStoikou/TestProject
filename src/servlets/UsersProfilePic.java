@@ -10,16 +10,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- * Servlet implementation class Profile
- */
-@WebServlet("/profilepic")
-public class ProfilePic extends HttpServlet {
+import dao.UserDAO;
+import dao.UserDAOImpl;
+import model.User;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-		throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		byte[] image = (byte[]) session.getAttribute("photo");
+/**
+ * Servlet implementation class UsersProfilePic
+ */
+@WebServlet("/usersProfilePic")
+public class UsersProfilePic extends HttpServlet {
+
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String email = request.getParameter("user");
+		UserDAO dao = new UserDAOImpl();
+		User user = dao.findByEmail(email);
+		byte[] image = user.getPhoto();
 
 		response.setContentType("image/*");
 		response.setContentLength(image.length);
@@ -41,10 +47,9 @@ public class ProfilePic extends HttpServlet {
 		}
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
 	}
 
 }
