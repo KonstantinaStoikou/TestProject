@@ -31,13 +31,16 @@
         </div>
 	
 		<div class="container">
-			Find other professionals :
-			<form action="" id="search" onmouseover="hoverFun()" onmouseout="unhoverFun()">
-				<input type="text" id="textbox" placeholder="Search..." onfocus="focusFun()" onblur="unfocusFun()" autocomplete="off" spellcheck="false">
+			<span>Find other professionals :</span>
+			<form action="network" method="get" id="search" onmouseover="hoverFun()" onmouseout="unhoverFun()">
+				<input type="hidden" name="action" value="search_form">
+				<input type="text" name="search" id="textbox" placeholder="Search..." onfocus="focusFun()" onblur="unfocusFun()" autocomplete="off" spellcheck="false">
   				<button type="submit" id="search_button"><i class="fas fa-search"></i></button>
 			</form>
 		</div>
 		<div class="container">
+			<span id="title">Your Connections :</span>
+			<br>
 			<div class="container user_container" onclick="submitForm()">
 				<img src= "images/handshake.jpg" alt="">
 				<br>
@@ -48,7 +51,7 @@
 				<div class="row3"> at Combalt Dic Club </div>
 			</div>
 			<div class="container user_container">
-				<img src= "images/handshake.jpg" alt="">
+				<img src= "images/dots.png" alt="">
 				<br>
 				<div class="row1"> Konsftgffvd Stodfsffddfgdfdgfgikou </div>
 				<br>

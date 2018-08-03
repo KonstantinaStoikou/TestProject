@@ -1,0 +1,29 @@
+#searched_term {
+	font-weight: 800;
+	text-transform: none;
+}
+
+.connect {
+	margin: 0px auto;
+	margin-top: 10px;
+	cursor: pointer;
+	font-family: 'Work Sans', sans-serif;
+	text-transform: uppercase;
+	font-weight: 400;
+	font-size: 15px;
+	height: 35px;
+	color: white;
+	background-color: #6bc6a7;
+    border-radius: 50px;
+    border: 0;
+    outline: none;
+    padding: 8px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+	transition: 0.3s;
+}
+
+.connect:hover {
+	box-shadow: inset 0 0 0 3px #44826d;
+}

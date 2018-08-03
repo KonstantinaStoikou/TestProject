@@ -19,16 +19,7 @@ import model.User;
 public class Profile extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		String email = (String)session.getAttribute("email");
-		UserDAO dao = new UserDAOImpl();
-		User user = dao.findByEmail(email);
-		request.setAttribute("first_name", user.getFirstName());
-		request.setAttribute("last_name", user.getLastName());
-		request.setAttribute("phone", user.getPhone());
-		request.setAttribute("photo", user.getPhoto());
-		
-		request.getRequestDispatcher("/edit_profile.jsp").forward(request, response);
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

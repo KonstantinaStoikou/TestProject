@@ -26,8 +26,8 @@ public class Settings extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String hiddenParam = request.getParameter("action");
 		HttpSession session = request.getSession();
+		String hiddenParam = request.getParameter("action");
 		if (hiddenParam.equals("email_change")) {
 			
 			String email = (String)session.getAttribute("email");

@@ -12,9 +12,23 @@
 	flex-flow: row wrap;
 }
 
+#title {
+ 	flex: 0 1 100%;
+ 	margin-bottom: 20px;
+ 	text-align: center;
+ 	font-family: 'Work Sans', sans-serif;
+ 	font-size: 25px;
+ 	text-transform: uppercase;
+}
+
 .navbar + .container {
 	margin-bottom: -50px;
-	font-size: 22px;
+}
+
+.navbar + .container > span {
+	font-family: 'Work Sans', sans-serif;
+	font-size: 20px;
+	padding-top: 12px;
 }
 
 .user_container {
@@ -81,7 +95,7 @@
 	 width: 350px;
 	 font-size: 20px;
 	 padding: 0 16px;
-	 background-color: rgba(255, 255, 255, 0.8);
+	 background-color: #f4fffb;
 	 color: #44826d;
 	 border: 0;
 	 border-radius: 5px 0 0 5px;
