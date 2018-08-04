@@ -34,6 +34,7 @@ public class ExperienceDAOImpl implements ExperienceDAO {
 		em.getTransaction().begin();
 		em.persist(exp);
 		em.getTransaction().commit();
+		exp.getUser().addExperience(exp);
 		
 	}
 
@@ -58,7 +59,9 @@ public class ExperienceDAOImpl implements ExperienceDAO {
 		EntityManager em = EntityManagerHelper.getEntityManager();
 		em.getTransaction().begin();
 		em.remove(exp);
-		em.getTransaction().commit();	
+		em.getTransaction().commit();
+		exp.getUser().removeExperience(exp);
+		
 	}
 
 	@Override

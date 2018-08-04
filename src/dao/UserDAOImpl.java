@@ -23,7 +23,7 @@ public class UserDAOImpl implements UserDAO
 		EntityManager em = EntityManagerHelper.getEntityManager();
 		Query query = em.createNamedQuery("User.findAll");
 		@SuppressWarnings("unchecked")
-		List<User> users = query.getResultList();  
+		List<User> users = query.getResultList();
         return users;
 	}
 

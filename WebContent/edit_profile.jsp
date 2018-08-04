@@ -200,7 +200,7 @@
 			// retrieve your list from the request, with casting 
 			List<Skill> skList = (List<Skill>) session.getAttribute("skList");
 			%>
-			<!-- create education items -->
+			<!-- create skill items -->
 			<div class="flex_container">
 			<% if(skList != null && !skList.isEmpty()) { %>
 				<% for(Skill sk : skList) { %>

@@ -1,0 +1,24 @@
+#fullname {
+	font-size: 32px;
+	font-weight: 600;
+	display: inline-block;
+	margin-bottom: 20px;
+}
+
+#phone, #email  {
+	font-size: 18px;
+	display: inline-block;
+	margin-bottom: 10px;
+}
+
+#fullname > i, #phone > i, #email > i {
+	font-size: 18px;
+	padding-right: 10px;
+}
+
+#currently {
+	font-size: 25px;
+	display: inline-block;
+	margin-top: 15px;
+	color: #6f7275;
+}

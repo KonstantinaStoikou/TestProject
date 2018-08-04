@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
@@ -67,21 +68,30 @@ public class EditProfile extends HttpServlet {
 				//get photo parameter as byte array to store to db
 				Part filePart = request.getPart("photo");
 				InputStream filecontent = filePart.getInputStream();
-				byte[] photo = IOUtils.toByteArray(filecontent);
+				//check if user uploaded new image, if not do nothing
+				if (filecontent.available() != 0) {
+					byte[] photo = IOUtils.toByteArray(filecontent);
+					
+					EntityManager em = EntityManagerHelper.getEntityManager();
+					em.getTransaction().begin();
+					user.setPhoto(photo);
+					em.getTransaction().commit();
+					
+					session.setAttribute("photo", user.getPhoto());
+				}
+				
 				
 				EntityManager em = EntityManagerHelper.getEntityManager();
 				em.getTransaction().begin();
 				user.setFirstName(firstName);
 				user.setLastName(lastName);
 				user.setPhone(phone);
-				user.setPhoto(photo);
 				
 				em.getTransaction().commit();
 				
 				session.setAttribute("first_name", user.getFirstName());
 				session.setAttribute("last_name", user.getLastName());
 				session.setAttribute("phone", user.getPhone());
-				session.setAttribute("photo", user.getPhoto());
 				
 			}
 			else if (hiddenParam.equals("experience_info")) {		

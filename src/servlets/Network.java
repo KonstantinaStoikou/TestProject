@@ -40,6 +40,7 @@ public class Network extends HttpServlet {
 				String first = u.getFirstName();
 				String last = u.getLastName();
 				String full = first + " " + last;
+				System.out.println("hi" + full);
 				//if input equals the full name
 				if (full.toLowerCase().equals(searchText.toLowerCase())) {
 					//add at the beginning of list because it matches input the most
@@ -64,9 +65,11 @@ public class Network extends HttpServlet {
 			request.getRequestDispatcher("/search_results.jsp").forward(request, response);
 		}
 		else if (hiddenParam.equals("visit_user")) {
-//			int userId = Integer.parseInt(request.getParameter("user"));
-			String userId = request.getParameter("user");
-			request.setAttribute("user", userId);
+			int id = Integer.parseInt(request.getParameter("user"));
+			UserDAO dao = new UserDAOImpl();
+			User user = dao.find(id);
+			request.setAttribute("user", user);
+			
 			request.getRequestDispatcher("/user_profile.jsp").forward(request, response);
 		}
 	}
