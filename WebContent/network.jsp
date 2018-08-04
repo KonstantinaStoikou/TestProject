@@ -135,8 +135,9 @@
 		</div>
 		
 		<!-- form to submit when clicking on a user -->
-		<form action="" id="submit_form" method="get">
-		    <input type="hidden" id="ordertabledetailshidid" name="ordertabledetailshid">    
+		<form action="network" id="submit_form" method="get">
+			<input type="hidden" name="action" value="visit_user">
+		    <input type="hidden" name="hiddeninput">    
 		</form>
 	</body>
 </html>

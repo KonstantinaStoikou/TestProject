@@ -1,5 +1,7 @@
 //submit form when clicking on a user's div
-function submitForm(){
+function submitForm(i){
+	document.getElementById("user_input").value = i;
+	console.log(document.getElementById("user_input").value);
     document.getElementById("submit_form").submit();
 }
 

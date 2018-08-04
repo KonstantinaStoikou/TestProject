@@ -63,6 +63,12 @@ public class Network extends HttpServlet {
 			
 			request.getRequestDispatcher("/search_results.jsp").forward(request, response);
 		}
+		else if (hiddenParam.equals("visit_user")) {
+//			int userId = Integer.parseInt(request.getParameter("user"));
+			String userId = request.getParameter("user");
+			request.setAttribute("user", userId);
+			request.getRequestDispatcher("/user_profile.jsp").forward(request, response);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -41,7 +41,7 @@
 			%>
 			<% if(results != null && !results.isEmpty()) { %>
 				<% for(User u : results) { %>
-					<div class="container user_container" onclick="submitForm()">
+					<div class="container user_container" onclick="submitForm(<%= String.valueOf(u.getId()) %>)">
 						<img src= <%= "http://localhost:8080/TestProject/usersProfilePic?user=" + u.getEmail() + "" %> alt="">
 						<br>
 						<div class="row1">  <%= u.getFirstName() %> <%= u.getLastName() %> </div>
@@ -60,8 +60,9 @@
 		</div>
 		
 		<!-- form to submit when clicking on a user -->
-		<form action="" id="submit_form" method="get">
-		    <input type="hidden" id="ordertabledetailshidid" name="ordertabledetailshid">    
+		<form action="network" id="submit_form" method="get">
+			<input type="hidden" name="action" value="visit_user">
+			<input type="hidden" id="user_input" name="user" value="">
 		</form>
 		
 
