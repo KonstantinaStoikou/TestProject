@@ -22,3 +22,8 @@
 	margin-top: 15px;
 	color: #6f7275;
 }
+
+#connect_btn {
+	float: right;	
+	margin-top: 10px;
+}

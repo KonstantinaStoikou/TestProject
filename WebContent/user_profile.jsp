@@ -39,6 +39,7 @@
             	</div>
             	<br>	
           		<span id="fullname"> <% out.write(u.getFirstName()+ " " + u.getLastName()); %> </span>
+          		<button id="connect_btn" class="submit_button">connect</button>
           		<br>
           		<span id="phone"><i class="fas fa-phone"></i> <% out.write(u.getPhone()); %> </span>
           		<br>
