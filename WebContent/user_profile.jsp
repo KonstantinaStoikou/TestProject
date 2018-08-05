@@ -37,13 +37,16 @@
                		<img id="profile_photo" src= <%= "http://localhost:8080/TestProject/usersProfilePic?user=" + u.getEmail() + "" %> alt="">  	
             	</div>
             	<br>
+            	<div id="buttons">
             	<% String currentUserEmail = (String)session.getAttribute("email"); %>
             	<% if((boolean)request.getAttribute("connected") == false && !currentUserEmail.equals(u.getEmail())) { %>	
             	<form action="connection" id="connect_form" method="post">
             		<input type="hidden" name="user" value="<%= u.getEmail() %>">
-					<input type="submit" id="connect_btn" class="submit_button" value="Connect">
+					<input type="submit" class="submit_button" value="Connect">
 				</form>
 				<% } %>
+				<button class="submit_button" id="message">message</button>
+				</div>
           		<span id="fullname"> <% out.write(u.getFirstName()+ " " + u.getLastName()); %> </span>     		
           		<br>
           		<span id="phone"><i class="fas fa-phone"></i> <% out.write(u.getPhone()); %> </span>
