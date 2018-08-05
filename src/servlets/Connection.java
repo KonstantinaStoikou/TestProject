@@ -33,14 +33,15 @@ public class Connection extends HttpServlet {
 		
 		UserDAO dao = new UserDAOImpl();
 		User befriended = dao.findByEmail(u);
-		User current_user = dao.findByEmail(email);
+		User currentUser = dao.findByEmail(email);
 		
-		if (!current_user.getFriends().contains(befriended) && current_user != befriended) {
+		if (!currentUser.getFriends().contains(befriended) && currentUser != befriended) {
 			EntityManager em = EntityManagerHelper.getEntityManager();
 			em.getTransaction().begin();
-			current_user.addFriends(befriended);
+			currentUser.addFriends(befriended);
 			em.getTransaction().commit();
 		}
+		request.setAttribute("connected", currentUser.getFriends().contains(befriended));
 		request.setAttribute("user", befriended);
 		request.getRequestDispatcher("/user_profile.jsp").forward(request, response);
 	    

@@ -69,6 +69,12 @@ public class Network extends HttpServlet {
 			User user = dao.find(id);
 			request.setAttribute("user", user);
 			
+			//check if current user and clicked user are already connected
+			//and pass boolean attribute
+			String email = (String)session.getAttribute("email");
+			User current_user = dao.findByEmail(email);
+			request.setAttribute("connected", current_user.getFriends().contains(user));
+			
 			request.getRequestDispatcher("/user_profile.jsp").forward(request, response);
 		}
 	}

@@ -104,7 +104,7 @@
 		                <span class="row1"><%= exp.getPosition() %></span>
 		                <br><br>
 		                <!-- lock/unlock button -->
-		                <form action="" method="post">
+		                <form action="editProfile" method="post">
 		                	<input type="hidden" name="privacy_exp" value="<%= exp.getId().getId()%>">
 		                <% if(exp.getPrivacy() == false) { %>
 							<button type="submit" class="lock"><i class="fas fa-lock"></i><i class="fas fa-unlock"></i></button>
@@ -161,7 +161,7 @@
 		                <span class="row1"><%= ed.getInstitution() %></span>
 		                <br><br>
 		                <!-- lock/unlock button -->
-		                <form action="" method="post">
+		                <form action="editProfile" method="post">
 		                	<input type="hidden" name="privacy_ed" value="<%= ed.getId().getId()%>">
 		                <% if(ed.getPrivacy() == false) { %>
 							<button type="submit" class="lock"><i class="fas fa-lock"></i><i class="fas fa-unlock"></i></button>

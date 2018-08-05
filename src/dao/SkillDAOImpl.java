@@ -23,6 +23,7 @@ public class SkillDAOImpl implements SkillDAO {
 	public List<Skill> list() {
 		EntityManager em = EntityManagerHelper.getEntityManager();
 		Query query = em.createNamedQuery("Skill.findAll");
+		query.setHint("eclipselink.refresh", "true");
 		@SuppressWarnings("unchecked")
 		List<Skill> sk = query.getResultList();  
         return sk;
@@ -45,6 +46,7 @@ public class SkillDAOImpl implements SkillDAO {
 		EntityManager em = EntityManagerHelper.getEntityManager();
 		Query query = em.createQuery(queryString);
 		query.setParameter("user", user);
+		query.setHint("eclipselink.refresh", "true");
 		@SuppressWarnings("unchecked")
 		List<Skill> sk = query.getResultList();
 		if (sk.isEmpty()) {
@@ -72,6 +74,7 @@ public class SkillDAOImpl implements SkillDAO {
 		EntityManager em = EntityManagerHelper.getEntityManager();
 		Query query = em.createQuery(queryString);
 		query.setParameter("id", id);
+		query.setHint("eclipselink.refresh", "true");
 		@SuppressWarnings("unchecked")
 		List<Skill> sk = query.getResultList();
 		if (sk.isEmpty()) {

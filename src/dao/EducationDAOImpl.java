@@ -25,6 +25,7 @@ public class EducationDAOImpl implements EducationDAO {
 	public List<Education> list() {
 		EntityManager em = EntityManagerHelper.getEntityManager();
 		Query query = em.createNamedQuery("Education.findAll");
+		query.setHint("eclipselink.refresh", "true");
 		@SuppressWarnings("unchecked")
 		List<Education> ed = query.getResultList();  
         return ed;
@@ -47,6 +48,7 @@ public class EducationDAOImpl implements EducationDAO {
 		EntityManager em = EntityManagerHelper.getEntityManager();
 		Query query = em.createQuery(queryString);
 		query.setParameter("user", user);
+		query.setHint("eclipselink.refresh", "true");
 		@SuppressWarnings("unchecked")
 		List<Education> ed = query.getResultList();
 		if (ed.isEmpty()) {
@@ -74,6 +76,7 @@ public class EducationDAOImpl implements EducationDAO {
 		EntityManager em = EntityManagerHelper.getEntityManager();
 		Query query = em.createQuery(queryString);
 		query.setParameter("id", id);
+		query.setHint("eclipselink.refresh", "true");
 		@SuppressWarnings("unchecked")
 		List<Education> ed = query.getResultList();
 		if (ed.isEmpty()) {

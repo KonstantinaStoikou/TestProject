@@ -23,6 +23,7 @@ public class ExperienceDAOImpl implements ExperienceDAO {
 	public List<Experience> list() {
 		EntityManager em = EntityManagerHelper.getEntityManager();
 		Query query = em.createNamedQuery("Experience.findAll");
+		query.setHint("eclipselink.refresh", "true");
 		@SuppressWarnings("unchecked")
 		List<Experience> exp = query.getResultList(); 
         return exp;
@@ -45,6 +46,7 @@ public class ExperienceDAOImpl implements ExperienceDAO {
 		EntityManager em = EntityManagerHelper.getEntityManager();
 		Query query = em.createQuery(queryString);
 		query.setParameter("user", user);
+		query.setHint("eclipselink.refresh", "true");
 		@SuppressWarnings("unchecked")
 		List<Experience> exp = query.getResultList();
 		if (exp.isEmpty()) {
@@ -73,6 +75,7 @@ public class ExperienceDAOImpl implements ExperienceDAO {
 		EntityManager em = EntityManagerHelper.getEntityManager();
 		Query query = em.createQuery(queryString);
 		query.setParameter("id", id);
+		query.setHint("eclipselink.refresh", "true");
 		@SuppressWarnings("unchecked")
 		List<Experience> exp = query.getResultList();
 		if (exp.isEmpty()) {

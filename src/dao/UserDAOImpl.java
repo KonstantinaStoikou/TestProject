@@ -44,6 +44,7 @@ public class UserDAOImpl implements UserDAO
 		EntityManager em = EntityManagerHelper.getEntityManager();
 		Query query = em.createQuery(queryString);
 		query.setParameter("email", email);
+		query.setHint("eclipselink.refresh", "true");
 		@SuppressWarnings("unchecked")
 		List<User> users = query.getResultList();
 		if (users.isEmpty()) {

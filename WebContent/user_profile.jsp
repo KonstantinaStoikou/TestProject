@@ -34,14 +34,16 @@
         
         <div class="container">
                 <div id="floating_elements">
-               		<img id="profile_photo" src= <%= "http://localhost:8080/TestProject/usersProfilePic?user=" + u.getEmail() + "" %> alt="">
-                	
+               		<img id="profile_photo" src= <%= "http://localhost:8080/TestProject/usersProfilePic?user=" + u.getEmail() + "" %> alt="">  	
             	</div>
-            	<br>	
+            	<br>
+            	<% String currentUserEmail = (String)session.getAttribute("email"); %>
+            	<% if((boolean)request.getAttribute("connected") == false && !currentUserEmail.equals(u.getEmail())) { %>	
             	<form action="connection" id="connect_form" method="post">
             		<input type="hidden" name="user" value="<%= u.getEmail() %>">
 					<input type="submit" id="connect_btn" class="submit_button" value="Connect">
 				</form>
+				<% } %>
           		<span id="fullname"> <% out.write(u.getFirstName()+ " " + u.getLastName()); %> </span>     		
           		<br>
           		<span id="phone"><i class="fas fa-phone"></i> <% out.write(u.getPhone()); %> </span>
@@ -64,13 +66,15 @@
 			<!-- create experience items -->
 			<% if(u.getExperiences() != null && !u.getExperiences().isEmpty()) { %>
 				<% for(Experience exp : u.getExperiences()) { %>
-				    <div class="container area_container">
-		                <span class="row1"><%= exp.getPosition() %></span>
-		                <br><br>
-		                <span class="row2"><%= exp.getCompany() %></span>
-		                <br><br>
-		                <span class="row3"><%= df.format(exp.getStartDate()) %></span> - <span class="row3"><%= df.format(exp.getEndDate()) %></span>
-	            	</div>
+					<% if(exp.getPrivacy() == false) { %>
+					    <div class="container area_container">
+			                <span class="row1"><%= exp.getPosition() %></span>
+			                <br><br>
+			                <span class="row2"><%= exp.getCompany() %></span>
+			                <br><br>
+			                <span class="row3"><%= df.format(exp.getStartDate()) %></span> - <span class="row3"><%= df.format(exp.getEndDate()) %></span>
+		            	</div>
+	            	<% } %>
             	<% } %>
 			<% } %>
 
@@ -81,13 +85,15 @@
 			<!-- create education items -->
 			<% if(u.getEducations() != null && !u.getEducations().isEmpty()) { %>
 				<% for(Education ed : u.getEducations()) { %>
-				    <div class="container area_container">
-		                <span class="row1"><%= ed.getInstitution() %></span>
-		                <br><br>
-		                <span class="row2"><%= ed.getLevel() %></span>
-		                <br><br>
-		                <span class="row3"><%= df.format(ed.getStartDate()) %></span> - <span class="row3"><%= df.format(ed.getEndDate()) %></span>
-	            	</div>
+					<% if(ed.getPrivacy() == false) { %>
+					    <div class="container area_container">
+			                <span class="row1"><%= ed.getInstitution() %></span>
+			                <br><br>
+			                <span class="row2"><%= ed.getLevel() %></span>
+			                <br><br>
+			                <span class="row3"><%= df.format(ed.getStartDate()) %></span> - <span class="row3"><%= df.format(ed.getEndDate()) %></span>
+		            	</div>
+	            	<% } %>
             	<% } %>
 			<% } %>
 
@@ -98,11 +104,13 @@
 			<div class="flex_container">
 			<% if(u.getSkills() != null && !u.getSkills().isEmpty()) { %>
 				<% for(Skill sk : u.getSkills()) { %>
-					<div class="container skill_container">
-						<span class="row1"><%= sk.getName() %></span>
-						<br><br>
-						<span class="row3"><%= sk.getType() %></span>
-					</div>
+					<% if(sk.getPrivacy() == false) { %>
+						<div class="container skill_container">
+							<span class="row1"><%= sk.getName() %></span>
+							<br><br>
+							<span class="row3"><%= sk.getType() %></span>
+						</div>
+					<% } %>
             	<% } %>
 			<% } %>
 			</div>
