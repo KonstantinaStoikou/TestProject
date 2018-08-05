@@ -45,11 +45,11 @@ public class User implements Serializable {
 			@JoinColumn(name="Users_id")
 			}
 		)
-	private List<User> users1;
+	private List<User> friends;
 
 	//bi-directional many-to-many association to User
-	@ManyToMany(mappedBy="users1")
-	private List<User> users2;
+//	@ManyToMany(mappedBy="friends")
+//	private List<User> friendOf;
 
 	//bi-directional many-to-one association to Education
 	@OneToMany(mappedBy="user")
@@ -122,21 +122,33 @@ public class User implements Serializable {
 		this.photo = photo;
 	}
 
-	public List<User> getUsers1() {
-		return this.users1;
+	public List<User> getFriends() {
+		return this.friends;
 	}
 
-	public void setUsers1(List<User> users1) {
-		this.users1 = users1;
+	public void setFriends(List<User> users1) {
+		this.friends = users1;
 	}
 
-	public List<User> getUsers2() {
-		return this.users2;
-	}
+//	public List<User> getFriendOf() {
+//		return this.friendOf;
+//	}
+//
+//	public void setFriendOf(List<User> friendOf) {
+//		this.friendOf = friendOf;
+//	}
+	
+	public void addFriends(User user)
+    {
+        getFriends().add(user);
+        user.friends.add(this);
+    }
 
-	public void setUsers2(List<User> users2) {
-		this.users2 = users2;
-	}
+//    public void addFriendOf(User user)
+//    {
+//        this.friendOf.add(user);
+//        user.friends.add(this);
+//    }
 
 	public List<Education> getEducations() {
 		return this.educations;

@@ -69,15 +69,15 @@
             <div class="container area_container" id="add_xp">
 				<!-- hidden form to add new experience -->
                 <form class="new_info" action="editProfile" method="post">
-                    <input type="text" name="position" placeholder="Position" autocomplete="off" spellcheck="false">
+                    <input type="text" name="position" placeholder="Position" autocomplete="off" spellcheck="false" required>
                     <br>
-                    <input type="text" name="company" placeholder="Company" autocomplete="off" spellcheck="false">
+                    <input type="text" name="company" placeholder="Company" autocomplete="off" spellcheck="false" required>
                     <br><br>
                     <label>Start Date</label><br>
-                    <input type="date" name="start_date">
+                    <input type="date" name="start_date" required>
                     <br><br>
                     <label>End Date</label><br>
-                    <input type="date" name="end_date">
+                    <input type="date" name="end_date" required>
                     <br><br>
                     <input type="radio" name="privacy" value="private"> Private<br>
                     <input type="radio" name="privacy" value="public" checked> Public<br>
@@ -127,15 +127,15 @@
             <div class="container area_container" id="add_ed">
 				<!-- hidden form to add new education -->
                 <form class="new_info" action="editProfile" method="post">
-                    <input type="text" name="institution" placeholder="Institution" autocomplete="off" spellcheck="false">
+                    <input type="text" name="institution" placeholder="Institution" autocomplete="off" spellcheck="false" required>
                     <br>
-                    <input type="text" name="level" placeholder="Degree Level" autocomplete="off" spellcheck="false">
+                    <input type="text" name="level" placeholder="Degree Level" autocomplete="off" spellcheck="false" required>
                     <br><br>
                     <label>Start Date</label><br>
-                    <input type="date" name="start_date">
+                    <input type="date" name="start_date" required>
                     <br><br>
                     <label>End Date</label><br>
-                    <input type="date" name="end_date">
+                    <input type="date" name="end_date" required>
                     <br><br>
                     <input type="radio" name="privacy" value="private"> Private<br>
                     <input type="radio" name="privacy" value="public" checked> Public<br>
@@ -184,9 +184,9 @@
             <div class="container skill_container" id="add_sk">
 				<!-- hidden form to add new skill -->
                 <form class="new_info" action="editProfile" method="post">
-                    <input type="text" name="name" placeholder="Skill" autocomplete="off" spellcheck="false">
+                    <input type="text" name="name" placeholder="Skill" autocomplete="off" spellcheck="false" required>
                     <br>
-                    <input type="text" name="type" placeholder="Type" autocomplete="off" spellcheck="false">
+                    <input type="text" name="type" placeholder="Type" autocomplete="off" spellcheck="false" required>
                     <br><br>
                     <input type="radio" name="privacy" value="private"> Private<br>
                     <input type="radio" name="privacy" value="public" checked> Public<br>

@@ -38,8 +38,11 @@
                 	
             	</div>
             	<br>	
-          		<span id="fullname"> <% out.write(u.getFirstName()+ " " + u.getLastName()); %> </span>
-          		<button id="connect_btn" class="submit_button">connect</button>
+            	<form action="connection" id="connect_form" method="post">
+            		<input type="hidden" name="user" value="<%= u.getEmail() %>">
+					<input type="submit" id="connect_btn" class="submit_button" value="Connect">
+				</form>
+          		<span id="fullname"> <% out.write(u.getFirstName()+ " " + u.getLastName()); %> </span>     		
           		<br>
           		<span id="phone"><i class="fas fa-phone"></i> <% out.write(u.getPhone()); %> </span>
           		<br>
