@@ -33,6 +33,7 @@ public class SkillDAOImpl implements SkillDAO {
 		EntityManager em = EntityManagerHelper.getEntityManager();
 		em.getTransaction().begin();
 		em.persist(sk);
+		sk.getUser().addSkill(sk);
 		em.getTransaction().commit();
 		
 	}
@@ -58,7 +59,10 @@ public class SkillDAOImpl implements SkillDAO {
 		EntityManager em = EntityManagerHelper.getEntityManager();
 		em.getTransaction().begin();
 		em.remove(sk);
-		em.getTransaction().commit();	
+		em.getTransaction().commit();
+		em.getTransaction().begin();
+		sk.getUser().removeSkill(sk);
+		em.getTransaction().commit();
 	}
 
 	@Override

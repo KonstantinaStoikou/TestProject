@@ -24,7 +24,7 @@ public class ExperienceDAOImpl implements ExperienceDAO {
 		EntityManager em = EntityManagerHelper.getEntityManager();
 		Query query = em.createNamedQuery("Experience.findAll");
 		@SuppressWarnings("unchecked")
-		List<Experience> exp = query.getResultList();  
+		List<Experience> exp = query.getResultList(); 
         return exp;
 	}
 
@@ -33,8 +33,8 @@ public class ExperienceDAOImpl implements ExperienceDAO {
 		EntityManager em = EntityManagerHelper.getEntityManager();
 		em.getTransaction().begin();
 		em.persist(exp);
-		em.getTransaction().commit();
 		exp.getUser().addExperience(exp);
+		em.getTransaction().commit();
 		
 	}
 
@@ -60,7 +60,9 @@ public class ExperienceDAOImpl implements ExperienceDAO {
 		em.getTransaction().begin();
 		em.remove(exp);
 		em.getTransaction().commit();
+		em.getTransaction().begin();
 		exp.getUser().removeExperience(exp);
+		em.getTransaction().commit();
 		
 	}
 

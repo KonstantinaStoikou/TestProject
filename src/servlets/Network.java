@@ -40,7 +40,6 @@ public class Network extends HttpServlet {
 				String first = u.getFirstName();
 				String last = u.getLastName();
 				String full = first + " " + last;
-				System.out.println("hi" + full);
 				//if input equals the full name
 				if (full.toLowerCase().equals(searchText.toLowerCase())) {
 					//add at the beginning of list because it matches input the most

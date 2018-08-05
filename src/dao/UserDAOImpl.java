@@ -22,6 +22,7 @@ public class UserDAOImpl implements UserDAO
 	public List<User> list() {
 		EntityManager em = EntityManagerHelper.getEntityManager();
 		Query query = em.createNamedQuery("User.findAll");
+		query.setHint("eclipselink.refresh", "true");
 		@SuppressWarnings("unchecked")
 		List<User> users = query.getResultList();
         return users;
