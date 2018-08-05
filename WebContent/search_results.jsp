@@ -53,7 +53,7 @@
 						<% } else { %>
 							<div class="row2"> Unemployed </div>
 						<% } %>
-						<button class="connect">Connect</button>
+					<!-- <button class="connect">Connect</button> -->
 					</div>
 				<%} %>
 			<%} %>

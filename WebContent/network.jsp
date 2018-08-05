@@ -35,7 +35,7 @@
 			<form action="network" method="get" id="search" onmouseover="hoverFun()" onmouseout="unhoverFun()">
 				<input type="hidden" name="action" value="search_form">
 				<input type="text" name="search" id="textbox" placeholder="Search..." onfocus="focusFun()" onblur="unfocusFun()" autocomplete="off" spellcheck="false">
-  				<button type="submit" id="search_button"><i class="fas fa-search"></i></button>
+  				<button type="submit" id="search_button" onmouseover="hoverIconFun()" onmouseout="unhoverIconFun()"><i class="fas fa-search"></i></button>
 			</form>
 		</div>
 		<div class="container">
