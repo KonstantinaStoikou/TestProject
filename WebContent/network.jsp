@@ -11,7 +11,8 @@
 		<script src="scripts/network.js" async></script>
 	</head>
 	<body>
-	
+		
+		<%@ page import="java.util.List, model.User, model.Experience" %>
 		<% 
 	 		if (session.getAttribute("email") == null) { 
 				response.sendRedirect(request.getContextPath() + "/login.jsp"); 
@@ -38,100 +39,33 @@
   				<button type="submit" id="search_button" onmouseover="hoverIconFun()" onmouseout="unhoverIconFun()"><i class="fas fa-search"></i></button>
 			</form>
 		</div>
+		
+		<%  
+		// retrieve your list from the request, with casting 
+		List<User> connectionList = (List<User>) session.getAttribute("connectionList");
+		%>
+		
 		<div class="container">
 			<span id="title">Your Connections :</span>
 			<br>
-			<div class="container user_container" onclick="submitForm()">
-				<img src= "images/handshake.jpg" alt="">
-				<br>
-				<div class="row1">  Sotiris Papaspililos </div>
-				<br>
-				<div class="row2"> Music Producer </div>
-				<br>
-				<div class="row3"> at Combalt Dic Club </div>
-			</div>
-			<div class="container user_container">
-				<img src= "images/dots.png" alt="">
-				<br>
-				<div class="row1"> Konsftgffvd Stodfsffddfgdfdgfgikou </div>
-				<br>
-				<div class="row2"> Web Developer </div>
-				<br>
-				<div class="row3"> at Microsoft </div>
-			</div>
-			<div class="container user_container">
-				<img src= "images/handshake.jpg" alt="">
-				<br>
-				<div class="row1">  Sotiris Papaspililos </div>
-				<br>
-				<div class="row2"> Music Producer </div>
-				<br>
-				<div class="row3"> at Combalt Dic Club </div>
-			</div>
-			
-			<div class="container user_container">
-				<img src= "images/handshake.jpg" alt="">
-				<br>
-				<div class="row1">  Sotiris Papaspililos </div>
-				<br>
-				<div class="row2"> Music Producer </div>
-				<br>
-				<div class="row3"> at Combalt Dic Club </div>
-			</div>
-			<div class="container user_container">
-				<img src= "images/handshake.jpg" alt="">
-				<br>
-				<div class="row1">  Sotiris Papaspililos </div>
-				<br>
-				<div class="row2"> Music Producer </div>
-				<br>
-				<div class="row3"> at Combalgt Dic Club </div>
-			</div>
-			<div class="container user_container">
-				<img src= "images/handshake.jpg" alt="">
-				<br>
-				<div class="row1">  Sotiris Papaspililos </div>
-				<br>
-				<div class="row2"> Music Producer </div>
-				<br>
-				<div class="row3"> at Combalgt Dic Club </div>
-			</div>
-			<div class="container user_container">
-				<img src= "images/handshake.jpg" alt="">
-				<br>
-				<div class="row1">  Sotiris Papaspililos </div>
-				<br>
-				<div class="row2"> Music Producer </div>
-				<br>
-				<div class="row3"> at Combalgt Dic Club </div>
-			</div>
-			<div class="container user_container">
-				<img src= "images/handshake.jpg" alt="">
-				<br>
-				<div class="row1">  Sotiris Papaspililos </div>
-				<br>
-				<div class="row2"> Music Producer </div>
-				<br>
-				<div class="row3"> at Combalgt Dic Club </div>
-			</div>
-			<div class="container user_container">
-				<img src= "images/handshake.jpg" alt="">
-				<br>
-				<div class="row1">  Sotiris Papaspililos </div>
-				<br>
-				<div class="row2"> Music Producer </div>
-				<br>
-				<div class="row3"> at Combalgt Dic Club </div>
-			</div>
-			<div class="container user_container">
-				<img src= "images/handshake.jpg" alt="">
-				<br>
-				<div class="row1">  Sotiris Papaspililos </div>
-				<br>
-				<div class="row2"> Music Producer </div>
-				<br>
-				<div class="row3"> at Combalgt Dic Club </div>
-			</div>
+			<!-- create connection items -->
+			<% if(connectionList != null && !connectionList.isEmpty()) { %>
+				<% for(User u : connectionList) { %>
+					<div class="container user_container" onclick="submitForm(<%= String.valueOf(u.getId()) %>)">
+						<img src= <%= "http://localhost:8080/TestProject/usersProfilePic?user=" + u.getEmail() + "" %> alt="">
+						<br>
+						<div class="row1">  <%= u.getFirstName() %> <%= u.getLastName() %> </div>
+						<br>
+						<% if(!u.getExperiences().isEmpty()) { %>
+							<div class="row2"> <%= u.getExperiences().get(0).getPosition() %> </div>
+							<br>
+							<div class="row3"> at <%= u.getExperiences().get(0).getCompany() %> </div>
+						<% } else { %>
+							<div class="row2"> Unemployed </div>
+						<% } %>
+					</div>
+				<% } %>
+			<% } %>			
 		</div>
 		
 		<!-- form to submit when clicking on a user -->

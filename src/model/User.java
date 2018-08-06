@@ -141,7 +141,7 @@ public class User implements Serializable {
 	public void addFriends(User user)
     {
         getFriends().add(user);
-        user.friends.add(this);
+        user.getFriends().add(this);
     }
 
 //    public void addFriendOf(User user)

@@ -56,6 +56,8 @@ public class Login extends HttpServlet {
 			SkillDAO skDao = new SkillDAOImpl();
 			session.setAttribute("skList", skDao.findByUser(user));
 			
+			session.setAttribute("connectionList", user.getFriends());
+			
 			request.getRequestDispatcher("/welcome.jsp").forward(request, response);
 		}
 		else {

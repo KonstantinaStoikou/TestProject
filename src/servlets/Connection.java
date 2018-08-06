@@ -40,6 +40,8 @@ public class Connection extends HttpServlet {
 			em.getTransaction().begin();
 			currentUser.addFriends(befriended);
 			em.getTransaction().commit();
+			
+			session.setAttribute("connectionList", currentUser.getFriends());
 		}
 		request.setAttribute("connected", currentUser.getFriends().contains(befriended));
 		request.setAttribute("user", befriended);
