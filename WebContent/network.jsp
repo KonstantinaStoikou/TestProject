@@ -71,7 +71,7 @@
 		<!-- form to submit when clicking on a user -->
 		<form action="network" id="submit_form" method="get">
 			<input type="hidden" name="action" value="visit_user">
-		    <input type="hidden" name="hiddeninput">    
+			<input type="hidden" id="user_input" name="user" value="">   
 		</form>
 	</body>
 </html>

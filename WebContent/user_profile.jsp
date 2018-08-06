@@ -69,7 +69,8 @@
 			<!-- create experience items -->
 			<% if(u.getExperiences() != null && !u.getExperiences().isEmpty()) { %>
 				<% for(Experience exp : u.getExperiences()) { %>
-					<% if(exp.getPrivacy() == false) { %>
+					<% //check if info is set to public or users are connected or profile is of current user %>
+					<% if(exp.getPrivacy() == false || (boolean)request.getAttribute("connected") == true || currentUserEmail.equals(u.getEmail())) { %>
 					    <div class="container area_container">
 			                <span class="row1"><%= exp.getPosition() %></span>
 			                <br><br>
@@ -88,7 +89,8 @@
 			<!-- create education items -->
 			<% if(u.getEducations() != null && !u.getEducations().isEmpty()) { %>
 				<% for(Education ed : u.getEducations()) { %>
-					<% if(ed.getPrivacy() == false) { %>
+					<% //check if info is set to public or users are connected or profile is of current user %>
+					<% if(ed.getPrivacy() == false || (boolean)request.getAttribute("connected") == true || currentUserEmail.equals(u.getEmail())) { %>
 					    <div class="container area_container">
 			                <span class="row1"><%= ed.getInstitution() %></span>
 			                <br><br>
@@ -107,7 +109,8 @@
 			<div class="flex_container">
 			<% if(u.getSkills() != null && !u.getSkills().isEmpty()) { %>
 				<% for(Skill sk : u.getSkills()) { %>
-					<% if(sk.getPrivacy() == false) { %>
+					<% //check if info is set to public or users are connected or profile is of current user %>
+					<% if(sk.getPrivacy() == false || (boolean)request.getAttribute("connected") == true || currentUserEmail.equals(u.getEmail())) { %>
 						<div class="container skill_container">
 							<span class="row1"><%= sk.getName() %></span>
 							<br><br>

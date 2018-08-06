@@ -63,8 +63,6 @@ public class EducationDAOImpl implements EducationDAO {
 		EntityManager em = EntityManagerHelper.getEntityManager();
 		em.getTransaction().begin();
 		em.remove(ed);
-		em.getTransaction().commit();	
-		em.getTransaction().begin();
 		ed.getUser().removeEducation(ed);
 		em.getTransaction().commit();
 	}

@@ -61,8 +61,6 @@ public class ExperienceDAOImpl implements ExperienceDAO {
 		EntityManager em = EntityManagerHelper.getEntityManager();
 		em.getTransaction().begin();
 		em.remove(exp);
-		em.getTransaction().commit();
-		em.getTransaction().begin();
 		exp.getUser().removeExperience(exp);
 		em.getTransaction().commit();
 		
