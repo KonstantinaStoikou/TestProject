@@ -7,8 +7,8 @@
 			<title>Dots - Messages</title>
 			<link rel="stylesheet" type="text/css" href="styles/navbar.css">
 			<link rel="stylesheet" type="text/css" href="styles/messages.css">
+			<link rel="stylesheet" type="text/css" href="styles/scrollbar.css">
 			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
-			<script src="scripts/messages.js" async></script>
 	</head>
 	<body>
 		<%@ page import="java.util.List, model.User, model.Experience" %>
@@ -40,11 +40,15 @@
 	        	</div>
 	        	<div class="container conv_container">
 	        		<img src= "./images/handshake.jpg" alt="">
-        			<span class="name"> Giorgos Gedfrgiou </span>
+        			<span class="name"> Giorgos Gedfrsffffsfgiou </span>
 	        	</div>
 	        	<div class="container conv_container">
 	        		<img src= "./images/handshake.jpg" alt="">
         			<span class="name"> Giorgos Georgiou </span>
+	        	</div>
+	        	<div class="container conv_container">
+	        		<img src= "./images/handshake.jpg" alt="">
+        			<span class="name"> Giorgos Geosfsdfsddsrgiou </span>
 	        	</div>
 	        	<div class="container conv_container">
 	        		<img src= "./images/handshake.jpg" alt="">
@@ -57,8 +61,75 @@
 			</div>
         </div>
         <div class="container">
-        	helloooo
+        	<div id="open_info">
+        		<img src= "./images/handshake.jpg" alt="">
+        		<span id="open_name">Georgios Georgiou</span>
+        	</div>
+        	<div id="conversation">
+        		<div class="message">
+        			<div class="me">
+	        			<span class="person">Me</span>
+	        			<br>
+	        			<div class="text">
+	        				dfgdfgdfgdrgdfsfsfdfsdfsdffgdfgdfgfdgdfgfgdfsdfdgdfg
+	        			</div>
+        			</div>
+        		</div>
+        		<div class="message">
+        			<div class="me">
+	        			<span class="person">Me</span>
+	        			<br>
+	        			<div class="text">
+	        				dfgdfgdfgdrgdfsfsfdfsdfsdffgdfgdfgfdgdfgfgdfsdfdgdfg
+	        			</div>
+        			</div>
+        		</div>
+        		<div class="message">
+	        		<div class="friend">
+	        			<span class="person">Georgios</span>
+	        			<br>
+	        			<div class="text">
+	        				dfgfdgdfgfgdfsdfdgdfg
+	        			</div>
+	        		</div>
+        		</div>
+        		<div class="message">
+        			<div class="me">
+	        			<span class="person">Me</span>
+	        			<br>
+	        			<div class="text">
+	        				dfgdfgdfgdrgdfsfsfdfsdfsdffgdfgdfgfdgdfgfgdfsdfdgdfg
+	        			</div>
+        			</div>
+        		</div>
+        		<div class="friend">
+        			<span class="person">Georgios</span>
+        			<br>
+        			<div class="text">
+        				dfgfdgdfgfgdfsdfdgdfg
+        			</div>
+        		</div>
+        		<div class="friend">
+        			<span class="person">Georgios</span>
+        			<br>
+        			<div class="text">
+        				dfgfdgdfgfgdfsdfgdfgdfgdfdgdfg
+        			</div>
+        		</div>
+        		<div class="friend">
+        			<span class="person">Georgios</span>
+        			<br>
+        			<div class="text">
+        				dfgfdgdfgfgdgdfgdfgdgfdgdgdgdgdgddgdfgdfsdfdgdfg
+        			</div>
+        		</div>
+        	</div>
+        	<form action="">
+	    		<div id="wrapper">
+	    			<input type="text" placeholder="Write a message">
+        			<input type="submit" value="Send">
+	    		</div>
+        	</form>
         </div>
-        
 	</body>
 </html>
