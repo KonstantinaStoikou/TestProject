@@ -26,7 +26,6 @@ public class Experience implements Serializable {
 
 	private String position;
 
-	//if private info: privacy == 1, if public info: privacy == 0
 	private boolean privacy;
 
 	@Temporal(TemporalType.DATE)

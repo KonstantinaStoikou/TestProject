@@ -5,6 +5,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Dots - Login</title>
+		<link rel="icon" href="images/favicon.ico" type="image/x-icon">
         <link rel="stylesheet" type="text/css" href="styles/login.css">
 	</head>
 	<body>

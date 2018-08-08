@@ -5,6 +5,7 @@
 	<head>
 		<meta charset="utf-8">
 	    <title>Dots - Sign Up</title>
+	    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 	    <link rel="stylesheet" type="text/css" href="styles/signup.css">
 	    <link rel="stylesheet" type="text/css" href="styles/navbar.css">
 	    <script src="scripts/signup.js" defer></script>

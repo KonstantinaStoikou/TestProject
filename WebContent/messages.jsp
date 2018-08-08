@@ -5,6 +5,7 @@
 	<head>
 			<meta charset="UTF-8">
 			<title>Dots - Messages</title>
+			<link rel="icon" href="images/favicon.ico" type="image/x-icon">
 			<link rel="stylesheet" type="text/css" href="styles/navbar.css">
 			<link rel="stylesheet" type="text/css" href="styles/messages.css">
 			<link rel="stylesheet" type="text/css" href="styles/scrollbar.css">
@@ -31,7 +32,7 @@
         </div>
         
         <div class="container left_container">
-        	<span id="title">Conversations you have started :</span>
+        	<span id="title">Your conversations :</span>
         	<div id="list">
 				<!--  i need an if condition to check if active or not -->
         		<div class="container conv_container conv_active">

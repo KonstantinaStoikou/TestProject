@@ -5,6 +5,8 @@
 		<class>model.EducationPK</class>
 		<class>model.Experience</class>
 		<class>model.ExperiencePK</class>
+		<class>model.Message</class>
+		<class>model.MessagePK</class>
 		<class>model.Skill</class>
 		<class>model.SkillPK</class>
 		<class>model.User</class>

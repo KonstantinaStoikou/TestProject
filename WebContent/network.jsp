@@ -5,6 +5,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Dots - Network</title>
+		<link rel="icon" href="images/favicon.ico" type="image/x-icon">
 		<link rel="stylesheet" type="text/css" href="styles/navbar.css">
 		<link rel="stylesheet" type="text/css" href="styles/network.css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">

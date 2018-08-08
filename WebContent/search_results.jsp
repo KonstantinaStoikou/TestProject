@@ -5,6 +5,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Dots - Results</title>
+		<link rel="icon" href="images/favicon.ico" type="image/x-icon">
 		<link rel="stylesheet" type="text/css" href="styles/navbar.css">
 		<link rel="stylesheet" type="text/css" href="styles/network.css">
 		<link rel="stylesheet" type="text/css" href="styles/search_results.css">

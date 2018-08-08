@@ -6,6 +6,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Dots - <% out.write(u.getFirstName()+ " " + u.getLastName());%> </title>
+		<link rel="icon" href="images/favicon.ico" type="image/x-icon">
 		<link rel="stylesheet" type="text/css" href="styles/navbar.css">
 		<link rel="stylesheet" type="text/css" href="styles/edit_profile.css">
 		<link rel="stylesheet" type="text/css" href="styles/user_profile.css">
