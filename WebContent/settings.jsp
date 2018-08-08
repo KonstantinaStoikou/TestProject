@@ -66,5 +66,11 @@
 		        <button type="submit" name="password_change">Apply</button>
 		    </form>
 		</div>
+		
+		<form action="settings" method="post">
+			<input type="hidden" name="action" value="logout">
+			<button type="submit" id="logout">Logout</button>
+		</form>
+		
 	</body>
 </html>

@@ -21,48 +21,54 @@ import model.User;
 @WebServlet("/settings")
 public class Settings extends HttpServlet {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		HttpSession session = request.getSession();
 		String hiddenParam = request.getParameter("action");
 		if (hiddenParam.equals("email_change")) {
-			
-			String email = (String)session.getAttribute("email");
+
+			String email = (String) session.getAttribute("email");
 			UserDAO dao = new UserDAOImpl();
 			User user = dao.findByEmail(email);
-			
+
 			String newEmail = request.getParameter("email");
 			EntityManager em = EntityManagerHelper.getEntityManager();
 			em.getTransaction().begin();
 			user.setEmail(newEmail);
 			em.getTransaction().commit();
 			session.setAttribute("email", user.getEmail());
-			
-		} else if (hiddenParam.equals("password_change")){
-			
+
+		} else if (hiddenParam.equals("password_change")) {
+
 			String newPassword = request.getParameter("newpass");
 			String oldPassword = request.getParameter("oldpass");
 			if (!oldPassword.equals(session.getAttribute("password"))) {
 				request.setAttribute("errorMessage", "The old password you entered is wrong");
 				request.getRequestDispatcher("/settings.jsp").forward(request, response);
-			}
-			else {
-				String email = (String)session.getAttribute("email");
-				
+			} else {
+				String email = (String) session.getAttribute("email");
+
 				UserDAO dao = new UserDAOImpl();
 				User user = dao.findByEmail(email);
-				
+
 				EntityManager em = EntityManagerHelper.getEntityManager();
 				em.getTransaction().begin();
 				user.setPassword(newPassword);
 				em.getTransaction().commit();
 				session.setAttribute("password", user.getPassword());
 			}
-			
+
+		} else if (hiddenParam.equals("logout")) {
+			session.invalidate();
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		}
+
 		request.getRequestDispatcher("/settings.jsp").forward(request, response);
 	}
 

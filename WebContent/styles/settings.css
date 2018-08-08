@@ -40,6 +40,7 @@ p {
 }
 
 button {
+	outline: none;
 	float: right;
     font-family: 'Work Sans', sans-serif;
     text-transform: uppercase;
@@ -63,4 +64,11 @@ button:hover {
 
 span {
 	color: #8e0e1a;
+}
+
+#logout {
+	display: block;
+	margin: 0 auto;
+	float: none;
+	font-size: 1.2em;
 }

@@ -1,7 +1,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,7 +17,6 @@ import dao.SkillDAO;
 import dao.SkillDAOImpl;
 import dao.UserDAO;
 import dao.UserDAOImpl;
-import model.Message;
 import model.User;
 
 /**
@@ -28,46 +26,46 @@ import model.User;
 
 public class Login extends HttpServlet {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 	}
 
-	//use doPost method for security reasons
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	// use doPost method for security reasons
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		HttpSession session = request.getSession();
-		
+
 		UserDAO dao = new UserDAOImpl();
 		User user = dao.findByEmail(email);
 		if (user != null && password.equals(user.getPassword())) {
 			request.setAttribute("errorMessage", null);
-			//if(user == admin) go to admin page else { ...
-			
-			//store user info in session
+			// if(user == admin) go to admin page else { ...
+
+			// store user info in session
 			session.setAttribute("email", user.getEmail());
 			session.setAttribute("password", user.getPassword());
 			session.setAttribute("first_name", user.getFirstName());
 			session.setAttribute("last_name", user.getLastName());
 			session.setAttribute("phone", user.getPhone());
 			session.setAttribute("photo", user.getPhoto());
-			
+
 			ExperienceDAO expDao = new ExperienceDAOImpl();
 			session.setAttribute("expList", expDao.findByUser(user));
 			EducationDAO edDao = new EducationDAOImpl();
 			session.setAttribute("edList", edDao.findByUser(user));
 			SkillDAO skDao = new SkillDAOImpl();
 			session.setAttribute("skList", skDao.findByUser(user));
-			
+
 			session.setAttribute("connectionList", user.getFriends());
 			session.setAttribute("conversations", user.getConversations());
-			
+
 			request.getRequestDispatcher("/welcome.jsp").forward(request, response);
-		}
-		else {
+		} else {
 			request.setAttribute("errorMessage", "Invalid user or password");
-			//invalidate session so that user can't access welcome.jsp 
-			//because usermail will be null
 			session.invalidate();
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		}

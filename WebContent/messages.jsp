@@ -54,10 +54,6 @@
 		        	<% } %>
 	        	<% } %>
 	        	
-	        	<div class="container conv_container">
-	        		<img src= "./images/handshake.jpg" alt="">
-        			<span class="name"> Giorgos Georgigdfgdfgdfgdou </span>
-	        	</div>
 			</div>
         </div>
         
