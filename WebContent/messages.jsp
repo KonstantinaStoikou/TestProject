@@ -33,34 +33,30 @@
             <a href="home.jsp"><i class="fas fa-home"></i><br>Home</a>
         </div>
         
+        
+        <%   
+			List<User> conversations = (List<User>) session.getAttribute("conversations");
+		%>
+		<% String classes = "container conv_container"; %>
 		<!-- conversations that have started with users -->
         <div class="container left_container">
         	<span id="title">Your conversations :</span>
         	<div id="list">
-				<!--  i need an if condition to check if active or not -->
-        		<div class="container conv_container conv_active">
-	        		<img src= "./images/handshake.jpg" alt="">
-        			<span class="name"> Giorgos Georgiou </span>
-	        	</div>
+        	<!--  i need an if condition to check if active or not!!!!!!!!!!!!!!!!!! -->
+        		<% if(conversations != null && !conversations.isEmpty()) { %>
+					<% for(User convU : conversations) { %>
+						<% if (convU.getId() == u.getId()) {classes = "container conv_container conv_active";} %>
+						<div class="<%= classes %>">
+			        		<img src= "<%= "http://localhost:8080/TestProject/usersProfilePic?user=" + convU.getEmail() + "" %>" alt="">
+		        			<span class="name">  <%= convU.getFirstName() %> <%= convU.getLastName() %> </span>
+			        	</div>
+			        	<% classes = "container conv_container"; %>
+		        	<% } %>
+	        	<% } %>
+	        	
 	        	<div class="container conv_container">
 	        		<img src= "./images/handshake.jpg" alt="">
-        			<span class="name"> Giorgos Gedfrsffffsfgiou </span>
-	        	</div>
-	        	<div class="container conv_container">
-	        		<img src= "./images/handshake.jpg" alt="">
-        			<span class="name"> Giorgos Georgiou </span>
-	        	</div>
-	        	<div class="container conv_container">
-	        		<img src= "./images/handshake.jpg" alt="">
-        			<span class="name"> Giorgos Geosfsdfsddsrgiou </span>
-	        	</div>
-	        	<div class="container conv_container">
-	        		<img src= "./images/handshake.jpg" alt="">
-        			<span class="name"> Giorgos Georgiou </span>
-	        	</div>
-	        	<div class="container conv_container">
-	        		<img src= "./images/handshake.jpg" alt="">
-        			<span class="name"> Giorgos Georgiou </span>
+        			<span class="name"> Giorgos Georgigdfgdfgdfgdou </span>
 	        	</div>
 			</div>
         </div>
@@ -96,9 +92,10 @@
         		
         		
         	</div>
-        	<form action="">
+        	<form action="messages" method="post">
 	    		<div id="wrapper">
-	    			<input type="text" placeholder="Write a message">
+	    			<input type="hidden" name="receiver" value = "<%= u.getId()  %>">
+	    			<input type="text" name="text" placeholder="Write a message" autocomplete="off" spellcheck="false" required>
         			<input type="submit" value="Send">
 	    		</div>
         	</form>

@@ -8,14 +8,13 @@ import javax.persistence.Query;
 import jpautils.EntityManagerHelper;
 import model.User;
 
-public class UserDAOImpl implements UserDAO 
-{
+public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public User find(int id) {
 		EntityManager em = EntityManagerHelper.getEntityManager();
-		User user = em.find(User.class, id); 
-        return user;
+		User user = em.find(User.class, id);
+		return user;
 	}
 
 	@Override
@@ -25,12 +24,11 @@ public class UserDAOImpl implements UserDAO
 		query.setHint("eclipselink.refresh", "true");
 		@SuppressWarnings("unchecked")
 		List<User> users = query.getResultList();
-        return users;
+		return users;
 	}
 
 	@Override
-	public void create(User user) 
-	{
+	public void create(User user) {
 		EntityManager em = EntityManagerHelper.getEntityManager();
 		em.getTransaction().begin();
 		em.persist(user);
@@ -40,7 +38,7 @@ public class UserDAOImpl implements UserDAO
 	@Override
 	public User findByEmail(String email) {
 		String queryString = "SELECT u FROM User u WHERE u.email = :email";
-		
+
 		EntityManager em = EntityManagerHelper.getEntityManager();
 		Query query = em.createQuery(queryString);
 		query.setParameter("email", email);
@@ -53,6 +51,5 @@ public class UserDAOImpl implements UserDAO
 			return users.get(0);
 		}
 	}
-	
-	
+
 }

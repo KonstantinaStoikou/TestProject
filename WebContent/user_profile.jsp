@@ -50,7 +50,7 @@
 					<% if(!currentUserEmail.equals(u.getEmail())) { %>
 						<!-- button to send message to user -->
 						<form action="messages" id="connect_form" method="get">
-		            		<input type="hidden" name="user" value="<%= u.getEmail() %>">
+		            		<input type="hidden" name="user" value="<%= u.getId() %>">
 							<input type="submit" id="message" class="submit_button" value="Message">
 						</form>
 					<% } %>
