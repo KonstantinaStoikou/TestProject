@@ -18,7 +18,7 @@ public class MessagePK implements Serializable {
 	private int senderId;
 
 	@Column(name="User_id1", insertable=false, updatable=false)
-	private int user_id1;
+	private int receiverId;
 
 	public MessagePK() {
 	}
@@ -34,11 +34,11 @@ public class MessagePK implements Serializable {
 	public void setSenderId(int senderId) {
 		this.senderId = senderId;
 	}
-	public int getUser_id1() {
-		return this.user_id1;
+	public int getReceiverId() {
+		return this.receiverId;
 	}
-	public void setUser_id1(int user_id1) {
-		this.user_id1 = user_id1;
+	public void setReceiverId(int receiverId) {
+		this.receiverId = receiverId;
 	}
 
 	public boolean equals(Object other) {
@@ -52,7 +52,7 @@ public class MessagePK implements Serializable {
 		return 
 			(this.id == castOther.id)
 			&& (this.senderId == castOther.senderId)
-			&& (this.user_id1 == castOther.user_id1);
+			&& (this.receiverId == castOther.receiverId);
 	}
 
 	public int hashCode() {
@@ -60,7 +60,7 @@ public class MessagePK implements Serializable {
 		int hash = 17;
 		hash = hash * prime + this.id;
 		hash = hash * prime + this.senderId;
-		hash = hash * prime + this.user_id1;
+		hash = hash * prime + this.receiverId;
 		
 		return hash;
 	}

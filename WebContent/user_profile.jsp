@@ -39,14 +39,21 @@
             	</div>
             	<br>
             	<div id="buttons">
-            	<% String currentUserEmail = (String)session.getAttribute("email"); %>
-            	<% if((boolean)request.getAttribute("connected") == false && !currentUserEmail.equals(u.getEmail())) { %>	
-            	<form action="connection" id="connect_form" method="post">
-            		<input type="hidden" name="user" value="<%= u.getEmail() %>">
-					<input type="submit" class="submit_button" value="Connect">
-				</form>
-				<% } %>
-				<button class="submit_button" id="message">message</button>
+	            	<% String currentUserEmail = (String)session.getAttribute("email"); %>
+	            	<% if((boolean)request.getAttribute("connected") == false && !currentUserEmail.equals(u.getEmail())) { %>	
+		            	<!-- button to connect with user -->
+		            	<form action="connection" id="connect_form" method="post">
+		            		<input type="hidden" name="user" value="<%= u.getEmail() %>">
+							<input type="submit" class="submit_button" value="Connect">
+						</form>
+					<% } %>
+					<% if(!currentUserEmail.equals(u.getEmail())) { %>
+						<!-- button to send message to user -->
+						<form action="messages" id="connect_form" method="get">
+		            		<input type="hidden" name="user" value="<%= u.getEmail() %>">
+							<input type="submit" id="message" class="submit_button" value="Message">
+						</form>
+					<% } %>
 				</div>
           		<span id="fullname"> <% out.write(u.getFirstName()+ " " + u.getLastName()); %> </span>     		
           		<br>

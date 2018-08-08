@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +18,7 @@ import dao.SkillDAO;
 import dao.SkillDAOImpl;
 import dao.UserDAO;
 import dao.UserDAOImpl;
+import model.Message;
 import model.User;
 
 /**
@@ -57,6 +60,7 @@ public class Login extends HttpServlet {
 			session.setAttribute("skList", skDao.findByUser(user));
 			
 			session.setAttribute("connectionList", user.getFriends());
+			session.setAttribute("conversations", user.getConversations());
 			
 			request.getRequestDispatcher("/welcome.jsp").forward(request, response);
 		}

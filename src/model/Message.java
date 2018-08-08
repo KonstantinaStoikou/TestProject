@@ -22,12 +22,12 @@ public class Message implements Serializable {
 	//bi-directional many-to-one association to User
 	@ManyToOne
 	@JoinColumn(name="senderId")
-	private User user1;
+	private User sender;
 
 	//bi-directional many-to-one association to User
 	@ManyToOne
 	@JoinColumn(name="User_id1")
-	private User user2;
+	private User receiver;
 
 	public Message() {
 	}
@@ -48,20 +48,20 @@ public class Message implements Serializable {
 		this.text = text;
 	}
 
-	public User getUser1() {
-		return this.user1;
+	public User getSender() {
+		return this.sender;
 	}
 
-	public void setUser1(User user1) {
-		this.user1 = user1;
+	public void setSender(User sender) {
+		this.sender = sender;
 	}
 
-	public User getUser2() {
-		return this.user2;
+	public User getReceiver() {
+		return this.receiver;
 	}
 
-	public void setUser2(User user2) {
-		this.user2 = user2;
+	public void setReceiver(User receiver) {
+		this.receiver = receiver;
 	}
 
 }

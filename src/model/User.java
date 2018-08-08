@@ -2,7 +2,11 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -42,12 +46,12 @@ public class User implements Serializable {
 	private List<Experience> experiences;
 
 	//bi-directional many-to-one association to Message
-	@OneToMany(mappedBy="user1")
-	private List<Message> messages1;
+	@OneToMany(mappedBy="sender")
+	private List<Message> sentMessages;
 
 	//bi-directional many-to-one association to Message
-	@OneToMany(mappedBy="user2")
-	private List<Message> messages2;
+	@OneToMany(mappedBy="receiver")
+	private List<Message> receivedMessages;
 
 	//bi-directional many-to-one association to Skill
 	@OneToMany(mappedBy="user")
@@ -146,7 +150,7 @@ public class User implements Serializable {
 
 	public Education removeEducation(Education education) {
 		getEducations().remove(education);
-//		education.setUser(null);
+		//education.setUser(null);
 
 		return education;
 	}
@@ -168,54 +172,75 @@ public class User implements Serializable {
 
 	public Experience removeExperience(Experience experience) {
 		getExperiences().remove(experience);
-//		experience.setUser(null);
+		//experience.setUser(null);
 
 		return experience;
 	}
 
-	public List<Message> getMessages1() {
-		return this.messages1;
+	public List<Message> getSentMessages() {
+		return this.sentMessages;
 	}
 
-	public void setMessages1(List<Message> messages1) {
-		this.messages1 = messages1;
+	public void setSentMessages(List<Message> sentMessages) {
+		this.sentMessages = sentMessages;
 	}
 
-	public Message addMessages1(Message messages1) {
-		getMessages1().add(messages1);
-		messages1.setUser1(this);
+	public Message addSentMessages(Message sent) {
+		getSentMessages().add(sent);
+		sent.setSender(this);
 
-		return messages1;
+		return sent;
 	}
 
-	public Message removeMessages1(Message messages1) {
-		getMessages1().remove(messages1);
-		messages1.setUser1(null);
+	public Message removeSendedMessages(Message sent) {
+		getSentMessages().remove(sent);
+		//send.setUser1(null);
 
-		return messages1;
+		return sent;
 	}
 
-	public List<Message> getMessages2() {
-		return this.messages2;
+	public List<Message> getReceivesMessages() {
+		return this.receivedMessages;
 	}
 
-	public void setMessages2(List<Message> messages2) {
-		this.messages2 = messages2;
+	public void setReceivedMessages(List<Message> receivedMessages) {
+		this.receivedMessages = receivedMessages;
 	}
 
-	public Message addMessages2(Message messages2) {
-		getMessages2().add(messages2);
-		messages2.setUser2(this);
+	public Message addReceivedMessages(Message received) {
+		getReceivesMessages().add(received);
+		received.setReceiver(this);
 
-		return messages2;
+		return received;
 	}
 
-	public Message removeMessages2(Message messages2) {
-		getMessages2().remove(messages2);
-		messages2.setUser2(null);
+	public Message removeReceivedMessages(Message received) {
+		getReceivesMessages().remove(received);
+		//received.setUser2(null);
 
-		return messages2;
+		return received;
 	}
+	
+
+    //get users with whom the argument user has exchanged messages
+    public List<User> getConversations() {
+    	//set is used so that there are no duplicates from 
+    	//received and sent messages
+    	Set<User> conversationsSet = new HashSet<User>();
+    	
+    	//add to set users that this user has sent messages to
+    	for (Message msg : this.sentMessages) {
+    	    conversationsSet.add(msg.getReceiver());
+    	}
+    	//add to set users that this user has received messages from
+    	for (Message msg : this.receivedMessages) {
+    	    conversationsSet.add(msg.getSender());
+    	}
+    	List<User> conversations = new ArrayList<User>();
+    	conversations.addAll(conversationsSet);
+    	
+    	return conversations;
+    }
 
 	public List<Skill> getSkills() {
 		return this.skills;
@@ -234,7 +259,7 @@ public class User implements Serializable {
 
 	public Skill removeSkill(Skill skill) {
 		getSkills().remove(skill);
-//		skill.setUser(null);
+		//skill.setUser(null);
 
 		return skill;
 	}

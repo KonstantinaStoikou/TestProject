@@ -12,12 +12,14 @@
 			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
 	</head>
 	<body>
-		<%@ page import="java.util.List, model.User, model.Experience" %>
+		<%@ page import="java.util.List, model.User" %>
 		<% 
 	 		if (session.getAttribute("email") == null) { 
 				response.sendRedirect(request.getContextPath() + "/login.jsp"); 
 			} 
 		%>
+		
+		<% User u = (User)request.getAttribute("messagedUser"); %>
 		
 		<!-- top navigation bar -->
         <div class="navbar">
@@ -31,6 +33,7 @@
             <a href="home.jsp"><i class="fas fa-home"></i><br>Home</a>
         </div>
         
+		<!-- conversations that have started with users -->
         <div class="container left_container">
         	<span id="title">Your conversations :</span>
         	<div id="list">
@@ -61,10 +64,12 @@
 	        	</div>
 			</div>
         </div>
+        
+		<!-- conversation currently open -->
         <div class="container">
         	<div id="open_info">
-        		<img src= "./images/handshake.jpg" alt="">
-        		<span id="open_name">Georgios Georgiou</span>
+        		<img src= <%= "http://localhost:8080/TestProject/usersProfilePic?user=" + u.getEmail() + "" %> alt="">
+        		<span id="open_name"> <% out.write(u.getFirstName()+ " " + u.getLastName()); %> </span>
         	</div>
         	<div id="conversation">
         		<div class="message">
@@ -76,15 +81,7 @@
 	        			</div>
         			</div>
         		</div>
-        		<div class="message">
-        			<div class="me">
-	        			<span class="person">Me</span>
-	        			<br>
-	        			<div class="text">
-	        				dfgdfgdfgdrgdfsfsfdfsdfsdffgdfgdfgfdgdfgfgdfsdfdgdfg
-	        			</div>
-        			</div>
-        		</div>
+        		
         		<div class="message">
 	        		<div class="friend">
 	        			<span class="person">Georgios</span>
@@ -94,36 +91,10 @@
 	        			</div>
 	        		</div>
         		</div>
-        		<div class="message">
-        			<div class="me">
-	        			<span class="person">Me</span>
-	        			<br>
-	        			<div class="text">
-	        				dfgdfgdfgdrgdfsfsfdfsdfsdffgdfgdfgfdgdfgfgdfsdfdgdfg
-	        			</div>
-        			</div>
-        		</div>
-        		<div class="friend">
-        			<span class="person">Georgios</span>
-        			<br>
-        			<div class="text">
-        				dfgfdgdfgfgdfsdfdgdfg
-        			</div>
-        		</div>
-        		<div class="friend">
-        			<span class="person">Georgios</span>
-        			<br>
-        			<div class="text">
-        				dfgfdgdfgfgdfsdfgdfgdfgdfdgdfg
-        			</div>
-        		</div>
-        		<div class="friend">
-        			<span class="person">Georgios</span>
-        			<br>
-        			<div class="text">
-        				dfgfdgdfgfgdgdfgdfgdgfdgdgdgdgdgddgdfgdfsdfdgdfg
-        			</div>
-        		</div>
+        		
+        		
+        		
+        		
         	</div>
         	<form action="">
 	    		<div id="wrapper">
