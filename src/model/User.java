@@ -2,6 +2,8 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -256,6 +258,35 @@ public class User implements Serializable {
 		conversations.addAll(conversationsSet);
 
 		return conversations;
+	}
+
+	// get messages from conversation with given user sorted by id
+	public List<Message> getConversationMessages(int id) {
+		// add to list all messages exchanged between this user and given user
+		List<Message> allUserMessages = new ArrayList<Message>();
+		for (Message msg : this.sentMessages) {
+			if (msg.getReceiver().getId() == id) {
+				allUserMessages.add(msg);
+			}
+		}
+		for (Message msg : this.receivedMessages) {
+			if (msg.getSender().getId() == id) {
+				allUserMessages.add(msg);
+			}
+		}
+
+		// sort messages in this conversation by id
+		// because id is auto incremented, sorting by id
+		// means sorting by most recent message
+		Comparator<Message> comparator = new Comparator<Message>() {
+			@Override
+			public int compare(Message left, Message right) {
+				return left.getId() - right.getId();
+			}
+		};
+
+		Collections.sort(allUserMessages, comparator);
+		return allUserMessages;
 	}
 
 	public List<Skill> getSkills() {

@@ -12,7 +12,7 @@
 			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
 	</head>
 	<body>
-		<%@ page import="java.util.List, model.User" %>
+		<%@ page import="java.util.List, model.User, model.Message" %>
 		<% 
 	 		if (session.getAttribute("email") == null) { 
 				response.sendRedirect(request.getContextPath() + "/login.jsp"); 
@@ -57,6 +57,9 @@
 			</div>
         </div>
         
+        <%   
+			int currentId = (Integer)session.getAttribute("id");
+		%>
 		<!-- conversation currently open -->
         <div class="container">
         	<div id="open_info">
@@ -64,25 +67,22 @@
         		<span id="open_name"> <% out.write(u.getFirstName()+ " " + u.getLastName()); %> </span>
         	</div>
         	<div id="conversation">
-        		<div class="message">
-        			<div class="me">
-	        			<span class="person">Me</span>
-	        			<br>
-	        			<div class="text">
-	        				dfgdfgdfgdrgdfsfsfdfsdfsdffgdfgdfgfdgdfgfgdfsdfdgdfg
-	        			</div>
-        			</div>
-        		</div>
-        		
-        		<div class="message">
-	        		<div class="friend">
-	        			<span class="person">Georgios</span>
-	        			<br>
-	        			<div class="text">
-	        				dfgfdgdfgfgdfsdfdgdfg
-	        			</div>
-	        		</div>
-        		</div>
+        		<% if(u.getConversationMessages(currentId) != null && !u.getConversationMessages(currentId).isEmpty()) { %>
+					<% for(Message msg : u.getConversationMessages(currentId)) { %>
+						<div class="message">
+							<% if (msg.getSender().getId() == currentId) { %>
+								<div class="me">
+									<span class="person">Me</span>
+							<% } else { %>
+								<div class="friend">
+									<span class="person"><%= u.getFirstName() %></span>
+							<% } %>
+									<br>
+				        			<div class="text"><%= msg.getText() %></div>
+	        					</div>
+						</div>
+		        	<% } %>
+	        	<% } %>
         		
         		
         		

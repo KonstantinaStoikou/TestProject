@@ -46,6 +46,7 @@ public class Login extends HttpServlet {
 			// if(user == admin) go to admin page else { ...
 
 			// store user info in session
+			session.setAttribute("id", user.getId());
 			session.setAttribute("email", user.getEmail());
 			session.setAttribute("password", user.getPassword());
 			session.setAttribute("first_name", user.getFirstName());
