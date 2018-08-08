@@ -45,7 +45,6 @@
 		// retrieve your list from the request, with casting 
 		List<User> connectionList = (List<User>) session.getAttribute("connectionList");
 		%>
-		
 		<div class="container">
 			<span id="title">Your Connections :</span>
 			<br>

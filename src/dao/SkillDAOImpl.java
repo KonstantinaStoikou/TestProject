@@ -7,16 +7,15 @@ import javax.persistence.Query;
 
 import jpautils.EntityManagerHelper;
 import model.Skill;
-import model.SkillPK;
 import model.User;
 
 public class SkillDAOImpl implements SkillDAO {
-	
+
 	@Override
-	public Skill find(SkillPK pk) {
+	public Skill find(int id) {
 		EntityManager em = EntityManagerHelper.getEntityManager();
-		Skill sk = em.find(Skill.class, pk); 
-        return sk;
+		Skill sk = em.find(Skill.class, id);
+		return sk;
 	}
 
 	@Override
@@ -25,8 +24,8 @@ public class SkillDAOImpl implements SkillDAO {
 		Query query = em.createNamedQuery("Skill.findAll");
 		query.setHint("eclipselink.refresh", "true");
 		@SuppressWarnings("unchecked")
-		List<Skill> sk = query.getResultList();  
-        return sk;
+		List<Skill> sk = query.getResultList();
+		return sk;
 	}
 
 	@Override
@@ -36,13 +35,13 @@ public class SkillDAOImpl implements SkillDAO {
 		em.persist(sk);
 		sk.getUser().addSkill(sk);
 		em.getTransaction().commit();
-		
+
 	}
 
 	@Override
 	public List<Skill> findByUser(User user) {
 		String queryString = "SELECT s FROM Skill s WHERE s.user = :user";
-		
+
 		EntityManager em = EntityManagerHelper.getEntityManager();
 		Query query = em.createQuery(queryString);
 		query.setParameter("user", user);
@@ -67,8 +66,8 @@ public class SkillDAOImpl implements SkillDAO {
 
 	@Override
 	public Skill findById(int id) {
-		String queryString = "SELECT s FROM Skill s WHERE s.id.id = :id";
-		
+		String queryString = "SELECT s FROM Skill s WHERE s.id = :id";
+
 		EntityManager em = EntityManagerHelper.getEntityManager();
 		Query query = em.createQuery(queryString);
 		query.setParameter("id", id);
@@ -81,7 +80,5 @@ public class SkillDAOImpl implements SkillDAO {
 			return sk.get(0);
 		}
 	}
-	
-	
 
 }

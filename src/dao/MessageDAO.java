@@ -3,14 +3,12 @@ package dao;
 import java.util.List;
 
 import model.Message;
-import model.MessagePK;
 
-public interface MessageDAO 
-{
-	public Message find(MessagePK msg);
+public interface MessageDAO {
+	public Message find(int id);
 
-    public List<Message> list();
+	public List<Message> list();
 
-    public void create(Message msg);
+	public void create(Message msg);
 
 }

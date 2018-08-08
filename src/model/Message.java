@@ -1,42 +1,50 @@
 package model;
 
 import java.io.Serializable;
-import javax.persistence.*;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 /**
  * The persistent class for the Message database table.
  * 
  */
 @Entity
-@Table(name="Message")
-@NamedQuery(name="Message.findAll", query="SELECT m FROM Message m")
+@Table(name = "Message")
+@NamedQuery(name = "Message.findAll", query = "SELECT m FROM Message m")
 public class Message implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private MessagePK id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
 	private String text;
 
-	//bi-directional many-to-one association to User
+	// bi-directional many-to-one association to User
 	@ManyToOne
-	@JoinColumn(name="senderId")
+	@JoinColumn(name = "senderId")
 	private User sender;
 
-	//bi-directional many-to-one association to User
+	// bi-directional many-to-one association to User
 	@ManyToOne
-	@JoinColumn(name="User_id1")
+	@JoinColumn(name = "receiverId")
 	private User receiver;
 
 	public Message() {
 	}
 
-	public MessagePK getId() {
+	public int getId() {
 		return this.id;
 	}
 
-	public void setId(MessagePK id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

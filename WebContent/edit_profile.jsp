@@ -99,14 +99,14 @@
 				    <div class="container area_container">
 						<!-- delete button -->
 		                <form action="editProfile" method="post">
-		                	<input type="hidden" name="delete_exp" value="<%= exp.getId().getId()%>">
+		                	<input type="hidden" name="delete_exp" value="<%= exp.getId()%>">
 		                    <button type="submit"><i class="fas fa-trash-alt"></i><span class="hoverable_text">Delete</span></button>
 		                </form>
 		                <span class="row1"><%= exp.getPosition() %></span>
 		                <br><br>
 		                <!-- lock/unlock button -->
 		                <form action="editProfile" method="post">
-		                	<input type="hidden" name="privacy_exp" value="<%= exp.getId().getId()%>">
+		                	<input type="hidden" name="privacy_exp" value="<%= exp.getId()%>">
 		                <% if(exp.getPrivacy() == false) { %>
 							<button type="submit" class="lock"><i class="fas fa-lock"></i><i class="fas fa-unlock"></i></button>
 						<% } else { %>
@@ -156,14 +156,14 @@
 				    <div class="container area_container">
 						<!-- delete button -->
 		                <form action="editProfile" method="post">
-		                	<input type="hidden" name="delete_ed" value="<%= ed.getId().getId()%>">
+		                	<input type="hidden" name="delete_ed" value="<%= ed.getId()%>">
 		                    <button type="submit"><i class="fas fa-trash-alt"></i><span class="hoverable_text">Delete</span></button>
 		                </form>
 		                <span class="row1"><%= ed.getInstitution() %></span>
 		                <br><br>
 		                <!-- lock/unlock button -->
 		                <form action="editProfile" method="post">
-		                	<input type="hidden" name="privacy_ed" value="<%= ed.getId().getId()%>">
+		                	<input type="hidden" name="privacy_ed" value="<%= ed.getId()%>">
 		                <% if(ed.getPrivacy() == false) { %>
 							<button type="submit" class="lock"><i class="fas fa-lock"></i><i class="fas fa-unlock"></i></button>
 						<% } else { %>
@@ -208,13 +208,13 @@
 					<div class="container skill_container">
 						<!-- delete button -->
 						<form action="editProfile" method="post">
-							<input type="hidden" name="delete_sk" value="<%= sk.getId().getId()%>">
+							<input type="hidden" name="delete_sk" value="<%= sk.getId()%>">
 							<button type="submit"><i class="fas fa-trash-alt"></i></button>
 						</form>
 						<span class="row1"><%= sk.getName() %></span>
 						<br><br>
 						<form action="editProfile" method="post">
-							<input type="hidden" name="privacy_sk" value="<%= sk.getId().getId()%>">
+							<input type="hidden" name="privacy_sk" value="<%= sk.getId()%>">
 						<% if(sk.getPrivacy() == false) { %>
 							<button type="submit" class="lock"><i class="fas fa-lock"></i><i class="fas fa-unlock"></i></button>
 						<% } else { %>

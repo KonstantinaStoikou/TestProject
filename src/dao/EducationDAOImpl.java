@@ -7,18 +7,15 @@ import javax.persistence.Query;
 
 import jpautils.EntityManagerHelper;
 import model.Education;
-import model.EducationPK;
-import model.Experience;
-import model.ExperiencePK;
 import model.User;
 
 public class EducationDAOImpl implements EducationDAO {
-	
+
 	@Override
-	public Education find(EducationPK pk) {
+	public Education find(int id) {
 		EntityManager em = EntityManagerHelper.getEntityManager();
-		Education ed = em.find(Education.class, pk); 
-        return ed;
+		Education ed = em.find(Education.class, id);
+		return ed;
 	}
 
 	@Override
@@ -27,8 +24,8 @@ public class EducationDAOImpl implements EducationDAO {
 		Query query = em.createNamedQuery("Education.findAll");
 		query.setHint("eclipselink.refresh", "true");
 		@SuppressWarnings("unchecked")
-		List<Education> ed = query.getResultList();  
-        return ed;
+		List<Education> ed = query.getResultList();
+		return ed;
 	}
 
 	@Override
@@ -38,13 +35,13 @@ public class EducationDAOImpl implements EducationDAO {
 		em.persist(ed);
 		ed.getUser().addEducation(ed);
 		em.getTransaction().commit();
-		
+
 	}
 
 	@Override
 	public List<Education> findByUser(User user) {
 		String queryString = "SELECT e FROM Education e WHERE e.user = :user";
-		
+
 		EntityManager em = EntityManagerHelper.getEntityManager();
 		Query query = em.createQuery(queryString);
 		query.setParameter("user", user);
@@ -69,8 +66,8 @@ public class EducationDAOImpl implements EducationDAO {
 
 	@Override
 	public Education findById(int id) {
-		String queryString = "SELECT e FROM Education e WHERE e.id.id = :id";
-		
+		String queryString = "SELECT e FROM Education e WHERE e.id = :id";
+
 		EntityManager em = EntityManagerHelper.getEntityManager();
 		Query query = em.createQuery(queryString);
 		query.setParameter("id", id);
@@ -83,7 +80,5 @@ public class EducationDAOImpl implements EducationDAO {
 			return ed.get(0);
 		}
 	}
-	
-	
 
 }

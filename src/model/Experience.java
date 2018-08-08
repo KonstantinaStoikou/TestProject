@@ -1,27 +1,38 @@
 package model;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * The persistent class for the Experience database table.
  * 
  */
 @Entity
-@Table(name="Experience")
-@NamedQuery(name="Experience.findAll", query="SELECT e FROM Experience e")
+@Table(name = "Experience")
+@NamedQuery(name = "Experience.findAll", query = "SELECT e FROM Experience e")
 public class Experience implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private ExperiencePK id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
 	private String company;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="end_date")
+	@Column(name = "end_date")
 	private Date endDate;
 
 	private String position;
@@ -29,22 +40,22 @@ public class Experience implements Serializable {
 	private boolean privacy;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="start_date")
+	@Column(name = "start_date")
 	private Date startDate;
 
-	//bi-directional many-to-one association to User
+	// bi-directional many-to-one association to User
 	@ManyToOne
-	@JoinColumn(name="User_id")
+	@JoinColumn(name = "User_id")
 	private User user;
 
 	public Experience() {
 	}
 
-	public ExperiencePK getId() {
+	public int getId() {
 		return this.id;
 	}
 
-	public void setId(ExperiencePK id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

@@ -1,21 +1,29 @@
 package model;
 
 import java.io.Serializable;
-import javax.persistence.*;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 /**
  * The persistent class for the Skill database table.
  * 
  */
 @Entity
-@Table(name="Skill")
-@NamedQuery(name="Skill.findAll", query="SELECT s FROM Skill s")
+@Table(name = "Skill")
+@NamedQuery(name = "Skill.findAll", query = "SELECT s FROM Skill s")
 public class Skill implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private SkillPK id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
 	private String name;
 
@@ -23,19 +31,19 @@ public class Skill implements Serializable {
 
 	private String type;
 
-	//bi-directional many-to-one association to User
+	// bi-directional many-to-one association to User
 	@ManyToOne
-	@JoinColumn(name="User_id")
+	@JoinColumn(name = "User_id")
 	private User user;
 
 	public Skill() {
 	}
 
-	public SkillPK getId() {
+	public int getId() {
 		return this.id;
 	}
 
-	public void setId(SkillPK id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
