@@ -63,6 +63,7 @@ public class Login extends HttpServlet {
 
 			session.setAttribute("connectionList", user.getFriends());
 			session.setAttribute("conversations", user.getConversations());
+			session.setAttribute("lastConvUser", user.getLastConversationUser());
 
 			request.getRequestDispatcher("/welcome.jsp").forward(request, response);
 		} else {

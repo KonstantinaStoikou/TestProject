@@ -24,38 +24,36 @@ import model.User;
 //@WebServlet("/signup")
 @MultipartConfig
 
-@WebServlet(
-        name = "FileUploadServlet",
-        urlPatterns = { "/signup"},
-        loadOnStartup = 1
-)
+@WebServlet(name = "FileUploadServlet", urlPatterns = { "/signup" }, loadOnStartup = 1)
 public class Signup extends HttpServlet {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 	}
 
-	//use doPost method for security reasons
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	// use doPost method for security reasons
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String firstName = request.getParameter("first_name");
-		String lastName = request.getParameter("last_name");		
+		String lastName = request.getParameter("last_name");
 		String password = request.getParameter("password");
 		String passwordConf = request.getParameter("password_conf");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
 
-		//get photo parameter as byte array to store to db
+		// get photo parameter as byte array to store to db
 		Part filePart = request.getPart("photo");
 		InputStream filecontent = filePart.getInputStream();
 		byte[] photo = IOUtils.toByteArray(filecontent);
-		
+
 		HttpSession session = request.getSession();
-		
+
 		UserDAO dao = new UserDAOImpl();
 		User user = new User();
 		user.setEmail(email);
 		user.setPassword(password);
-		
+
 		if (dao.findByEmail(email) == null) {
 			request.setAttribute("errorMessage", null);
 			session.setAttribute("email", email);
@@ -63,35 +61,32 @@ public class Signup extends HttpServlet {
 				request.setAttribute("errorMessage", "Password confirmation is wrong");
 				session.invalidate();
 				request.getRequestDispatcher("/signup.jsp").forward(request, response);
-			}
-			else {
+			} else {
 				request.setAttribute("errorMessage", null);
 				user.setFirstName(firstName);
 				user.setLastName(lastName);
 				user.setPhone(phone);
 				user.setPhoto(photo);
 				dao.create(user);
-				
-				////store user info in session
+
+				//// store user info in session
+				session.setAttribute("id", user.getId());
 				session.setAttribute("email", user.getEmail());
 				session.setAttribute("password", user.getPassword());
 				session.setAttribute("first_name", user.getFirstName());
 				session.setAttribute("last_name", user.getLastName());
 				session.setAttribute("phone", user.getPhone());
 				session.setAttribute("photo", user.getPhoto());
-				
+
 				request.getRequestDispatcher("/welcome.jsp").forward(request, response);
-			}	
-		}
-		else {
+			}
+		} else {
 			request.setAttribute("errorMessage", "There is already a user with this email");
-			//invalidate session so that user can't access welcome.jsp 
-			//because usermail will be null
+			// invalidate session so that user can't access welcome.jsp
+			// because usermail will be null
 			session.invalidate();
 			request.getRequestDispatcher("/signup.jsp").forward(request, response);
 		}
-		
-
 
 	}
 

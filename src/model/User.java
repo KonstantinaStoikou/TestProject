@@ -218,7 +218,7 @@ public class User implements Serializable {
 		return sent;
 	}
 
-	public List<Message> getReceivesMessages() {
+	public List<Message> getReceivedMessages() {
 		return this.receivedMessages;
 	}
 
@@ -227,14 +227,14 @@ public class User implements Serializable {
 	}
 
 	public Message addReceivedMessages(Message received) {
-		getReceivesMessages().add(received);
+		getReceivedMessages().add(received);
 		received.setReceiver(this);
 
 		return received;
 	}
 
 	public Message removeReceivedMessages(Message received) {
-		getReceivesMessages().remove(received);
+		getReceivedMessages().remove(received);
 		// received.setUser2(null);
 
 		return received;
@@ -278,6 +278,7 @@ public class User implements Serializable {
 		// sort messages in this conversation by id
 		// because id is auto incremented, sorting by id
 		// means sorting by most recent message
+		// (more recent messages will have the larger ids)
 		Comparator<Message> comparator = new Comparator<Message>() {
 			@Override
 			public int compare(Message left, Message right) {
@@ -287,6 +288,34 @@ public class User implements Serializable {
 
 		Collections.sort(allUserMessages, comparator);
 		return allUserMessages;
+	}
+
+	// find user with whom the current user exchanged the last message
+	public User getLastConversationUser() {
+		// merge received and sent messages into one list
+		List<Message> allMessages = new ArrayList<Message>(this.getReceivedMessages());
+		allMessages.addAll(this.getSentMessages());
+
+		// sort messages by most recent using their ids (largest id -> most recent)
+		Comparator<Message> comparator = new Comparator<Message>() {
+			@Override
+			public int compare(Message left, Message right) {
+				return left.getId() - right.getId();
+			}
+		};
+		Collections.sort(allMessages, comparator);
+		if (allMessages.isEmpty()) {
+			return null;
+		}
+		Message lastMessage = allMessages.get(allMessages.size() - 1);
+		User user = new User();
+		if (this != lastMessage.getReceiver()) {
+			user = lastMessage.getReceiver();
+		} else {
+			user = lastMessage.getSender();
+		}
+
+		return user;
 	}
 
 	public List<Skill> getSkills() {

@@ -31,6 +31,7 @@ public class Messages extends HttpServlet {
 		User messagedUser = dao.find(Integer.parseInt(u));
 
 		request.setAttribute("messagedUser", messagedUser);
+
 		request.getRequestDispatcher("/messages.jsp").forward(request, response);
 	}
 
@@ -58,6 +59,7 @@ public class Messages extends HttpServlet {
 		Msgdao.create(msg);
 
 		session.setAttribute("conversations", sender.getConversations());
+		session.setAttribute("lastConvUser", sender.getLastConversationUser());
 
 		request.setAttribute("messagedUser", receiver);
 		request.getRequestDispatcher("/messages.jsp").forward(request, response);

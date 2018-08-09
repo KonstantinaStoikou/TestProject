@@ -21,6 +21,13 @@
 		%>
 		
 		<% User u = (User)request.getAttribute("messagedUser"); %>
+		<% boolean noConversations = false; %>
+		<% if (u == null) { 
+			 u = (User)session.getAttribute("lastConvUser"); 
+			 if (u == null) {
+				 noConversations = true;
+			 }
+		 } %>
 		
 		<!-- top navigation bar -->
         <div class="navbar">
@@ -43,9 +50,9 @@
         <div class="container left_container">
         	<span id="title">Your conversations :</span>
         	<div id="list">
-        	<!--  i need an if condition to check if active or not!!!!!!!!!!!!!!!!!! -->
         		<% if(conversations != null && !conversations.isEmpty()) { %>
 					<% for(User convU : conversations) { %>
+						<!-- check if this is the active user (opened in conversation) -->
 						<% if (convU.getId() == u.getId()) {classes = "container conv_container conv_active";} %>
 						<div class="<%= classes %>" onclick="submitForm(<%= String.valueOf(convU.getId()) %>)">
 			        		<img src= "<%= "http://localhost:8080/TestProject/usersProfilePic?user=" + convU.getEmail() + "" %>" alt="">
@@ -63,37 +70,41 @@
 		%>
 		<!-- conversation currently open -->
         <div class="container">
-        	<div id="open_info">
-        		<img src= <%= "http://localhost:8080/TestProject/usersProfilePic?user=" + u.getEmail() + "" %> alt="">
-        		<span id="open_name"> <% out.write(u.getFirstName()+ " " + u.getLastName()); %> </span>
-        	</div>
-        	<div id="conversation">
-        		<% if(u.getConversationMessages(currentId) != null && !u.getConversationMessages(currentId).isEmpty()) { %>
-					<% for(Message msg : u.getConversationMessages(currentId)) { %>
-						<div class="message">
-							<% if (msg.getSender().getId() == currentId) { %>
-								<div class="me">
-									<span class="person">Me</span>
-							<% } else { %>
-								<div class="friend">
-									<span class="person"><%= u.getFirstName() %></span>
-							<% } %>
-									<br>
-				        			<div class="text"><%= msg.getText() %></div>
-	        					</div>
-						</div>
+        	<% if (noConversations == false) { %>
+	        	<div id="open_info">
+	        		<img src= <%= "http://localhost:8080/TestProject/usersProfilePic?user=" + u.getEmail() + "" %> alt="">
+	        		<span id="open_name"> <% out.write(u.getFirstName()+ " " + u.getLastName()); %> </span>
+	        	</div>
+	        	<div id="conversation">
+	        		<% if(u.getConversationMessages(currentId) != null && !u.getConversationMessages(currentId).isEmpty()) { %>
+						<% for(Message msg : u.getConversationMessages(currentId)) { %>
+							<div class="message">
+								<% if (msg.getSender().getId() == currentId) { %>
+									<div class="me">
+										<span class="person">Me</span>
+								<% } else { %>
+									<div class="friend">
+										<span class="person"><%= u.getFirstName() %></span>
+								<% } %>
+										<br>
+					        			<div class="text"><%= msg.getText() %></div>
+		        					</div>
+							</div>
+			        	<% } %>
 		        	<% } %>
-	        	<% } %>
-        		
-        		
-        	</div>
-        	<form action="messages" method="post">
-	    		<div id="wrapper">
-	    			<input type="hidden" name="receiver" value = "<%= u.getId()  %>">
-	    			<input type="text" name="text" placeholder="Write a message" autocomplete="off" spellcheck="false" required>
-        			<input type="submit" value="Send">
-	    		</div>
-        	</form>
+	        		
+	        		
+	        	</div>
+	        	<form action="messages" method="post">
+		    		<div id="wrapper">
+		    			<input type="hidden" name="receiver" value = "<%= u.getId()  %>">
+		    			<input type="text" name="text" placeholder="Write a message" autocomplete="off" spellcheck="false" required>
+	        			<input type="submit" value="Send">
+		    		</div>
+	        	</form>
+	        <% } else { %>
+	        	<span id="title"> You don't have any conversations</span>
+	        <% } %>
         </div>
         
         <!-- form to submit when clicking on a user from list of conversations -->
