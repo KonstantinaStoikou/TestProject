@@ -10,6 +10,7 @@
 			<link rel="stylesheet" type="text/css" href="styles/messages.css">
 			<link rel="stylesheet" type="text/css" href="styles/scrollbar.css">
 			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+			<script src="scripts/network.js" async></script>
 	</head>
 	<body>
 		<%@ page import="java.util.List, model.User, model.Message" %>
@@ -46,7 +47,7 @@
         		<% if(conversations != null && !conversations.isEmpty()) { %>
 					<% for(User convU : conversations) { %>
 						<% if (convU.getId() == u.getId()) {classes = "container conv_container conv_active";} %>
-						<div class="<%= classes %>">
+						<div class="<%= classes %>" onclick="submitForm(<%= String.valueOf(convU.getId()) %>)">
 			        		<img src= "<%= "http://localhost:8080/TestProject/usersProfilePic?user=" + convU.getEmail() + "" %>" alt="">
 		        			<span class="name">  <%= convU.getFirstName() %> <%= convU.getLastName() %> </span>
 			        	</div>
@@ -85,8 +86,6 @@
 	        	<% } %>
         		
         		
-        		
-        		
         	</div>
         	<form action="messages" method="post">
 	    		<div id="wrapper">
@@ -96,5 +95,10 @@
 	    		</div>
         	</form>
         </div>
+        
+        <!-- form to submit when clicking on a user from list of conversations -->
+		<form action="messages" id="submit_form" method="get">
+			<input type="hidden" id="user_input" name="user" value="">
+		</form>
 	</body>
 </html>
