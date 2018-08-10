@@ -8,8 +8,10 @@
 		<link rel="icon" href="images/favicon.ico" type="image/x-icon">
 		<link rel="stylesheet" type="text/css" href="styles/navbar.css">
 		<link rel="stylesheet" type="text/css" href="styles/jobs.css">
+		<link rel="stylesheet" type="text/css" href="styles/edit_profile.css">
+		<link rel="stylesheet" type="text/css" href="styles/scrollbar.css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
-		<script src="scripts/network.js" async></script>
+		<script src="scripts/post_job.js" async></script>
 	</head>
 	<body>
 		<% 
@@ -31,20 +33,24 @@
         </div>
         
         	<div class="left">
-        		<button><a href="post_job.jsp">Post a new job</a></button>
-        		<br>
          		<button>See applicants to<br>your posted jobs</a></button>
         	</div>
         	 
         	<div class="container">
-        		<span class="title">Recommended jobs for you :</span>
-        		<div class="container job_container">
-        			<span class="position">Senior Java Developer</span>
-        			<br><br>
-        			<span class="company">Microsoft</span>
-        			<br><br>
-        			<span class="description">Our company expects kgjdfjhg jgjklddhfkgjdfjhg jgjkldhg jkdhfgkdhfkgjdfjhg jgjkhfkgjdfjhg jgjkldhg jkdhfgkdhfkgjdfjhg jgjkldhg jkdhfgkdhf</span>
-        		</div>
+        		<span class="title">Post a new job :</span>
+        		<form class="new_info" action="" method="post">
+                    <input type="text" name="position" placeholder="Position" autocomplete="off" spellcheck="false" required>
+                    <br>
+                    <input type="text" name="company" placeholder="Company" autocomplete="off" spellcheck="false" required>
+                    <br>
+                    <textarea placeholder="Job description" required></textarea >
+                    <br>
+                    <input type="hidden" name="action" value="experience_info">
+                    
+                    <span>Add skill required for this job<i class="fas fa-plus-circle"></i></span>
+                    <br>
+                    <button type="submit" class="submit_button">Post</button>
+                </form>
    		
         	</div>
 	</body>

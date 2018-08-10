@@ -54,7 +54,7 @@
 	overflow-x: hidden;
 }
 
-#title {
+.title {
 	text-align: center;
 	margin-bottom: 15px;
 	display: block;

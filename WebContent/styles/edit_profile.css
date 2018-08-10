@@ -104,7 +104,7 @@ label {
 	color: #44826d;
 }
 
-.new_info input {
+.new_info input, .new_info textarea {
 	border: 0;
 	outline: 0;
 	border-radius: 10px;
@@ -115,7 +115,7 @@ label {
 	background: rgba(161, 221, 221, 0.5);
 }
 
-.new_info input:focus::placeholder {
+.new_info input:focus::placeholder, .new_info textarea:focus::placeholder {
 	color: #44826d;
 }
 
@@ -144,12 +144,12 @@ hr {
 .row1 {
 	font-size: 25px;
 	font-weight: 600;
-	color: #55595e;
 }
 
 .row2 {
 	font-size: 22px;
 	font-weight: 400;
+	color: #656565;
 }
 
 .row3 {

@@ -48,7 +48,7 @@
 		<% String classes = "container conv_container"; %>
 		<!-- conversations that have started with users -->
         <div class="container left_container">
-        	<span id="title">Your conversations :</span>
+        	<span class="title">Your conversations :</span>
         	<div id="list">
         		<% if(conversations != null && !conversations.isEmpty()) { %>
 					<% for(User convU : conversations) { %>
@@ -103,7 +103,7 @@
 		    		</div>
 	        	</form>
 	        <% } else { %>
-	        	<span id="title"> You don't have any conversations</span>
+	        	<span class="title"> You don't have any conversations</span>
 	        <% } %>
         </div>
         

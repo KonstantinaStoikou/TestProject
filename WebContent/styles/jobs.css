@@ -1,0 +1,118 @@
+.container {
+	width: 50%;
+	margin: 60px auto;
+	margin-top: 100px;
+	padding: 30px;
+	background-color: white;
+	border-radius: 5px;
+	overflow: hidden;
+	box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .14), 0 3px 3px -2px
+		rgba(0, 0, 0, .2), 0 1px 8px 0 rgba(0, 0, 0, .12);
+	/* display: flex;
+	flex-flow: row wrap; */
+	z-index: -1;
+}
+
+.job_container {
+	width: 80%;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.left {
+	float: left;
+	position: fixed;
+	z-index: 0;	
+}
+
+.navbar {
+	z-index: 1;
+}
+
+.left > button {
+	outline: none;
+    font-family: 'Work Sans', sans-serif;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 1em;
+    color: white;
+    background-color: #6bc6a7;
+    border-radius: 50px;
+    padding: 8px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border: 0;
+    transition: all 0.3s ease 0s;
+    margin: 20px 0;
+    margin-left: 20px;
+}
+
+.left a {
+	text-decoration: none;
+	color: white;
+}
+
+.left > button:hover {
+    box-shadow: inset 0 0 0 3px #44826d;
+}
+
+.title {
+	text-align: center;
+	margin-bottom: 15px;
+	display: block;
+	font-family: 'Work Sans', sans-serif;
+	color: #44826d;
+	font-size: 22px;
+}
+
+.position {
+	font-weight: 600;
+	font-size: 25px;
+}
+
+.company {
+	font-size: 22px;
+	font-weight: 400;
+	color: #656565;
+}
+
+.description {
+	font-size: 18px;
+	font-weight: 200;
+	overflow: hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    width: 100%;
+    display:inline-block;
+}
+
+textarea {
+	margin: 10px 0;
+	width: 100%;
+	height: 40vh;
+	resize: none;
+	box-sizing: border-box;
+	font-family: 'Arial', sans-serif;
+}
+
+.new_info > span {
+	font-family: 'Work Sans', sans-serif;
+	font-size: 20px;
+}
+
+.new_info > span > i {
+	color: #6bc6a7;
+	font-size: 28px;
+	cursor: pointer;
+	margin-left: 10px;
+}
+
+.new_info > span > i:hover {
+	color: #44826d;
+}
+
+
+
+
