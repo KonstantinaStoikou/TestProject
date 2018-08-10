@@ -33,7 +33,7 @@
         </div>
         
         	<div class="left">
-         		<button>See applicants to<br>your posted jobs</a></button>
+         		<button>See applicants to<br>your posted jobs</button>
         	</div>
         	 
         	<div class="container">
@@ -44,14 +44,17 @@
                     <input type="text" name="company" placeholder="Company" autocomplete="off" spellcheck="false" required>
                     <br>
                     <textarea placeholder="Job description" required></textarea >
-                    <br>
-                    <input type="hidden" name="action" value="experience_info">
-                    
-                    <span>Add skill required for this job<i class="fas fa-plus-circle"></i></span>
-                    <br>
-                    <button type="submit" class="submit_button">Post</button>
+                    <span class="title1">Skills required :</span>
+                    <div id="skills_flex"></div>
                 </form>
-   		
+                
+   				<span class="title1">Add skill required for this job</span><button id="add_skill"><i class="fas fa-plus-circle"></i></button>
+                <br>
+                <div id="skill_div">
+                	<input type="text" id="added_skill" placeholder="Skill" autocomplete="off" spellcheck="false">
+                	<button id="skill_btn" onclick="addSkill()">Add</button>
+                </div>
+                <input type="submit" form="new_info" value="Post" />
         	</div>
 	</body>
 </html>

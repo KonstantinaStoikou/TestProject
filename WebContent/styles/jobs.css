@@ -29,7 +29,7 @@
 	z-index: 1;
 }
 
-.left > button {
+.left > button, input[type="submit"], #skill_btn {
 	outline: none;
     font-family: 'Work Sans', sans-serif;
     text-transform: uppercase;
@@ -54,7 +54,7 @@
 	color: white;
 }
 
-.left > button:hover {
+.left > button:hover, input[type="submit"]:hover, #skill_btn:hover {
     box-shadow: inset 0 0 0 3px #44826d;
 }
 
@@ -97,22 +97,63 @@ textarea {
 	font-family: 'Arial', sans-serif;
 }
 
-.new_info > span {
+.title1 {
 	font-family: 'Work Sans', sans-serif;
 	font-size: 20px;
 }
 
-.new_info > span > i {
+.new_info + span + button {
+	outline: none;
+	border: none;
 	color: #6bc6a7;
-	font-size: 28px;
+	background-color: white;
 	cursor: pointer;
-	margin-left: 10px;
+	margin-left: 8px;
+	transition: 0.3s;
 }
 
-.new_info > span > i:hover {
+.new_info + span + button > i {
+	font-size: 28px;
+}
+
+.new_info + span + button:hover {
 	color: #44826d;
 }
 
+input[type="submit"] {
+	margin: 0;
+	margin-top: 20px;
+	font-size: 20px;
+}
 
+input[type="text"] {
+	border: 0;
+	outline: 0;
+	border-radius: 10px;
+	padding: 7px;
+	padding-left: 15px;
+	font-size: 20px;
+	color: #44826d;
+	width: 253px;
+	background: rgba(161, 221, 221, 0.5);
+}
+
+input:focus::placeholder {
+	color: #44826d;
+}
+
+#skill_div {
+	display: none;
+}
+
+#skills_flex {
+	display: flex;
+	flex-flow: row wrap;
+}
+
+#skills_flex > input {
+	width: 20%;
+	margin: 10px auto;
+}
 
 

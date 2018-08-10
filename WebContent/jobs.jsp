@@ -33,7 +33,7 @@
         	<div class="left">
         		<button><a href="post_job.jsp">Post a new job</a></button>
         		<br>
-         		<button>See applicants to<br>your posted jobs</a></button>
+         		<button>See applicants to<br>your posted jobs</button>
         	</div>
         	 
         	<div class="container">
