@@ -8,6 +8,7 @@
 		<link rel="icon" href="images/favicon.ico" type="image/x-icon">
 		<link rel="stylesheet" type="text/css" href="styles/navbar.css">
 		<link rel="stylesheet" type="text/css" href="styles/jobs.css">
+		<link rel="stylesheet" type="text/css" href="styles/job_details.css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
 	</head>
 	<body>
@@ -36,14 +37,20 @@
         	</div>
         	 
         	<div class="container">
-        		<span class="title">Recommended jobs for you :</span>
-        		<div class="container job_container">
-        			<span class="position">Senior Java Developer</span>
-        			<br><br>
-        			<span class="company">Microsoft</span>
-        			<br><br>
-        			<span class="description">Our company expects kgjdfjhg jgjklddhfkgjdfjhg jgjkldhg jkdhfgkdhfkgjdfjhg jgjkhfkgjdfjhg jgjkldhg jkdhfgkdhfkgjdfjhg jgjkldhg jkdhfgkdhf</span>
-        		</div>
+        		<span id="position">Java Developer</span>
+        		<br>
+        		<span id="company">Microsoft</span>
+        		<div id="description">This is a job description fogggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg</div>
+        		<div id="skills">
+					<span class="span_flex">ssdfgdddfddfsfsd</span>
+					<span class="span_flex">C++</span>
+					<span class="span_flex">Communicative</span>
+					<span class="span_flex">Organized</span>
+					<span class="span_flex">Matlab</span>
+					<span class="span_flex">Machine Learning</span>
+					<span class="span_flex">ssdfsfsdfdsfsdfsdssfsd</span>
+					<span class="span_flex">ssdfsfsd</span>
+				</div>
    		
         	</div>
 	</body>

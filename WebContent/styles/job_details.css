@@ -1,0 +1,38 @@
+.container {
+	text-align: center;
+}
+
+#position {
+	font-size: 32px;
+	font-weight: 600;
+}
+
+#company {
+	font-size: 25px;
+	color: #656565;
+}
+
+#description {
+	box-sizing: border-box;
+	padding: 20px;
+	width: 100%;
+	word-wrap: break-word;
+	font-size: 20px;
+	font-weight: 200;
+	margin-bottom: 20px;
+ 	text-align: left; 
+}
+
+#skills {
+	display: flex;
+	flex-flow: row wrap;
+}
+
+.span_flex {
+	font-size: 20px;
+	width: 20%;
+	margin: 10px auto;
+}
+
+
+

@@ -31,12 +31,10 @@
         
         	<div class="left">
         		<button><a href="post_job.jsp">Post a new job</a></button>
-        		<br>
-         		<button>See applicants to<br>your posted jobs</button>
         	</div>
         	 
         	<div class="container">
-        		<span class="title">Recommended jobs for you :</span>
+        		<span class="title">Jobs you have posted :</span>
         		<div class="container job_container">
         			<span class="position">Senior Java Developer</span>
         			<br><br>
