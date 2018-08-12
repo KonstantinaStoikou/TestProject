@@ -33,7 +33,7 @@
         	<div class="left">
         		<button><a href="post_job.jsp">Post a new job</a></button>
         		<br>
-         		<button>See applicants to<br>your posted jobs</button>
+         		<button>See applicants for<br>your posted jobs</button>
         	</div>
         	 
         	<div class="container">
@@ -51,7 +51,9 @@
 					<span class="span_flex">ssdfsfsdfdsfsdfsdssfsd</span>
 					<span class="span_flex">ssdfsfsd</span>
 				</div>
-   		
+   				<form action="">
+   					<input type="submit" value="Apply for position">
+   				</form>
         	</div>
 	</body>
 </html>

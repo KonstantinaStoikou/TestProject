@@ -33,7 +33,7 @@
         </div>
         
         	<div class="left">
-         		<button>See applicants to<br>your posted jobs</button>
+         		<button>See applicants for<br>your posted jobs</button>
         	</div>
         	 
         	<div class="container">
