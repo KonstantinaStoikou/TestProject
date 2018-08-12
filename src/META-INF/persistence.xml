@@ -3,6 +3,8 @@
 	<persistence-unit name="TestProject" transaction-type="RESOURCE_LOCAL">
 		<class>model.Education</class>
 		<class>model.Experience</class>
+		<class>model.Job</class>
+		<class>model.Job_Skill</class>
 		<class>model.Message</class>
 		<class>model.Skill</class>
 		<class>model.User</class>

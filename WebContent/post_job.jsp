@@ -38,12 +38,12 @@
         	 
         	<div class="container">
         		<span class="title">Post a new job :</span>
-        		<form class="new_info" action="" method="post">
+        		<form id="job_form" class="new_info" action="postJob" method="post">
                     <input type="text" name="position" placeholder="Position" autocomplete="off" spellcheck="false" required>
                     <br>
                     <input type="text" name="company" placeholder="Company" autocomplete="off" spellcheck="false" required>
                     <br>
-                    <textarea placeholder="Job description" required></textarea >
+                    <textarea placeholder="Job description" name="description" required></textarea >
                     <span class="title1">Skills required :</span>
                     <div id="skills_flex"></div>
                 </form>
@@ -54,7 +54,7 @@
                 	<input type="text" id="added_skill" placeholder="Skill" autocomplete="off" spellcheck="false">
                 	<button id="skill_btn" onclick="addSkill()">Add</button>
                 </div>
-                <input type="submit" form="new_info" value="Post" />
+                <input type="submit" form="job_form" value="Post" />
         	</div>
 	</body>
 </html>

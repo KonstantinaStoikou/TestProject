@@ -47,8 +47,6 @@ public class Messages extends HttpServlet {
 		User sender = dao.findByEmail(email);
 		User receiver = dao.find(Integer.parseInt(receiverId));
 
-		System.out.println(receiver.getEmail());
-
 		String text = request.getParameter("text");
 
 		MessageDAO Msgdao = new MessageDAOImpl();

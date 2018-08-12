@@ -3,14 +3,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
-			<meta charset="UTF-8">
-			<title>Dots - Messages</title>
-			<link rel="icon" href="images/favicon.ico" type="image/x-icon">
-			<link rel="stylesheet" type="text/css" href="styles/navbar.css">
-			<link rel="stylesheet" type="text/css" href="styles/messages.css">
-			<link rel="stylesheet" type="text/css" href="styles/scrollbar.css">
-			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
-			<script src="scripts/network.js" async></script>
+		<meta charset="UTF-8">
+		<title>Dots - Messages</title>
+		<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" type="text/css" href="styles/navbar.css">
+		<link rel="stylesheet" type="text/css" href="styles/messages.css">
+		<link rel="stylesheet" type="text/css" href="styles/scrollbar.css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+		<script src="scripts/network.js" async></script>
 	</head>
 	<body>
 		<%@ page import="java.util.List, model.User, model.Message" %>

@@ -80,6 +80,10 @@ public class User implements Serializable {
 	@OneToMany(mappedBy = "user")
 	private List<Skill> skills;
 
+	// bi-directional many-to-one association to Job
+	@OneToMany(mappedBy = "user")
+	private List<Job> jobs;
+
 	public User() {
 	}
 
@@ -338,6 +342,28 @@ public class User implements Serializable {
 //		skill.setUser(null);
 
 		return skill;
+	}
+
+	public List<Job> getJobs() {
+		return this.jobs;
+	}
+
+	public void setJobs(List<Job> jobs) {
+		this.jobs = jobs;
+	}
+
+	public Job addJob(Job job) {
+		getJobs().add(job);
+		job.setUser(this);
+
+		return job;
+	}
+
+	public Job removeJob(Job job) {
+		getJobs().remove(job);
+		job.setUser(null);
+
+		return job;
 	}
 
 }
