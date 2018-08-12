@@ -14,8 +14,6 @@ public interface SkillDAO {
 
 	public List<Skill> findByUser(User user);
 
-	public Skill findById(int id);
-
 	public void delete(Skill sk);
 
 }

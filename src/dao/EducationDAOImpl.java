@@ -64,21 +64,4 @@ public class EducationDAOImpl implements EducationDAO {
 		em.getTransaction().commit();
 	}
 
-	@Override
-	public Education findById(int id) {
-		String queryString = "SELECT e FROM Education e WHERE e.id = :id";
-
-		EntityManager em = EntityManagerHelper.getEntityManager();
-		Query query = em.createQuery(queryString);
-		query.setParameter("id", id);
-		query.setHint("eclipselink.refresh", "true");
-		@SuppressWarnings("unchecked")
-		List<Education> ed = query.getResultList();
-		if (ed.isEmpty()) {
-			return null;
-		} else {
-			return ed.get(0);
-		}
-	}
-
 }

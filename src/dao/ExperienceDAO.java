@@ -14,8 +14,6 @@ public interface ExperienceDAO {
 
 	public List<Experience> findByUser(User user);
 
-	public Experience findById(int id);
-
 	public void delete(Experience exp);
 
 }

@@ -14,8 +14,6 @@ public interface EducationDAO {
 
 	public List<Education> findByUser(User user);
 
-	public Education findById(int id);
-
 	public void delete(Education ed);
 
 }

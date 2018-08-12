@@ -361,7 +361,7 @@ public class User implements Serializable {
 
 	public Job removeJob(Job job) {
 		getJobs().remove(job);
-		job.setUser(null);
+		// job.setUser(null);
 
 		return job;
 	}

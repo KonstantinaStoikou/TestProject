@@ -64,21 +64,4 @@ public class SkillDAOImpl implements SkillDAO {
 		em.getTransaction().commit();
 	}
 
-	@Override
-	public Skill findById(int id) {
-		String queryString = "SELECT s FROM Skill s WHERE s.id = :id";
-
-		EntityManager em = EntityManagerHelper.getEntityManager();
-		Query query = em.createQuery(queryString);
-		query.setParameter("id", id);
-		query.setHint("eclipselink.refresh", "true");
-		@SuppressWarnings("unchecked")
-		List<Skill> sk = query.getResultList();
-		if (sk.isEmpty()) {
-			return null;
-		} else {
-			return sk.get(0);
-		}
-	}
-
 }

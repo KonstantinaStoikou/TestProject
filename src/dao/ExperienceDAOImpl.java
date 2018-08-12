@@ -65,21 +65,4 @@ public class ExperienceDAOImpl implements ExperienceDAO {
 
 	}
 
-	@Override
-	public Experience findById(int id) {
-		String queryString = "SELECT e FROM Experience e WHERE e.id = :id";
-
-		EntityManager em = EntityManagerHelper.getEntityManager();
-		Query query = em.createQuery(queryString);
-		query.setParameter("id", id);
-		query.setHint("eclipselink.refresh", "true");
-		@SuppressWarnings("unchecked")
-		List<Experience> exp = query.getResultList();
-		if (exp.isEmpty()) {
-			return null;
-		} else {
-			return exp.get(0);
-		}
-	}
-
 }

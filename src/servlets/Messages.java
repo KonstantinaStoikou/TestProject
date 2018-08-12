@@ -49,12 +49,12 @@ public class Messages extends HttpServlet {
 
 		String text = request.getParameter("text");
 
-		MessageDAO Msgdao = new MessageDAOImpl();
+		MessageDAO msgdao = new MessageDAOImpl();
 		Message msg = new Message();
 		msg.setSender(sender);
 		msg.setReceiver(receiver);
 		msg.setText(text);
-		Msgdao.create(msg);
+		msgdao.create(msg);
 
 		session.setAttribute("conversations", sender.getConversations());
 		session.setAttribute("lastConvUser", sender.getLastConversationUser());
