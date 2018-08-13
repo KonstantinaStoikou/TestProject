@@ -51,10 +51,14 @@
 						<% } %>
 					<% } %>
 				</div>
-   				<form action="applyJob" method="post">
-   					<input type="hidden" name="job" value="<%= j.getId()%>">
-   					<input type="submit" value="Apply for position">
-   				</form>
+				
+				<% String currentUserEmail = (String)session.getAttribute("email"); %>
+				<% if((boolean)request.getAttribute("applied") == false && !currentUserEmail.equals(j.getUser().getEmail())) { %>
+	   				<form action="applyJob" method="post">
+	   					<input type="hidden" name="job" value="<%= j.getId()%>">
+	   					<input type="submit" value="Apply for position">
+	   				</form>
+   				<% } %>
         	</div>
 	</body>
 </html>

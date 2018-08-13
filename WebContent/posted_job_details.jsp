@@ -12,6 +12,7 @@
 		<link rel="stylesheet" type="text/css" href="styles/job_details.css">
 		<link rel="stylesheet" type="text/css" href="styles/posted_job_details.css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+		<script src="scripts/network.js" async></script>
 	</head>
 	<body>
 		
@@ -57,51 +58,29 @@
        	<div class="container">
 			<span class="title">Users that have applied for this position :</span>
 			<br>
-			<div class="container user_container">
-				<img src= "images/handshake.jpg" alt="">
-				<br>
-				<div class="row1"> Konstantina Stoikou </div>
-				<br>
-				<div class="row2"> Web Developer </div>
-				<br>
-				<div class="row3"> at IBM </div>
-			</div>	
-			<div class="container user_container">
-				<img src= "images/handshake.jpg" alt="">
-				<br>
-				<div class="row1"> Konstantina Stoikou </div>
-				<br>
-				<div class="row2"> Web Developer </div>
-				<br>
-				<div class="row3"> at IBM </div>
-			</div>	
-			<div class="container user_container">
-				<img src= "images/handshake.jpg" alt="">
-				<br>
-				<div class="row1"> Konstantina Stoikou </div>
-				<br>
-				<div class="row2"> Web Developer </div>
-				<br>
-				<div class="row3"> at IBM </div>
-			</div>	
-			<div class="container user_container">
-				<img src= "images/handshake.jpg" alt="">
-				<br>
-				<div class="row1"> Konstantina Stoikou </div>
-				<br>
-				<div class="row2"> Web Developer </div>
-				<br>
-				<div class="row3"> at IBM </div>
-			</div>
-			<div class="container user_container">
-				<img src= "images/handshake.jpg" alt="">
-				<br>
-				<div class="row1"> Konstantina Stoikou </div>
-				<br>
-				<div class="row2"> Web Developer </div>
-				<br>
-				<div class="row3"> at IBM </div>
-			</div>
+			<% if(j.getAppliedUsers() != null && !j.getAppliedUsers().isEmpty()) { %>
+				<% for(User u : j.getAppliedUsers()) { %>
+					<div class="container user_container" onclick="submitForm(<%= String.valueOf(u.getId()) %>)">
+						<img src= <%= "http://localhost:8080/TestProject/usersProfilePic?user=" + u.getEmail() + "" %> alt="">
+						<br>
+						<div class="row1"> <%= u.getFirstName() %> <%= u.getLastName() %> </div>
+						<br>
+						<% if(!u.getExperiences().isEmpty()) { %>
+							<div class="row2"> <%= u.getExperiences().get(0).getPosition() %> </div>
+							<br>
+							<div class="row3"> at <%= u.getExperiences().get(0).getCompany() %> </div>
+						<% } else { %>
+							<div class="row2"> Unemployed </div>
+						<% } %>
+					</div>
+				<% } %>
+			<% } %>			
 		</div>
+		
+		<!-- form to submit when clicking on a user -->
+		<form action="network" id="submit_form" method="get">
+			<input type="hidden" name="action" value="visit_user">
+			<input type="hidden" id="user_input" name="user" value="">   
+		</form>
 	</body>
 </html>
