@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -34,6 +35,10 @@ public class Job implements Serializable {
 	private String description;
 
 	private String position;
+
+	// bi-directional many-to-many association to User
+	@ManyToMany(mappedBy = "appliedJobs")
+	private List<User> appliedUsers;
 
 	// bi-directional many-to-one association to User
 	@ManyToOne
@@ -79,6 +84,18 @@ public class Job implements Serializable {
 		this.position = position;
 	}
 
+	public List<User> getAppliedUsers() {
+		return this.appliedUsers;
+	}
+
+	public void addAppliedUsers(User user) {
+		getAppliedUsers().add(user);
+	}
+
+	public void setAppliedUsers(List<User> users) {
+		this.appliedUsers = users;
+	}
+
 	public User getUser() {
 		return this.user;
 	}
@@ -104,7 +121,7 @@ public class Job implements Serializable {
 
 	public Job_Skill removeJobSkill(Job_Skill jobSkill) {
 		getJobSkills().remove(jobSkill);
-//		jobSkill.setJob(null);
+		jobSkill.setJob(null);
 
 		return jobSkill;
 	}

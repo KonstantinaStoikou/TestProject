@@ -50,15 +50,17 @@ public class User implements Serializable {
 	@Lob
 	private byte[] photo;
 
+	// bi-directional many-to-many association to Job
+	@ManyToMany
+	@JoinTable(name = "Application", joinColumns = { @JoinColumn(name = "User_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "Job_id") })
+	private List<Job> appliedJobs;
+
 	// bi-directional many-to-many association to User
 	@ManyToMany
 	@JoinTable(name = "Connection", joinColumns = { @JoinColumn(name = "Users_id2") }, inverseJoinColumns = {
 			@JoinColumn(name = "Users_id1") })
 	private List<User> friends;
-
-	// bi-directional many-to-many association to User
-//	@ManyToMany(mappedBy = "friends")
-//	private List<User> users2;
 
 	// bi-directional many-to-one association to Education
 	@OneToMany(mappedBy = "user")
@@ -67,6 +69,10 @@ public class User implements Serializable {
 	// bi-directional many-to-one association to Experience
 	@OneToMany(mappedBy = "user")
 	private List<Experience> experiences;
+
+	// bi-directional many-to-one association to Job
+	@OneToMany(mappedBy = "user")
+	private List<Job> jobs;
 
 	// bi-directional many-to-one association to Message
 	@OneToMany(mappedBy = "sender")
@@ -79,10 +85,6 @@ public class User implements Serializable {
 	// bi-directional many-to-one association to Skill
 	@OneToMany(mappedBy = "user")
 	private List<Skill> skills;
-
-	// bi-directional many-to-one association to Job
-	@OneToMany(mappedBy = "user")
-	private List<Job> jobs;
 
 	public User() {
 	}
@@ -143,6 +145,18 @@ public class User implements Serializable {
 		this.photo = photo;
 	}
 
+	public List<Job> getAppliedJobs() {
+		return this.appliedJobs;
+	}
+
+	public void setAppliedJobs(List<Job> appliedJobs) {
+		this.appliedJobs = appliedJobs;
+	}
+
+	public void addAppliedJob(Job job) {
+		getAppliedJobs().add(job);
+	}
+
 	public List<User> getFriends() {
 		return this.friends;
 	}
@@ -198,6 +212,28 @@ public class User implements Serializable {
 //		experience.setUser(null);
 
 		return experience;
+	}
+
+	public List<Job> getJobs() {
+		return this.jobs;
+	}
+
+	public void setJobs(List<Job> jobs) {
+		this.jobs = jobs;
+	}
+
+	public Job addJob(Job job) {
+		getJobs().add(job);
+		job.setUser(this);
+
+		return job;
+	}
+
+	public Job removeJob(Job job) {
+		getJobs().remove(job);
+		// job.setUser(null);
+
+		return job;
 	}
 
 	public List<Message> getSentMessages() {
@@ -342,28 +378,6 @@ public class User implements Serializable {
 //		skill.setUser(null);
 
 		return skill;
-	}
-
-	public List<Job> getJobs() {
-		return this.jobs;
-	}
-
-	public void setJobs(List<Job> jobs) {
-		this.jobs = jobs;
-	}
-
-	public Job addJob(Job job) {
-		getJobs().add(job);
-		job.setUser(this);
-
-		return job;
-	}
-
-	public Job removeJob(Job job) {
-		getJobs().remove(job);
-		// job.setUser(null);
-
-		return job;
 	}
 
 }

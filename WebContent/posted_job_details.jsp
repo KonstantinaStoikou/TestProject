@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Dots - Job Nameeeeeeeeeeeeee</title>
+		<title>Dots - <%= j.getPosition()%></title>
 		<link rel="icon" href="images/favicon.ico" type="image/x-icon">
 		<link rel="stylesheet" type="text/css" href="styles/navbar.css">
 		<link rel="stylesheet" type="text/css" href="styles/jobs.css">
@@ -15,7 +15,7 @@
 	</head>
 	<body>
 		
-		<%@ page import="java.util.List, model.User, model.Job" %>
+		<%@ page import="java.util.List, model.User, model.Job, model.Job_Skill" %>
 		<% 
 	 		if (session.getAttribute("email") == null) { 
 				response.sendRedirect(request.getContextPath() + "/login.jsp"); 
@@ -46,14 +46,11 @@
         		<span id="company"><%= j.getCompany() %></span>
         		<div id="description"><%= j.getDescription() %></div>
         		<div id="skills">
-					<span class="span_flex">ssdfgdddfddfsfsd</span>
-					<span class="span_flex">C++</span>
-					<span class="span_flex">Communicative</span>
-					<span class="span_flex">Organized</span>
-					<span class="span_flex">Matlab</span>
-					<span class="span_flex">Machine Learning</span>
-					<span class="span_flex">ssdfsfsdfdsfsdfsdssfsd</span>
-					<span class="span_flex">ssdfsfsd</span>
+        			<% if(j.getJobSkills() != null && !j.getJobSkills().isEmpty()) { %>
+	        			<% for(Job_Skill js : j.getJobSkills()) { %>
+						<span class="span_flex"> <%= js.getName() %></span>
+						<% } %>
+					<% } %>
 				</div>
        	</div>
        	

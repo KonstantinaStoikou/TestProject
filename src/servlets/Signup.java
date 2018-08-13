@@ -14,6 +14,8 @@ import javax.servlet.http.Part;
 
 import org.apache.commons.io.IOUtils;
 
+import dao.JobDAO;
+import dao.JobDAOImpl;
 import dao.UserDAO;
 import dao.UserDAOImpl;
 import model.User;
@@ -77,6 +79,8 @@ public class Signup extends HttpServlet {
 				session.setAttribute("last_name", user.getLastName());
 				session.setAttribute("phone", user.getPhone());
 				session.setAttribute("photo", user.getPhoto());
+				JobDAO jobDao = new JobDAOImpl();
+				session.setAttribute("recommendedJobs", jobDao.list());
 
 				request.getRequestDispatcher("/welcome.jsp").forward(request, response);
 			}
