@@ -13,6 +13,8 @@ import dao.EducationDAO;
 import dao.EducationDAOImpl;
 import dao.ExperienceDAO;
 import dao.ExperienceDAOImpl;
+import dao.JobDAO;
+import dao.JobDAOImpl;
 import dao.SkillDAO;
 import dao.SkillDAOImpl;
 import dao.UserDAO;
@@ -64,6 +66,9 @@ public class Login extends HttpServlet {
 			session.setAttribute("connectionList", user.getFriends());
 			session.setAttribute("conversations", user.getConversations());
 			session.setAttribute("lastConvUser", user.getLastConversationUser());
+
+			JobDAO jobDao = new JobDAOImpl();
+			session.setAttribute("recommendedJobs", jobDao.list());
 
 			request.getRequestDispatcher("/welcome.jsp").forward(request, response);
 		} else {

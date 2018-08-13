@@ -19,3 +19,9 @@ function addSkill() {
 	document.getElementById("added_skill").value = "";
 	id_counter++;
 }
+
+//submit form when clicking on a job's div (for pages with listed jobs)
+function submitForm(i){
+	document.getElementById("job_input").value = i;
+    document.getElementById("submit_form").submit();
+}

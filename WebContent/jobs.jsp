@@ -9,8 +9,11 @@
 		<link rel="stylesheet" type="text/css" href="styles/navbar.css">
 		<link rel="stylesheet" type="text/css" href="styles/jobs.css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+		<script src="scripts/post_job.js" async></script>
 	</head>
 	<body>
+	
+		<%@ page import="java.util.List, model.Job" %>
 		<% 
 	 		if (session.getAttribute("email") == null) { 
 				response.sendRedirect(request.getContextPath() + "/login.jsp"); 
@@ -35,16 +38,30 @@
          		<button>See applicants for<br>your posted jobs</button>
         	</div>
         	 
+        	
+        	<%  
+			// retrieve your list from the request, with casting 
+			List<Job> recommendedJobs = (List<Job>) session.getAttribute("recommendedJobs");
+			%> 
+        	 
         	<div class="container">
         		<span class="title">Recommended jobs for you :</span>
-        		<div class="container job_container">
-        			<span class="position">Senior Java Developer</span>
-        			<br><br>
-        			<span class="company">Microsoft</span>
-        			<br><br>
-        			<span class="description">Our company expects kgjdfjhg jgjklddhfkgjdfjhg jgjkldhg jkdhfgkdhfkgjdfjhg jgjkhfkgjdfjhg jgjkldhg jkdhfgkdhfkgjdfjhg jgjkldhg jkdhfgkdhf</span>
-        		</div>
-   		
+        		<% if(recommendedJobs != null && !recommendedJobs.isEmpty()) { %>
+					<% for(Job j : recommendedJobs) { %>
+						<div class="container job_container" onclick="submitForm(<%= String.valueOf(j.getId()) %>)">
+							<span class="position"> <%= j.getPosition() %></span>
+		        			<br><br>
+		        			<span class="company"> <%= j.getCompany() %></span>
+		        			<br><br>
+		        			<span class="description"> <%= j.getDescription() %></span>
+		        		</div>
+					<% } %>
+				<% } %>		
         	</div>
+        	
+        	<!-- form to submit when clicking on a user -->
+			<form action="postJob" id="submit_form" method="get">
+				<input type="hidden" id="job_input" name="job" value="">   
+			</form>
 	</body>
 </html>

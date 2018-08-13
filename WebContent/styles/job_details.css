@@ -16,6 +16,19 @@
 	color: #656565;
 }
 
+#postedby {
+	width: 100%;
+	font-size: 15px;
+	color: #656565;
+}
+
+#username {
+	width: 100%;
+	font-size: 18px;
+	color: black;
+	padding-left: 8px;
+}
+
 #description {
 	box-sizing: border-box;
 	padding: 20px;
@@ -30,6 +43,7 @@
 #skills {
 	display: flex;
 	flex-flow: row wrap;
+	width: 100%;
 }
 
 .span_flex {
@@ -92,3 +106,19 @@
 .title {
 	width: 100%;
 }
+
+form {
+	width:100%;
+}
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 

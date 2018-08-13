@@ -32,6 +32,13 @@ public class PostJob extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		HttpSession session = request.getSession();
+		int id = Integer.parseInt(request.getParameter("job"));
+		JobDAO jobDao = new JobDAOImpl();
+		Job job = jobDao.find(id);
+		request.setAttribute("job", job);
+
+		request.getRequestDispatcher("/job_details.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -74,6 +81,8 @@ public class PostJob extends HttpServlet {
 		em.getTransaction().begin();
 		job.setJobSkills(jobSkills);
 		em.getTransaction().commit();
+
+		session.setAttribute("recommendedJobs", jobDao.list());
 
 	}
 
