@@ -69,6 +69,7 @@ public class Login extends HttpServlet {
 
 			JobDAO jobDao = new JobDAOImpl();
 			session.setAttribute("recommendedJobs", jobDao.list());
+			session.setAttribute("postedJobs", user.getJobs());
 
 			request.getRequestDispatcher("/welcome.jsp").forward(request, response);
 		} else {

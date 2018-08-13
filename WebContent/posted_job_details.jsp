@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% Job j = (Job)request.getAttribute("job"); %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -13,6 +14,8 @@
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
 	</head>
 	<body>
+		
+		<%@ page import="java.util.List, model.User, model.Job" %>
 		<% 
 	 		if (session.getAttribute("email") == null) { 
 				response.sendRedirect(request.getContextPath() + "/login.jsp"); 
@@ -34,24 +37,24 @@
        	<div class="left">
        		<button><a href="post_job.jsp">Post a new job</a></button>
        		<br>
-        		<button>See applicants for<br>your posted jobs</button>
+        		<button><a href="posted_jobs.jsp">See applicants for<br>your posted jobs</a></button>
        	</div>
        	 
        	<div class="container">
-       		<span id="position">Java Developer</span>
-       		<br>
-       		<span id="company">Microsoft</span>
-       		<div id="description">This is a job description fogggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg</div>
-       		<div id="skills">
-				<span class="span_flex">ssdfgdddfddfsfsd</span>
-				<span class="span_flex">C++</span>
-				<span class="span_flex">Communicative</span>
-				<span class="span_flex">Organized</span>
-				<span class="span_flex">Matlab</span>
-				<span class="span_flex">Machine Learning</span>
-				<span class="span_flex">ssdfsfsdfdsfsdfsdssfsd</span>
-				<span class="span_flex">ssdfsfsd</span>
-			</div>
+       		<span id="position"><%= j.getPosition() %></span>
+        		<br>
+        		<span id="company"><%= j.getCompany() %></span>
+        		<div id="description"><%= j.getDescription() %></div>
+        		<div id="skills">
+					<span class="span_flex">ssdfgdddfddfsfsd</span>
+					<span class="span_flex">C++</span>
+					<span class="span_flex">Communicative</span>
+					<span class="span_flex">Organized</span>
+					<span class="span_flex">Matlab</span>
+					<span class="span_flex">Machine Learning</span>
+					<span class="span_flex">ssdfsfsdfdsfsdfsdssfsd</span>
+					<span class="span_flex">ssdfsfsd</span>
+				</div>
        	</div>
        	
        	<div class="container">

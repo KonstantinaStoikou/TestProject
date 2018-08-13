@@ -35,7 +35,7 @@
         	<div class="left">
         		<button><a href="post_job.jsp">Post a new job</a></button>
         		<br>
-         		<button>See applicants for<br>your posted jobs</button>
+         		<button><a href="posted_jobs.jsp">See applicants for<br>your posted jobs</a></button>
         	</div>
         	 
         	
@@ -61,6 +61,7 @@
         	
         	<!-- form to submit when clicking on a user -->
 			<form action="postJob" id="submit_form" method="get">
+				<input type="hidden" name="jsp" value="jobs">
 				<input type="hidden" id="job_input" name="job" value="">   
 			</form>
 	</body>

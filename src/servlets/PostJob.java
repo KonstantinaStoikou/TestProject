@@ -38,7 +38,12 @@ public class PostJob extends HttpServlet {
 		Job job = jobDao.find(id);
 		request.setAttribute("job", job);
 
-		request.getRequestDispatcher("/job_details.jsp").forward(request, response);
+		if (request.getParameter("jsp").equals("jobs")) {
+			request.getRequestDispatcher("/job_details.jsp").forward(request, response);
+		} else {
+			request.getRequestDispatcher("/posted_job_details.jsp").forward(request, response);
+		}
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -82,7 +87,9 @@ public class PostJob extends HttpServlet {
 		job.setJobSkills(jobSkills);
 		em.getTransaction().commit();
 
-		session.setAttribute("recommendedJobs", jobDao.list());
+		session.setAttribute("postedJobs", user.getJobs());
+
+		request.getRequestDispatcher("/posted_jobs.jsp").forward(request, response);
 
 	}
 
