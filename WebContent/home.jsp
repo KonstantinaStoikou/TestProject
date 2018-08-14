@@ -9,6 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="styles/navbar.css">
 		<link rel="stylesheet" type="text/css" href="styles/home.css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+		<script src="scripts/home.js" async></script>
 	</head>
 	<body>
 	
@@ -53,9 +54,24 @@
         
 		<!-- form to make a new post -->
         <div class="container">
-        	gfiodhgdfkjh
+        	<form action="" method="post">
+        		<textarea name="text" placeholder="Share an idea, a video, a photo or an audio file"></textarea>
+        		<button type="button" onclick="chooseFile(this.textContent)"><i class="fas fa-camera"></i>Photo</button>
+        		<button type="button" onclick="chooseFile(this.textContent)"><i class="fas fa-video"></i>Video</button>
+        		<button type="button" onclick="chooseFile(this.textContent)"><i class="fas fa-microphone"></i>Audio</button>
+        		<input type="submit" value="Post">
+        	</form>
         </div>
         
+        <div class="container">
+        	gfiodhgdfkjh
+        </div>
+        <div class="container">
+        	gfiodhgdfkjh
+        </div>
+        <div class="container">
+        	gfiodhgdfkjh
+        </div>
         <div class="container">
         	gfiodhgdfkjh
         </div>

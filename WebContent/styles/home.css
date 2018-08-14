@@ -48,7 +48,7 @@
 	font-weight: 400;
 }
 
-.left > button {
+.left > button, form > input[type="submit"] {
 	outline: none;
     font-family: 'Work Sans', sans-serif;
     text-transform: uppercase;
@@ -72,7 +72,7 @@
 	color: white;
 }
 
-.left > button:hover {
+.left > button:hover, form > input[type="submit"]:hover {
     box-shadow: inset 0 0 0 3px #44826d;
 }
 
@@ -85,6 +85,67 @@
 	font-size: 15px;
 	color: #656565;
 }
+
+textarea {
+	box-sizing: border-box;
+	width: 100%;
+	height: 100px;
+    word-wrap: break-word;
+    border-radius: 10px;
+    border: 1px solid #44826d;
+    outline: none;
+    resize: none;
+    padding: 5px 10px;
+    font-size: 20px;
+    font-family: 'Oswald', sans-serif;
+}
+
+form > button {
+	outline: none;
+    font-family: 'Work Sans', sans-serif;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 15px;
+    color: #44826d;
+	background-color: white;
+    border-radius: 50px;
+    padding: 8px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border: 1px solid #44826d;
+    transition: all 0.3s ease 0s;
+    margin: 10px 0;
+}
+
+form > button > i {
+	margin-right: 10px;
+	font-size: 18px;
+}
+
+form > button:hover {
+	color: #2e5a4c;
+	box-shadow: inset 0 0 0 2px #44826d;
+}
+
+form > input[type="submit"]{
+	float: right;
+	font-size: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
