@@ -71,7 +71,7 @@ public class Login extends HttpServlet {
 			session.setAttribute("recommendedJobs", jobDao.list());
 			session.setAttribute("postedJobs", user.getJobs());
 
-			request.getRequestDispatcher("/welcome.jsp").forward(request, response);
+			request.getRequestDispatcher("/home.jsp").forward(request, response);
 		} else {
 			request.setAttribute("errorMessage", "Invalid user or password");
 			session.invalidate();

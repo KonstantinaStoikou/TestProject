@@ -125,6 +125,7 @@
 	 text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 	 transition: background-color .4s ease;
 	 border-radius: 0 5px 5px 0;
+	 cursor: pointer;
 }
 
 #search_button:hover {

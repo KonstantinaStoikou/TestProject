@@ -82,7 +82,7 @@ public class Signup extends HttpServlet {
 				JobDAO jobDao = new JobDAOImpl();
 				session.setAttribute("recommendedJobs", jobDao.list());
 
-				request.getRequestDispatcher("/welcome.jsp").forward(request, response);
+				request.getRequestDispatcher("/home.jsp").forward(request, response);
 			}
 		} else {
 			request.setAttribute("errorMessage", "There is already a user with this email");
