@@ -29,8 +29,10 @@ public class Post implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "Postcol")
-	private String postcol;
+	@Column(name = "file_path")
+	private String filePath;
+
+	private String text;
 
 	// bi-directional many-to-one association to Comment
 	@OneToMany(mappedBy = "post")
@@ -56,12 +58,20 @@ public class Post implements Serializable {
 		this.id = id;
 	}
 
-	public String getPostcol() {
-		return this.postcol;
+	public String getFilePath() {
+		return this.filePath;
 	}
 
-	public void setPostcol(String postcol) {
-		this.postcol = postcol;
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
+
+	public String getText() {
+		return this.text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
 	}
 
 	public List<Comment> getComments() {

@@ -47,25 +47,31 @@ public class MakePost extends HttpServlet {
 		User user = dao.findByEmail(email);
 
 		String text = request.getParameter("text");
+		Part filePart = request.getPart("file");
+		System.out.println(text);
+		System.out.println(filePart);
+
 		PostDAO postDao = new PostDAOImpl();
 		Post post = new Post();
 		post.setUser(user);
-		post.setPostcol(text);
-		postDao.create(post);
-
-		// save file uploaded in home.jsp to external folder
-		Part filePart = request.getPart("file");
-		String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
-		Path folder = Paths.get("/home/tina/Desktop/Uploads");
-		String name = FilenameUtils.getBaseName(fileName);
-		String extension = FilenameUtils.getExtension(fileName);
-		Path file = Files.createTempFile(folder, name + "-", "." + extension);
-
-		try (InputStream input = filePart.getInputStream()) {
-			Files.copy(input, file, StandardCopyOption.REPLACE_EXISTING);
+		if (text != null) {
+			post.setText(text);
 		}
+		if (filePart != null) {
+			String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
+			// change folder path according to your local file system
+			Path folder = Paths.get("/home/tina/Desktop/Uploads");
+			String name = FilenameUtils.getBaseName(fileName);
+			String extension = FilenameUtils.getExtension(fileName);
+			Path file = Files.createTempFile(folder, name + "-", "." + extension);
 
-		System.out.println("Uploaded file successfully saved in " + file);
+			try (InputStream input = filePart.getInputStream()) {
+				Files.copy(input, file, StandardCopyOption.REPLACE_EXISTING);
+			}
+
+			post.setFilePath(file.getParent() + "/" + file.getFileName());
+		}
+		postDao.create(post);
 
 		request.getRequestDispatcher("/home.jsp").forward(request, response);
 	}
