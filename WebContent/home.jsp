@@ -64,7 +64,12 @@
         </div>
         
         <div class="container">
-        	gfiodhgdfkjh
+        	<img class="pic" src="images/handshake.jpg" alt="">
+        	<span class="name"> Name Surname </span>
+        	<br>
+        	<div class="context">
+        		context
+        	</div>
         </div>
         <div class="container">
         	gfiodhgdfkjh
