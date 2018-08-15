@@ -56,6 +56,10 @@ public class User implements Serializable {
 			@JoinColumn(name = "Job_id") })
 	private List<Job> appliedJobs;
 
+	// bi-directional many-to-one association to Comment
+	@OneToMany(mappedBy = "user")
+	private List<Comment> comments;
+
 	// bi-directional many-to-many association to User
 	@ManyToMany
 	@JoinTable(name = "Connection", joinColumns = { @JoinColumn(name = "Users_id2") }, inverseJoinColumns = {
@@ -74,6 +78,12 @@ public class User implements Serializable {
 	@OneToMany(mappedBy = "user")
 	private List<Job> jobs;
 
+	// bi-directional many-to-many association to Post
+	@ManyToMany
+	@JoinTable(name = "LikePost", joinColumns = { @JoinColumn(name = "User_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "Post_id") })
+	private List<Post> likedPosts;
+
 	// bi-directional many-to-one association to Message
 	@OneToMany(mappedBy = "sender")
 	private List<Message> sentMessages;
@@ -81,6 +91,10 @@ public class User implements Serializable {
 	// bi-directional many-to-one association to Message
 	@OneToMany(mappedBy = "receiver")
 	private List<Message> receivedMessages;
+
+	// bi-directional many-to-one association to Post
+	@OneToMany(mappedBy = "user")
+	private List<Post> posts;
 
 	// bi-directional many-to-one association to Skill
 	@OneToMany(mappedBy = "user")
@@ -155,6 +169,28 @@ public class User implements Serializable {
 
 	public void addAppliedJob(Job job) {
 		getAppliedJobs().add(job);
+	}
+
+	public List<Comment> getComments() {
+		return this.comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public Comment addComment(Comment comment) {
+		getComments().add(comment);
+		comment.setUser(this);
+
+		return comment;
+	}
+
+	public Comment removeComment(Comment comment) {
+		getComments().remove(comment);
+		// comment.setUser(null);
+
+		return comment;
 	}
 
 	public List<User> getFriends() {
@@ -234,6 +270,18 @@ public class User implements Serializable {
 		// job.setUser(null);
 
 		return job;
+	}
+
+	public List<Post> getLikedPosts() {
+		return this.likedPosts;
+	}
+
+	public void setLikedPosts(List<Post> likedPost) {
+		this.likedPosts = likedPost;
+	}
+
+	public void addLikedPost(Post likedPost) {
+		getLikedPosts().add(likedPost);
 	}
 
 	public List<Message> getSentMessages() {
@@ -358,6 +406,28 @@ public class User implements Serializable {
 		return user;
 	}
 
+	public List<Post> getPosts() {
+		return this.posts;
+	}
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
+
+	public Post addPosts(Post posts) {
+		getPosts().add(posts);
+		posts.setUser(this);
+
+		return posts;
+	}
+
+	public Post removePosts(Post posts) {
+		getPosts().remove(posts);
+		// posts.setUser(null);
+
+		return posts;
+	}
+
 	public List<Skill> getSkills() {
 		return this.skills;
 	}
@@ -375,7 +445,7 @@ public class User implements Serializable {
 
 	public Skill removeSkill(Skill skill) {
 		getSkills().remove(skill);
-//		skill.setUser(null);
+		// skill.setUser(null);
 
 		return skill;
 	}
