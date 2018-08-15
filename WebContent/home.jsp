@@ -54,7 +54,7 @@
         
 		<!-- form to make a new post -->
         <div class="container">
-        	<form action="" method="post">
+        	<form action="makePost" method="post" enctype="multipart/form-data">
         		<textarea name="text" placeholder="Share an idea, a video, a photo or an audio file"></textarea>
         		<button type="button" onclick="chooseFile(this.textContent)"><i class="fas fa-camera"></i>Photo</button>
         		<button type="button" onclick="chooseFile(this.textContent)"><i class="fas fa-video"></i>Video</button>
