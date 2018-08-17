@@ -149,10 +149,15 @@ form > input[type="submit"]{
 }
 
 .context {
+	margin-top: 10px;
 	text-align: center;
 }
 
-
+.size {
+	display: block;
+	max-width: 100%;
+	margin: 0 auto;
+}
 
 
 

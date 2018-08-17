@@ -48,8 +48,6 @@ public class MakePost extends HttpServlet {
 
 		String text = request.getParameter("text");
 		Part filePart = request.getPart("file");
-		System.out.println(text);
-		System.out.println(filePart);
 
 		PostDAO postDao = new PostDAOImpl();
 		Post post = new Post();
@@ -70,8 +68,20 @@ public class MakePost extends HttpServlet {
 			}
 
 			post.setFilePath(file.getParent() + "/" + file.getFileName());
+
+			String mediaType = request.getParameter("hidden");
+			if (mediaType.equals("image")) {
+				post.setMediaType("image");
+			} else if (mediaType.equals("video")) {
+				post.setMediaType("video");
+			} else if (mediaType.equals("audio")) {
+				post.setMediaType("audio");
+			}
 		}
+
 		postDao.create(post);
+
+		session.setAttribute("posts", postDao.list());
 
 		request.getRequestDispatcher("/home.jsp").forward(request, response);
 	}

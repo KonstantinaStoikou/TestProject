@@ -1,3 +1,4 @@
+<%@page import="com.sun.org.glassfish.external.probe.provider.annotations.Probe"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,7 +14,7 @@
 	</head>
 	<body>
 	
-		<%@ page import="java.util.List, model.User" %>
+		<%@ page import="java.util.List, model.User, model.Post, java.nio.file.Files" %>
 		<% 
 	 		if (session.getAttribute("email") == null) { 
 				response.sendRedirect(request.getContextPath() + "/login.jsp"); 
@@ -51,7 +52,7 @@
        		<span id="conn_text">connections</span>
        		<button><a href="network.jsp">See your connections</a></button>
        	</div>
-        
+       	
 		<!-- form to make a new post -->
         <div class="container">
         	<form action="makePost" method="post" enctype="multipart/form-data">
@@ -63,25 +64,44 @@
         	</form>
         </div>
         
+        <%  
+		// retrieve your list from the request, with casting 
+		List<Post> posts = (List<Post>) session.getAttribute("posts");
+		%> 
+		
+		<% if(posts != null && !posts.isEmpty()) { %>
+			<% for(Post p : posts) { %>
+				<div class="container">
+					<img class="pic" src=<%= "http://localhost:8080/TestProject/usersProfilePic?user=" + p.getUser().getEmail() + "" %> alt="">
+        			<span class="name"> <% out.write(p.getUser().getFirstName()+ " " + p.getUser().getLastName());%> </span>
+					<br>
+					<% if (p.getText() != null) { %>
+						<div class="context"><%= p.getText() %></div> 
+						<br>
+					<% } %>
+					<% if (p.getMediaType().equals("image")) { %>	
+						<img class="size" src=<%= "http://localhost:8080/TestProject/fileServlet?filename=" + p.getFilePath() + "" %> alt=""> 
+						
+					<% } else if (p.getMediaType().equals("video")) { %>
+						<video class="size" controls>
+							<source src=<%= "http://localhost:8080/TestProject/fileServlet?filename=" + p.getFilePath() + "" %> type="video/ogg">
+						</video>
+					<% } else if (p.getMediaType().equals("audio")){ %>
+						<audio class="size" controls>
+							<source src=<%= "http://localhost:8080/TestProject/fileServlet?filename=" + p.getFilePath() + "" %> type="audio/ogg">
+						</audio>
+					<% } %>
+				</div>
+			<% } %>
+		<% } %>	
         <div class="container">
         	<img class="pic" src="images/handshake.jpg" alt="">
         	<span class="name"> Name Surname </span>
         	<br>
+        	
         	<div class="context">
         		context
         	</div>
-        </div>
-        <div class="container">
-        	gfiodhgdfkjh
-        </div>
-        <div class="container">
-        	gfiodhgdfkjh
-        </div>
-        <div class="container">
-        	gfiodhgdfkjh
-        </div>
-        <div class="container">
-        	gfiodhgdfkjh
         </div>
         
 	</body>

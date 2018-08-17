@@ -32,6 +32,9 @@ public class Post implements Serializable {
 	@Column(name = "file_path")
 	private String filePath;
 
+	@Column(name = "media_type")
+	private String mediaType;
+
 	private String text;
 
 	// bi-directional many-to-one association to Comment
@@ -64,6 +67,14 @@ public class Post implements Serializable {
 
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
+	}
+
+	public String getMediaType() {
+		return this.mediaType;
+	}
+
+	public void setMediaType(String mediaType) {
+		this.mediaType = mediaType;
 	}
 
 	public String getText() {

@@ -15,6 +15,8 @@ import dao.ExperienceDAO;
 import dao.ExperienceDAOImpl;
 import dao.JobDAO;
 import dao.JobDAOImpl;
+import dao.PostDAO;
+import dao.PostDAOImpl;
 import dao.SkillDAO;
 import dao.SkillDAOImpl;
 import dao.UserDAO;
@@ -70,6 +72,9 @@ public class Login extends HttpServlet {
 			JobDAO jobDao = new JobDAOImpl();
 			session.setAttribute("recommendedJobs", jobDao.list());
 			session.setAttribute("postedJobs", user.getJobs());
+
+			PostDAO postDao = new PostDAOImpl();
+			session.setAttribute("posts", postDao.list());
 
 			request.getRequestDispatcher("/home.jsp").forward(request, response);
 		} else {
