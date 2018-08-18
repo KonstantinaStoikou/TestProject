@@ -64,3 +64,12 @@ function chooseFile(content) {
 	}
 }
 
+//show comments when clicking on comments button
+function showComments(div_id) {
+	console.log(document.getElementById(div_id));
+	document.getElementById(div_id).classList.toggle("hidden");
+}
+
+
+
+
