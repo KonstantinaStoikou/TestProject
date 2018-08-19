@@ -20,67 +20,67 @@ import model.User;
  */
 @WebServlet("/network")
 public class Network extends HttpServlet {
-       
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String hiddenParam = request.getParameter("action");
-		
+
 		if (hiddenParam.equals("search_form")) {
 			String searchText = request.getParameter("search");
 			request.setAttribute("searchText", searchText);
-			String[] searchTextTokens = searchText.split(" "); 
-			
+			String[] searchTextTokens = searchText.split(" ");
+
 			UserDAO dao = new UserDAOImpl();
-			//get all users 
+			// get all users
 			List<User> users = dao.list();
-			//list to add relevant to search users
-			List<User> results= new ArrayList<User>();
+			// list to add relevant to search users
+			List<User> results = new ArrayList<User>();
 			for (User u : users) {
-				//concatenate users' first and last name into one
+				// concatenate users' first and last name into one
 				String first = u.getFirstName();
 				String last = u.getLastName();
 				String full = first + " " + last;
-				//if input equals the full name
+				// if input equals the full name
 				if (full.toLowerCase().equals(searchText.toLowerCase())) {
-					//add at the beginning of list because it matches input the most
-					results.add(0, u);   
+					// add at the beginning of list because it matches input the most
+					results.add(0, u);
 				}
-				//if whole input is contained in full name
+				// if whole input is contained in full name
 				else if (full.toLowerCase().contains(searchText.toLowerCase())) {
 					results.add(u);
-				}
-				else {
-					//if any word of the input is contained in full name
+				} else {
+					// if any word of the input is contained in full name
 					for (String token : searchTextTokens) {
 						if (full.toLowerCase().contains(token.toLowerCase())) {
 							results.add(u);
 						}
 					}
-				}				
+				}
 			}
-			
+
 			request.setAttribute("results", results);
-			
+
 			request.getRequestDispatcher("/search_results.jsp").forward(request, response);
-		}
-		else if (hiddenParam.equals("visit_user")) {
+		} else if (hiddenParam.equals("visit_user")) {
 			int id = Integer.parseInt(request.getParameter("user"));
 			UserDAO dao = new UserDAOImpl();
 			User user = dao.find(id);
 			request.setAttribute("user", user);
-			
-			//check if current user and clicked user are already connected
-			//and pass boolean attribute
-			String email = (String)session.getAttribute("email");
-			User current_user = dao.findByEmail(email);
-			request.setAttribute("connected", current_user.getFriends().contains(user));
-			
+
+			// check if current user and clicked user are already connected
+			// and pass boolean attribute
+			String email = (String) session.getAttribute("email");
+			User currentUser = dao.findByEmail(email);
+			request.setAttribute("connected", currentUser.getFriends().contains(user));
+
 			request.getRequestDispatcher("/user_profile.jsp").forward(request, response);
 		}
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 	}
 
 }

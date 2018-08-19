@@ -216,6 +216,11 @@ hr {
 	font-family: 'Oswald', sans-serif;
 }
 
+.comments input[type="submit"] {
+	font-size: 15px;
+	float: none;
+}
+
 .com {
 	margin-top: 15px;
 }
@@ -228,5 +233,7 @@ hr {
 	display: block !important;
 }
 
-
+.hover {
+	color: #4d5052 !important;
+}
 

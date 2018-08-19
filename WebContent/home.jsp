@@ -14,7 +14,7 @@
 	</head>
 	<body>
 	
-		<%@ page import="java.util.List, model.User, model.Post, java.util.Collections" %>
+		<%@ page import="java.util.List, model.User, model.Post, model.Comment, java.util.Collections" %>
 		<% 
 	 		if (session.getAttribute("email") == null) { 
 				response.sendRedirect(request.getContextPath() + "/login.jsp"); 
@@ -64,34 +64,6 @@
         	</form>
         </div>
         
-        
-        <div class="container">
-        	<img class="pic" src="images/handshake.jpg" alt="">
-        	<span class="name"> Name Surname </span>
-        	<br>
-        	<div class="context">
-        		context
-        	</div>
-        	<div class="likes">
-        		<hr>
-        		<form id="likeform" action="" method="post"></form>
-        		<button type="submit" form="likeform"><i class="fas fa-thumbs-up"></i>10 Likes </button>
-        		<button type="button" onclick="showComments()"><i class="fas fa-comment-alt"></i>15 Comments </button>
-        	</div>
-        	<div class="comments" id="">
-        		<hr>
-        		<div class="com">
-        			<span class="writer"> Roulis Rouis</span>
-        			<br>
-        			<span class="text">Very interessdfffffffffsfsfsdfsdfsfsdfsfsdfting post</span>
-        		</div>
-        		<form action="">
-        			<input class="text" type="text" placeholder="Add a comment">
-        		</form>
-        	</div>
-        </div>
-        
-        
         <%  
 		// retrieve your list from the request, with casting 
 		List<Post> posts = (List<Post>) session.getAttribute("posts");
@@ -99,9 +71,8 @@
 		
 		<% if(posts != null && !posts.isEmpty()) { %>
 			<%//reverse list to show most recent posts first
-        	List<Post> postsCopy = posts.subList(0, posts.size());
-        	Collections.reverse(postsCopy); %>
-			<% for(Post p : postsCopy) { %>
+        	Collections.reverse(posts); %>
+			<% for(Post p : posts) { %>
 				<div class="container">
 					<img class="pic" src=<%= "http://localhost:8080/TestProject/usersProfilePic?user=" + p.getUser().getEmail() + "" %> alt="">
         			<span class="name"> <% out.write(p.getUser().getFirstName()+ " " + p.getUser().getLastName());%> </span>
@@ -124,19 +95,28 @@
 					<% } %>
 		        	<div class="likes">
 		        		<hr>
-		        		<form id="likeform" action="" method="post"></form>
-		        		<button type="submit" form="likeform"><i class="fas fa-thumbs-up"></i>10 Likes </button>
-		        		<button type="button" onclick="showComments(<%= p.getId() %>)"><i class="fas fa-comment-alt"></i>15 Comments </button>
+		        		<form id="likeform" action="like" method="post">
+		        			<input type="hidden" name="post" value="<%= p.getId() %>">
+		        		</form>
+		        		<button type="submit" form="likeform"><i class="fas fa-thumbs-up"></i><%= p.getLikeUsers().size() %> Likes </button>
+		        		<button type="button" id="<%= "btn" + p.getId()%>" onclick="showComments(<%= p.getId() %>, this.id)"><i class="fas fa-comment-alt"></i><%= p.getComments().size() %> Comments </button>
 		        	</div>
+		        	
 		        	<div class="comments" id="<%= p.getId() %>">
 		        		<hr>
-		        		<div class="com">
-		        			<span class="writer"> Roulis Rouis</span>
-		        			<br>
-		        			<span class="text">Very interessdfffffffffsfsfsdfsdfsfsdfsfsdfting post</span>
-		        		</div>
-		        		<form action="">
-		        			<input class="text" type="text" placeholder="Add a comment">
+		        		<% if(p.getComments() != null && !p.getComments().isEmpty()) { %>
+							<% for(Comment c : p.getComments()) { %>
+				        		<div class="com">
+				        			<span class="writer"> <%= c.getUser().getFirstName() %> <%= c.getUser().getLastName() %></span>
+				        			<br>
+				        			<span class="text"> <%= c.getText() %></span>
+				        		</div>
+			        		<% } %>
+						<% } %>	
+		        		<form action="postComment" method="post">
+		        			<input class="text" type="text" name="comment" placeholder="Add a comment">
+		        			<input type="hidden" name="post" value="<%= p.getId() %>">
+		        			<input type="submit" value="post">
 		        		</form>
 		        	</div>
 				</div>

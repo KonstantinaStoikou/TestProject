@@ -65,9 +65,10 @@ function chooseFile(content) {
 }
 
 //show comments when clicking on comments button
-function showComments(div_id) {
-	console.log(document.getElementById(div_id));
+function showComments(div_id, btn_id) {
+	console.log(btn_id);
 	document.getElementById(div_id).classList.toggle("hidden");
+	document.getElementById(btn_id).classList.toggle("hover")
 }
 
 
