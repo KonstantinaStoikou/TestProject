@@ -54,6 +54,8 @@ public class PostComment extends HttpServlet {
 
 		commentDao.create(comment);
 
+		session.setAttribute("posts", postDao.list());
+
 		request.getRequestDispatcher("/home.jsp").forward(request, response);
 	}
 

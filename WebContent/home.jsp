@@ -114,7 +114,7 @@
 			        		<% } %>
 						<% } %>	
 		        		<form action="postComment" method="post">
-		        			<input class="text" type="text" name="comment" placeholder="Add a comment">
+		        			<input class="text" type="text" name="comment" placeholder="Add a comment" autocomplete="off" spellcheck="false">
 		        			<input type="hidden" name="post" value="<%= p.getId() %>">
 		        			<input type="submit" value="post">
 		        		</form>

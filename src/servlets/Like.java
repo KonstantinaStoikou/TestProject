@@ -48,6 +48,8 @@ public class Like extends HttpServlet {
 		currentUser.addLikedPost(post);
 		em.getTransaction().commit();
 
+		session.setAttribute("posts", postDao.list());
+
 		request.getRequestDispatcher("/home.jsp").forward(request, response);
 	}
 
