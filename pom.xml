@@ -35,7 +35,7 @@
 		  <artifactId>heroku-maven-plugin</artifactId>
 		  <version>0.5.1</version>
 		  <configuration>
-		    <appName>lit-sea-11508</appName>
+		    <appName>dots-javaproject</appName>
 		  </configuration>
 		</plugin>
     </plugins>
