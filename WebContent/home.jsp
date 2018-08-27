@@ -74,23 +74,22 @@
         	Collections.reverse(posts); %>
 			<% for(Post p : posts) { %>
 				<div class="container">
-					<img class="pic" src=<%= "http://localhost:8080/TestProject/usersProfilePic?user=" + p.getUser().getEmail() + "" %> alt="">
+					<img class="pic" src=<%= "" + request.getContextPath() + "/usersProfilePic?user=" + p.getUser().getEmail() + "" %> alt="">
         			<span class="name"> <% out.write(p.getUser().getFirstName()+ " " + p.getUser().getLastName());%> </span>
 					<br>
 					<% if (p.getText() != null) { %>
 						<div class="context"><%= p.getText() %></div> 
 						<br>
 					<% } %>
-					<% if (p.getMediaType().equals("image")) { %>	
-						<img class="size" src=<%= "http://localhost:8080/TestProject/fileServlet?filename=" + p.getFilePath() + "" %> alt=""> 
-						
-					<% } else if (p.getMediaType().equals("video")) { %>
+					<% if ("image".equals(p.getMediaType())) { %>	
+						<img class="size" src=<%= "" + request.getContextPath() + "/fileServlet?filename=" + p.getFilePath() + "" %> alt=""> 			
+					<% } else if ("video".equals(p.getMediaType())) { %>
 						<video class="size" controls>
-							<source src=<%= "http://localhost:8080/TestProject/fileServlet?filename=" + p.getFilePath() + "" %> type="video/ogg">
+							<source src=<%= "" + request.getContextPath() + "/fileServlet?filename=" + p.getFilePath() + "" %> type="video/ogg">
 						</video>
-					<% } else if (p.getMediaType().equals("audio")){ %>
+					<% } else if ("audio".equals(p.getMediaType())){ %>
 						<audio class="size" controls>
-							<source src=<%= "http://localhost:8080/TestProject/fileServlet?filename=" + p.getFilePath() + "" %> type="audio/ogg">
+							<source src=<%= "" + request.getContextPath() + "/fileServlet?filename=" + p.getFilePath() + "" %> type="audio/ogg">
 						</audio>
 					<% } %>
 		        	<div class="likes">
