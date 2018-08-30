@@ -39,7 +39,7 @@
                 <div id="floating_elements">
                     <input type='file' id='getval' name="photo" accept="image/*">
                     <br>
-               		<img id="profile_photo" src= "http://localhost:8080/TestProject/profilepic?" alt="">
+               		<img id="profile_photo" src= <%= "" + request.getContextPath() + "/profilepic?" %> alt="">
                 	
             	</div>
             	

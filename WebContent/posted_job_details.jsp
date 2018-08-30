@@ -61,7 +61,7 @@
 			<% if(j.getAppliedUsers() != null && !j.getAppliedUsers().isEmpty()) { %>
 				<% for(User u : j.getAppliedUsers()) { %>
 					<div class="container user_container" onclick="submitForm(<%= String.valueOf(u.getId()) %>)">
-						<img src= <%= "http://localhost:8080/TestProject/usersProfilePic?user=" + u.getEmail() + "" %> alt="">
+						<img src= <%= "" + request.getContextPath() + "/usersProfilePic?user=" + u.getEmail() + "" %> alt="">
 						<br>
 						<div class="row1"> <%= u.getFirstName() %> <%= u.getLastName() %> </div>
 						<br>

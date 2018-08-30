@@ -1,4 +1,3 @@
-<%@page import="com.sun.org.glassfish.external.probe.provider.annotations.Probe"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -39,7 +38,7 @@
 		%> 
         
         <div class="left">
-        	<img src="http://localhost:8080/TestProject/profilepic?" alt="">
+        	<img src=<%= "" + request.getContextPath() + "/profilepic?" %> alt="">
         	<span id="current_name"> <%= session.getAttribute("first_name")%> <%= session.getAttribute("last_name")%> </span>
        		<button><a href="edit_profile.jsp">Go to your profile</a></button>
        		<br>

@@ -38,6 +38,16 @@
 		        <!-- hidden field to know what request will be processed in servlet -->
 		        <input type="hidden" name="action" value="email_change">
 		        <button type="submit" name="email_change">Apply</button>
+		        <%
+					if ("email".equals(request.getAttribute("errorType"))) {
+						out.write("<br>");
+						out.write("<br>");
+						out.write("<span>");
+						out.println(request.getAttribute("errorMessage"));
+						out.write("</span>");
+						out.write("<br>");
+					}
+				%>
 		    </form>
 		</div>
 		
@@ -46,7 +56,7 @@
 		        <p>Change password </p>
 		        <br>
 		        <%
-					if (request.getAttribute("errorMessage") != null) {
+					if ("pas".equals(request.getAttribute("errorType"))) {
 						out.write("<span>");
 						out.println(request.getAttribute("errorMessage"));
 						out.write("</span>");

@@ -55,7 +55,7 @@
 						<!-- check if this is the active user (opened in conversation) -->
 						<% if (convU.getId() == u.getId()) {classes = "container conv_container conv_active";} %>
 						<div class="<%= classes %>" onclick="submitForm(<%= String.valueOf(convU.getId()) %>)">
-			        		<img src= "<%= "http://localhost:8080/TestProject/usersProfilePic?user=" + convU.getEmail() + "" %>" alt="">
+			        		<img src= <%= "" + request.getContextPath() + "/usersProfilePic?user=" + convU.getEmail() + "" %> alt="">
 		        			<span class="name">  <%= convU.getFirstName() %> <%= convU.getLastName() %> </span>
 			        	</div>
 			        	<% classes = "container conv_container"; %>
@@ -72,7 +72,7 @@
         <div class="container">
         	<% if (noConversations == false) { %>
 	        	<div id="open_info">
-	        		<img src= <%= "http://localhost:8080/TestProject/usersProfilePic?user=" + u.getEmail() + "" %> alt="">
+	        		<img src= <%= "" + request.getContextPath() + "/usersProfilePic?user=" + u.getEmail() + "" %> alt="">
 	        		<span id="open_name"> <% out.write(u.getFirstName()+ " " + u.getLastName()); %> </span>
 	        	</div>
 	        	<div id="conversation">

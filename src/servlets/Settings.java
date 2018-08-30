@@ -38,17 +38,24 @@ public class Settings extends HttpServlet {
 			User user = dao.findByEmail(email);
 
 			String newEmail = request.getParameter("email");
-			EntityManager em = EntityManagerHelper.getEntityManager();
-			em.getTransaction().begin();
-			user.setEmail(newEmail);
-			em.getTransaction().commit();
-			session.setAttribute("email", user.getEmail());
+			if (dao.findByEmail(newEmail) == null) {
+				EntityManager em = EntityManagerHelper.getEntityManager();
+				em.getTransaction().begin();
+				user.setEmail(newEmail);
+				em.getTransaction().commit();
+				session.setAttribute("email", user.getEmail());
+			} else {
+				request.setAttribute("errorType", "email");
+				request.setAttribute("errorMessage", "A user with this email already exists");
+				request.getRequestDispatcher("/settings.jsp").forward(request, response);
+			}
 
 		} else if (hiddenParam.equals("password_change")) {
 
 			String newPassword = request.getParameter("newpass");
 			String oldPassword = request.getParameter("oldpass");
 			if (!oldPassword.equals(session.getAttribute("password"))) {
+				request.setAttribute("errorType", "pas");
 				request.setAttribute("errorMessage", "The old password you entered is wrong");
 				request.getRequestDispatcher("/settings.jsp").forward(request, response);
 			} else {

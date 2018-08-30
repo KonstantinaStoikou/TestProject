@@ -60,7 +60,7 @@ input {
     font-size: 1.5em;
     display: inline-block;
     border: 0;
-    outline: 0;
+    outline: none;
     padding: 5px;
     padding-left: 15px;
     background: rgba(161, 221, 221, 0.5);
@@ -88,6 +88,7 @@ input:focus {
     text-transform: uppercase;
     font-weight: 400;
     font-size: 2em;
+    outline: none;
 }
 
 #signin {

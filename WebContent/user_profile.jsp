@@ -35,7 +35,7 @@
         
         <div class="container">
                 <div id="floating_elements">
-               		<img id="profile_photo" src= <%= "http://localhost:8080/TestProject/usersProfilePic?user=" + u.getEmail() + "" %> alt="">  	
+               		<img id="profile_photo" src= <%= "" + request.getContextPath() + "/usersProfilePic?user=" + u.getEmail() + "" %> alt="">  	
             	</div>
             	<br>
             	<div id="buttons">
