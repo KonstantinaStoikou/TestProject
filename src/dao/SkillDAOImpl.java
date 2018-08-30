@@ -7,7 +7,6 @@ import javax.persistence.Query;
 
 import jpautils.EntityManagerHelper;
 import model.Skill;
-import model.User;
 
 public class SkillDAOImpl implements SkillDAO {
 
@@ -36,23 +35,6 @@ public class SkillDAOImpl implements SkillDAO {
 		sk.getUser().addSkill(sk);
 		em.getTransaction().commit();
 
-	}
-
-	@Override
-	public List<Skill> findByUser(User user) {
-		String queryString = "SELECT s FROM Skill s WHERE s.user = :user";
-
-		EntityManager em = EntityManagerHelper.getEntityManager();
-		Query query = em.createQuery(queryString);
-		query.setParameter("user", user);
-		query.setHint("eclipselink.refresh", "true");
-		@SuppressWarnings("unchecked")
-		List<Skill> sk = query.getResultList();
-		if (sk.isEmpty()) {
-			return null;
-		} else {
-			return sk;
-		}
 	}
 
 	@Override

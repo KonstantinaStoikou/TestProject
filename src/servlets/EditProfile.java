@@ -125,7 +125,7 @@ public class EditProfile extends HttpServlet {
 				}
 				expDao.create(exp);
 
-				session.setAttribute("expList", expDao.findByUser(user));
+				session.setAttribute("expList", user.getExperiences());
 			} else if (hiddenParam.equals("education_info")) {
 				EducationDAO edDao = new EducationDAOImpl();
 				Education ed = new Education();
@@ -162,7 +162,7 @@ public class EditProfile extends HttpServlet {
 				}
 				edDao.create(ed);
 
-				session.setAttribute("edList", edDao.findByUser(user));
+				session.setAttribute("edList", user.getEducations());
 			} else if (hiddenParam.equals("skill_info")) {
 				SkillDAO skDao = new SkillDAOImpl();
 				Skill sk = new Skill();
@@ -182,7 +182,7 @@ public class EditProfile extends HttpServlet {
 
 				skDao.create(sk);
 
-				session.setAttribute("skList", skDao.findByUser(user));
+				session.setAttribute("skList", user.getSkills());
 			}
 		}
 
@@ -193,7 +193,7 @@ public class EditProfile extends HttpServlet {
 			Experience exp = expDao.find(Integer.parseInt(deleteExpParam));
 			expDao.delete(exp);
 
-			session.setAttribute("expList", expDao.findByUser(user));
+			session.setAttribute("expList", user.getExperiences());
 		}
 		// if delete an education is clicked
 		String deleteEdParam = request.getParameter("delete_ed");
@@ -202,7 +202,7 @@ public class EditProfile extends HttpServlet {
 			Education ed = edDao.find(Integer.parseInt(deleteEdParam));
 			edDao.delete(ed);
 
-			session.setAttribute("edList", edDao.findByUser(user));
+			session.setAttribute("edList", user.getEducations());
 
 		}
 		// if delete a skill is clicked
@@ -212,7 +212,7 @@ public class EditProfile extends HttpServlet {
 			Skill sk = skDao.find(Integer.parseInt(deleteSkParam));
 			skDao.delete(sk);
 
-			session.setAttribute("skList", skDao.findByUser(user));
+			session.setAttribute("skList", user.getSkills());
 		}
 
 		// if change an experience's privacy is clicked
@@ -232,7 +232,7 @@ public class EditProfile extends HttpServlet {
 				em.getTransaction().commit();
 			}
 
-			session.setAttribute("expList", expDao.findByUser(user));
+			session.setAttribute("expList", user.getExperiences());
 		}
 		// if change an education's privacy is clicked
 		String privacyEdParam = request.getParameter("privacy_ed");
@@ -251,7 +251,7 @@ public class EditProfile extends HttpServlet {
 				em.getTransaction().commit();
 			}
 
-			session.setAttribute("edList", edDao.findByUser(user));
+			session.setAttribute("edList", user.getEducations());
 		}
 		// if change a skill's privacy is clicked
 		String privacySkParam = request.getParameter("privacy_sk");
@@ -270,7 +270,7 @@ public class EditProfile extends HttpServlet {
 				em.getTransaction().commit();
 			}
 
-			session.setAttribute("skList", skDao.findByUser(user));
+			session.setAttribute("skList", user.getSkills());
 		}
 
 		request.getRequestDispatcher("/edit_profile.jsp").forward(request, response);

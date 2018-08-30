@@ -69,8 +69,6 @@
 		%> 
 		
 		<% if(posts != null && !posts.isEmpty()) { %>
-			<%//reverse list to show most recent posts first
-        	Collections.reverse(posts); %>
 			<% for(Post p : posts) { %>
 				<div class="container">
 					<img class="pic" src=<%= "" + request.getContextPath() + "/usersProfilePic?user=" + p.getUser().getEmail() + "" %> alt="">

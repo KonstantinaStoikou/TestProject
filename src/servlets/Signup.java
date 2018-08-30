@@ -16,8 +16,6 @@ import org.apache.commons.io.IOUtils;
 
 import dao.JobDAO;
 import dao.JobDAOImpl;
-import dao.PostDAO;
-import dao.PostDAOImpl;
 import dao.UserDAO;
 import dao.UserDAOImpl;
 import model.User;
@@ -83,8 +81,6 @@ public class Signup extends HttpServlet {
 				session.setAttribute("photo", user.getPhoto());
 				JobDAO jobDao = new JobDAOImpl();
 				session.setAttribute("recommendedJobs", jobDao.list());
-				PostDAO postDao = new PostDAOImpl();
-				session.setAttribute("posts", postDao.list());
 
 				request.getRequestDispatcher("/home.jsp").forward(request, response);
 			}

@@ -7,7 +7,6 @@ import javax.persistence.Query;
 
 import jpautils.EntityManagerHelper;
 import model.Education;
-import model.User;
 
 public class EducationDAOImpl implements EducationDAO {
 
@@ -36,23 +35,6 @@ public class EducationDAOImpl implements EducationDAO {
 		ed.getUser().addEducation(ed);
 		em.getTransaction().commit();
 
-	}
-
-	@Override
-	public List<Education> findByUser(User user) {
-		String queryString = "SELECT e FROM Education e WHERE e.user = :user";
-
-		EntityManager em = EntityManagerHelper.getEntityManager();
-		Query query = em.createQuery(queryString);
-		query.setParameter("user", user);
-		query.setHint("eclipselink.refresh", "true");
-		@SuppressWarnings("unchecked")
-		List<Education> ed = query.getResultList();
-		if (ed.isEmpty()) {
-			return null;
-		} else {
-			return ed;
-		}
 	}
 
 	@Override
