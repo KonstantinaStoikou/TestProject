@@ -2,10 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -16,7 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
+
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 
 import dao.PostDAO;
 import dao.PostDAOImpl;
@@ -56,27 +56,33 @@ public class MakePost extends HttpServlet {
 			post.setText(text);
 		}
 		if (filePart != null) {
-			String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
-			// change folder path according to your local file system
-			Path folder = Paths.get("/home/tina/Desktop/Uploads");
-			String name = FilenameUtils.getBaseName(fileName);
-			String extension = FilenameUtils.getExtension(fileName);
-			Path file = Files.createTempFile(folder, name + "-", "." + extension);
 
-			try (InputStream input = filePart.getInputStream()) {
-				Files.copy(input, file, StandardCopyOption.REPLACE_EXISTING);
-			}
+			InputStream filecontent = filePart.getInputStream();
+			byte[] fileArray = IOUtils.toByteArray(filecontent);
 
-			post.setFilePath(file.getParent() + "/" + file.getFileName());
+			Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap("cloud_name", "dots", "api_key", "966661985845386",
+					"api_secret", "Z2dX_qZBL8e0STEJ_yPhq7gi_8o"));
 
 			String mediaType = request.getParameter("hidden");
 			if (mediaType.equals("image")) {
 				post.setMediaType("image");
+				Map uploadResult = cloudinary.uploader().upload(fileArray, ObjectUtils.emptyMap());
+				String url = (String) uploadResult.get("url");
+				post.setFilePath(url);
+
 			} else if (mediaType.equals("video")) {
 				post.setMediaType("video");
+				Map uploadResult = cloudinary.uploader().upload(fileArray, ObjectUtils.asMap("resource_type", "video"));
+				String url = (String) uploadResult.get("url");
+				post.setFilePath(url);
+
 			} else if (mediaType.equals("audio")) {
 				post.setMediaType("audio");
+				Map uploadResult = cloudinary.uploader().upload(fileArray, ObjectUtils.asMap("resource_type", "video"));
+				String url = (String) uploadResult.get("url");
+				post.setFilePath(url);
 			}
+
 		}
 
 		postDao.create(post);

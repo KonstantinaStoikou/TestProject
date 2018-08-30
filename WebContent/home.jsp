@@ -79,14 +79,14 @@
 						<br>
 					<% } %>
 					<% if ("image".equals(p.getMediaType())) { %>	
-						<img class="size" src=<%= "" + request.getContextPath() + "/fileServlet?filename=" + p.getFilePath() + "" %> alt=""> 			
+						<img class="size" src=<%= "" + p.getFilePath() + "" %> alt=""> 			
 					<% } else if ("video".equals(p.getMediaType())) { %>
 						<video class="size" controls>
-							<source src=<%= "" + request.getContextPath() + "/fileServlet?filename=" + p.getFilePath() + "" %> type="video/ogg">
+							<source src=<%= "" + p.getFilePath() + "" %> type="video/ogg">
 						</video>
 					<% } else if ("audio".equals(p.getMediaType())){ %>
 						<audio class="size" controls>
-							<source src=<%= "" + request.getContextPath() + "/fileServlet?filename=" + p.getFilePath() + "" %> type="audio/ogg">
+							<source src=<%= "" + p.getFilePath() + "" %> type="audio/ogg">
 						</audio>
 					<% } %>
 		        	<div class="likes">

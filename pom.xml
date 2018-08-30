@@ -36,6 +36,16 @@
 	    <artifactId>commons-lang3</artifactId>
 	    <version>3.7</version>
 	</dependency>
+	<dependency>
+         <groupId>com.cloudinary</groupId>
+         <artifactId>cloudinary-taglib</artifactId>
+         <version>1.14.0</version>
+     </dependency>
+     <dependency>
+        <groupId>com.cloudinary</groupId>
+        <artifactId>cloudinary-http44</artifactId>
+        <version>1.14.0</version>
+     </dependency>
 	
   </dependencies>
   <build>
