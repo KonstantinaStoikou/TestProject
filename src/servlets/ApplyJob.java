@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
@@ -46,6 +47,16 @@ public class ApplyJob extends HttpServlet {
 		user.addAppliedJob(job);
 		job.addAppliedUsers(user);
 		em.getTransaction().commit();
+
+		// remove job from session attribute list of recommended jobs
+		List<Job> jobs = (List<Job>) session.getAttribute("recommendedJobs");
+		for (Job j : jobs) {
+			if (j.getId() == job.getId()) {
+				jobs.remove(j);
+				break;
+			}
+		}
+		session.setAttribute("recommendedJobs", jobs);
 
 		request.getRequestDispatcher("/jobs.jsp").forward(request, response);
 	}

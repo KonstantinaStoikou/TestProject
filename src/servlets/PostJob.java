@@ -42,7 +42,6 @@ public class PostJob extends HttpServlet {
 			String email = (String) session.getAttribute("email");
 			UserDAO dao = new UserDAOImpl();
 			User user = dao.findByEmail(email);
-			request.setAttribute("applied", job.getAppliedUsers().contains(user));
 
 			request.getRequestDispatcher("/job_details.jsp").forward(request, response);
 		} else {

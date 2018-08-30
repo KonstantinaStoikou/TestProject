@@ -13,14 +13,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.JobDAO;
-import dao.JobDAOImpl;
 import dao.PostDAO;
 import dao.PostDAOImpl;
 import dao.UserDAO;
 import dao.UserDAOImpl;
 import model.Job;
+import model.Job_Skill;
 import model.Post;
+import model.Skill;
 import model.User;
 
 /**
@@ -67,18 +67,33 @@ public class Login extends HttpServlet {
 			session.setAttribute("conversations", user.getConversations());
 			session.setAttribute("lastConvUser", user.getLastConversationUser());
 
-			JobDAO jobDao = new JobDAOImpl();
 			List<Job> jobs = new ArrayList<Job>();
-			// add to jobs list all jobs posted by this user's connections
+			// iterate all jobs posted by this user's connections
 			for (User u : connections) {
 				for (Job j : u.getJobs()) {
-					// if this user hasn't applied for the job
+					// if this user hasn't applied for the job continue
 					if (!user.getAppliedJobs().contains(j)) {
-						jobs.add(j);
+						List<Job_Skill> jobSkills = j.getJobSkills();
+						int size = jobSkills.size();
+						// check if all job skills appear in user's skills
+						for (Job_Skill js : jobSkills) {
+							for (Skill s : user.getSkills()) {
+								if (s.getName().equals(js.getName())) {
+									size--;
+								}
+								if (size == 0) {
+									break;
+								}
+							}
+							if (size == 0) {
+								jobs.add(j);
+								break;
+							}
+						}
 					}
 				}
 			}
-			session.setAttribute("recommendedJobs", jobDao.list());
+			session.setAttribute("recommendedJobs", jobs);
 			session.setAttribute("postedJobs", user.getJobs());
 
 			PostDAO postDao = new PostDAOImpl();
