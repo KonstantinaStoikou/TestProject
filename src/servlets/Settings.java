@@ -73,7 +73,7 @@ public class Settings extends HttpServlet {
 
 		} else if (hiddenParam.equals("logout")) {
 			session.invalidate();
-			request.getRequestDispatcher("/login.jsp").forward(request, response);
+			request.getRequestDispatcher("/login.jsp");
 		}
 
 		request.getRequestDispatcher("/settings.jsp").forward(request, response);

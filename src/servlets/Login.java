@@ -19,6 +19,7 @@ import dao.PostDAO;
 import dao.PostDAOImpl;
 import dao.UserDAO;
 import dao.UserDAOImpl;
+import model.Job;
 import model.Post;
 import model.User;
 
@@ -61,18 +62,29 @@ public class Login extends HttpServlet {
 			session.setAttribute("edList", user.getEducations());
 			session.setAttribute("skList", user.getSkills());
 
-			session.setAttribute("connectionList", user.getFriends());
+			List<User> connections = user.getFriends();
+			session.setAttribute("connectionList", connections);
 			session.setAttribute("conversations", user.getConversations());
 			session.setAttribute("lastConvUser", user.getLastConversationUser());
 
 			JobDAO jobDao = new JobDAOImpl();
+			List<Job> jobs = new ArrayList<Job>();
+			// add to jobs list all jobs posted by this user's connections
+			for (User u : connections) {
+				for (Job j : u.getJobs()) {
+					// if this user hasn't applied for the job
+					if (!user.getAppliedJobs().contains(j)) {
+						jobs.add(j);
+					}
+				}
+			}
 			session.setAttribute("recommendedJobs", jobDao.list());
 			session.setAttribute("postedJobs", user.getJobs());
 
 			PostDAO postDao = new PostDAOImpl();
 			List<Post> posts = new ArrayList<Post>();
-			List<User> connections = user.getFriends();
-			// add to posts list all posts made from this user's connections
+
+			// add to posts list all posts made by this user's connections
 			for (User u : connections) {
 				for (Post p : u.getPosts()) {
 					posts.add(p);

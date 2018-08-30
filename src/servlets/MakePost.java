@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -87,7 +88,9 @@ public class MakePost extends HttpServlet {
 
 		postDao.create(post);
 
-		session.setAttribute("posts", postDao.list());
+		List<Post> posts = (List<Post>) session.getAttribute("posts");
+		posts.add(0, post);
+		session.setAttribute("posts", posts);
 
 		request.getRequestDispatcher("/home.jsp").forward(request, response);
 	}
