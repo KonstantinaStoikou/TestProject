@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,8 +28,6 @@ public class PostComment extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -54,9 +53,20 @@ public class PostComment extends HttpServlet {
 
 		commentDao.create(comment);
 
-		session.setAttribute("posts", postDao.list());
-
-		request.getRequestDispatcher("/home.jsp").forward(request, response);
+		// replace commented post with the updated one in session attribute posts lists
+		List<Post> posts = (List<Post>) session.getAttribute("posts");
+		for (Post p : posts) {
+			if (p.getId() == post.getId()) {
+				System.out.println(posts);
+				int index = posts.indexOf(p);
+				posts.remove(index);
+				posts.add(index, post);
+				System.out.println(posts);
+				break;
+			}
+		}
+		session.setAttribute("posts", posts);
+		response.sendRedirect(request.getContextPath() + "/home.jsp");
 	}
 
 }

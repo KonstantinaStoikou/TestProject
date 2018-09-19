@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
@@ -48,9 +49,18 @@ public class Like extends HttpServlet {
 		currentUser.addLikedPost(post);
 		em.getTransaction().commit();
 
-		session.setAttribute("posts", postDao.list());
-
-		request.getRequestDispatcher("/home.jsp").forward(request, response);
+		// replace liked post with the updated one in session attribute posts lists
+		List<Post> posts = (List<Post>) session.getAttribute("posts");
+		for (Post p : posts) {
+			if (p.getId() == post.getId()) {
+				int index = posts.indexOf(p);
+				posts.remove(index);
+				posts.add(index, post);
+				break;
+			}
+		}
+		session.setAttribute("posts", posts);
+		response.sendRedirect(request.getContextPath() + "/home.jsp");
 	}
 
 }
