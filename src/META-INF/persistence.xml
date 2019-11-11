@@ -14,7 +14,8 @@
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://den1.mysql5.gear.host:3306/dotsdb"/>
 			<property name="javax.persistence.jdbc.user" value="dotsdb"/>
-			<property name="javax.persistence.jdbc.password" value="mynameis?97"/>
+			<!-- read password from a config file -->
+			<property name="javax.persistence.jdbc.password" value="******"/>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 		</properties>
 	</persistence-unit>
